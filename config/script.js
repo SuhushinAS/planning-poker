@@ -1,3 +1,4 @@
+const dotenv = require('dotenv');
 const webpack = require('webpack');
 const getIsProd = require('./get-is-prod');
 
@@ -13,6 +14,8 @@ const IgnorePluginOptions = {contextRegExp: /moment$/u, resourceRegExp: /^\.\/lo
 
 const getPlugins = ({mode}) => (getIsProd(mode) ? [new webpack.LoaderOptionsPlugin(LoaderOptionsPluginOptions)] : []);
 
+console.log(dotenv.config().parsed);
+
 module.exports = (config) => ({
   module: {
     rules: [
@@ -24,7 +27,12 @@ module.exports = (config) => ({
     ],
   },
   plugins: [
-    new webpack.DefinePlugin({'process.env': {NODE_ENV: JSON.stringify(config.mode)}}),
+    new webpack.DefinePlugin({
+      'process.env': JSON.stringify({
+        ...dotenv.config().parsed,
+        NODE_ENV: config.mode,
+      }),
+    }),
     new webpack.IgnorePlugin(IgnorePluginOptions),
     ...getPlugins(config),
   ],

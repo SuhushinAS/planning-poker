@@ -1,6 +1,9 @@
 import {App} from 'app/components/App';
 import {store} from 'app/store';
 import {Config} from 'modules/config/components/Config';
+import {FirebaseAppProvider} from 'modules/firebase/components/FirebaseApp';
+import {FirebaseAuthProvider} from 'modules/firebase/components/FirebaseAuth';
+import {FirebaseAnonymProvider} from 'modules/firebase/components/FirebaseAuthAnonymously';
 import {LocaleProvider} from 'modules/locale/components/LocaleProvider';
 import React from 'react';
 import {createRoot, Root} from 'react-dom/client';
@@ -15,7 +18,13 @@ const getRender = (root: Root) => () => {
         <LocaleProvider>
           <BrowserRouter>
             <Config>
-              <App />
+              <FirebaseAppProvider>
+                <FirebaseAuthProvider>
+                  <FirebaseAnonymProvider>
+                    <App />
+                  </FirebaseAnonymProvider>
+                </FirebaseAuthProvider>
+              </FirebaseAppProvider>
             </Config>
           </BrowserRouter>
         </LocaleProvider>
