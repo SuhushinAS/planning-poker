@@ -15,12 +15,12 @@ export const Auth = () => {
   const defaultValues = useMemo<DeepPartial<TAuthFormValues>>(() => ({name: ''}), []);
   const firebaseAnonym = useFirebaseAnonymContext();
   const firebaseFirestore = useFirebaseFirestoreContext();
-  const onSubmit = useCallback<SubmitHandler<TAuthFormValues>>(
-    (values) => {
-      return setDoc(doc(firebaseFirestore, 'user', firebaseAnonym.uid), values);
-    },
+  const userRef = useMemo(
+    () => doc(firebaseFirestore, 'user', firebaseAnonym.uid),
     [firebaseAnonym.uid, firebaseFirestore]
   );
+
+  const onSubmit = useCallback<SubmitHandler<TAuthFormValues>>((values) => setDoc(userRef, values), [userRef]);
 
   if (user === undefined) {
     return null;

@@ -7,12 +7,12 @@ export const useUser = () => {
   const firebaseAnonym = useFirebaseAnonymContext();
   const firebaseFirestore = useFirebaseFirestoreContext();
   const [user, setUser] = useState<DocumentSnapshot>();
-  const userDoc = useMemo(
+  const userRef = useMemo(
     () => doc(firebaseFirestore, 'user', firebaseAnonym.uid),
     [firebaseAnonym.uid, firebaseFirestore]
   );
 
-  useEffect(() => onSnapshot(userDoc, setUser), [userDoc]);
+  useEffect(() => onSnapshot(userRef, setUser), [userRef]);
 
   return user;
 };
