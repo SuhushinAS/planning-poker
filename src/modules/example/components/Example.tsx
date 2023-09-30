@@ -2,7 +2,7 @@ import {TDispatch} from 'app/types';
 import {actionExampleGetList} from 'modules/example/actions';
 import {ExamplePageItem} from 'modules/example/components/ExamplePageItem';
 import {ExamplePageList} from 'modules/example/components/ExamplePageList';
-import {examplePaths} from 'modules/example/constants';
+import {examplePath} from 'modules/example/constants';
 import React from 'react';
 import {connect} from 'react-redux';
 import {Route, Routes} from 'react-router-dom';
@@ -21,8 +21,8 @@ export class ExampleComponent extends React.Component<TProps> {
   render() {
     return (
       <Routes>
-        <Route element={<ExamplePageList />} path={examplePaths.list} />
-        <Route element={<ExamplePageItem />} path={examplePaths.item} />
+        <Route element={<ExamplePageList />} path={examplePath.list} />
+        <Route element={<ExamplePageItem />} path={examplePath.item} />
       </Routes>
     );
   }

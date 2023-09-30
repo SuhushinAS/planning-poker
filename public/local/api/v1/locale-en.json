@@ -3,6 +3,8 @@
   "example.list.description": "Example list description",
   "example.list.title": "Example list",
   "footer.power.title": "Powered by",
+  "form.save": "Save",
   "home.description": "Home description",
-  "home.title": "Home"
+  "home.title": "Home",
+  "user.name": "Name"
 }

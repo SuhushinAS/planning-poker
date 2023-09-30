@@ -1,7 +1,8 @@
 import {appPath} from 'app/constants';
 import {Example} from 'modules/example/components/Example';
-import {Home} from 'modules/home/components/Home';
+import {Game} from 'modules/game/components/Game';
 import {Layout} from 'modules/layout/components/Layout';
+import {Auth} from 'modules/user/components/Auth';
 import React from 'react';
 import {Route, Routes} from 'react-router-dom';
 
@@ -9,8 +10,9 @@ export const App = () => {
   return (
     <Layout>
       <Routes>
+        <Route element={<Auth />} path={`${appPath.auth}/*`} />
         <Route element={<Example />} path={`${appPath.example}/*`} />
-        <Route element={<Home />} path={appPath.home} />
+        <Route element={<Game />} path={appPath.home} />
       </Routes>
     </Layout>
   );

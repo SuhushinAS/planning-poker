@@ -1,4 +1,4 @@
-export const gamePaths = {
+export const gamePath = {
   item: '/:id',
   list: '/',
 };

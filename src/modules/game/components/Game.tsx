@@ -1,13 +1,18 @@
-import {useAppDispatch} from 'app/hooks';
-import {actionGameGetList} from 'modules/game/actions';
-import React, {useEffect} from 'react';
+import {appPath} from 'app/constants';
+import {useIsUser} from 'modules/user/model/useIsUser';
+import React from 'react';
+import {Navigate} from 'react-router';
 
 export const Game = () => {
-  const dispatch = useAppDispatch();
+  const isUser = useIsUser();
 
-  useEffect(() => {
-    dispatch(actionGameGetList);
-  }, [dispatch]);
+  if (isUser === undefined) {
+    return null;
+  }
+
+  if (false === isUser) {
+    return <Navigate to={appPath.auth} />;
+  }
 
   return <div>Game</div>;
 };

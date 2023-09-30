@@ -14,7 +14,6 @@ export const Layout = ({children}: TLayoutProps) => {
       <header className="Layout__Header">
         <Header />
       </header>
-      {/* mobile-menu */}
       <div className="Layout__Scroll">
         <Scroll dirList={['h', 'v']}>
           <div className="Layout__Inner">
