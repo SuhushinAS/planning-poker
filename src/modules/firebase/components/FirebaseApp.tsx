@@ -1,5 +1,5 @@
 import {FirebaseApp, deleteApp, initializeApp} from 'firebase/app';
-import {config} from 'modules/firebase/config';
+import {config} from 'modules/firebase/constants';
 import React, {ReactNode, createContext, useContext, useEffect, useState} from 'react';
 
 type Props = {

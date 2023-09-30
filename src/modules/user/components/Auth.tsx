@@ -7,12 +7,12 @@ import {AuthForm} from 'modules/user/components/AuthForm';
 import {useIsUser} from 'modules/user/model/useIsUser';
 import {TAuthFormValues} from 'modules/user/types';
 import React, {useCallback, useMemo} from 'react';
-import {SubmitHandler} from 'react-hook-form';
+import {DeepPartial, SubmitHandler} from 'react-hook-form';
 import {Navigate} from 'react-router';
 
 export const Auth = () => {
   const isUser = useIsUser();
-  const defaultValues = useMemo(() => ({name: ''}), []);
+  const defaultValues = useMemo<DeepPartial<TAuthFormValues>>(() => ({name: ''}), []);
   const firebaseAnonym = useFirebaseAnonymContext();
   const firebaseFirestore = useFirebaseFirestoreContext();
   const onSubmit = useCallback<SubmitHandler<TAuthFormValues>>(
@@ -21,7 +21,6 @@ export const Auth = () => {
     },
     [firebaseAnonym.uid, firebaseFirestore]
   );
-  console.log({firebaseAnonym, isUser});
 
   if (isUser === undefined) {
     return null;

@@ -1,6 +1,4 @@
 export const gamePath = {
-  item: '/:id',
-  list: '/',
+  home: '/',
+  item: '/:gameId',
 };
-
-export const gameIdKey = '_id';

@@ -12,7 +12,7 @@ export const App = () => {
       <Routes>
         <Route element={<Auth />} path={`${appPath.auth}/*`} />
         <Route element={<Example />} path={`${appPath.example}/*`} />
-        <Route element={<Game />} path={appPath.home} />
+        <Route element={<Game />} path="*" />
       </Routes>
     </Layout>
   );

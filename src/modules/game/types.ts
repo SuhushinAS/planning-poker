@@ -1,3 +1,6 @@
 export type TGame = {
-  title: 'string';
+  creatorId: string;
+  createDate: number;
+  options: number[];
+  title: string;
 };

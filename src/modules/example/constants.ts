@@ -1,5 +1,5 @@
 export const examplePath = {
-  item: '/:id',
+  item: '/:exampleId',
   list: '/',
 };
 
