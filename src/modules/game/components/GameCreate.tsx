@@ -33,10 +33,11 @@ export const GameCreateWithOptions = ({optionSetList}: Props) => {
 
   const onSubmit = useCallback(
     (values) => {
-      addDoc(collection(firebaseFirestore, 'game'), {
+      return addDoc(collection(firebaseFirestore, 'game'), {
         ...values,
         createDate: Date.now(),
         creatorId: firebaseAnonym.uid,
+        memberIdList: [],
       }).then((game) => {
         navigate(generatePath(gamePath.item, {gameId: game.id}));
       });

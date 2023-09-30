@@ -4,29 +4,29 @@ import {useFirebaseAnonymContext} from 'modules/firebase/components/FirebaseAuth
 import {useFirebaseFirestoreContext} from 'modules/firebase/components/FirebaseFirestore';
 import {Form} from 'modules/form/components/Form';
 import {AuthForm} from 'modules/user/components/AuthForm';
-import {useIsUser} from 'modules/user/model/useIsUser';
+import {useUser} from 'modules/user/model/useUser';
 import {TAuthFormValues} from 'modules/user/types';
 import React, {useCallback, useMemo} from 'react';
 import {DeepPartial, SubmitHandler} from 'react-hook-form';
 import {Navigate} from 'react-router';
 
 export const Auth = () => {
-  const isUser = useIsUser();
+  const user = useUser();
   const defaultValues = useMemo<DeepPartial<TAuthFormValues>>(() => ({name: ''}), []);
   const firebaseAnonym = useFirebaseAnonymContext();
   const firebaseFirestore = useFirebaseFirestoreContext();
   const onSubmit = useCallback<SubmitHandler<TAuthFormValues>>(
     (values) => {
-      setDoc(doc(firebaseFirestore, 'user', firebaseAnonym.uid), values);
+      return setDoc(doc(firebaseFirestore, 'user', firebaseAnonym.uid), values);
     },
     [firebaseAnonym.uid, firebaseFirestore]
   );
 
-  if (isUser === undefined) {
+  if (user === undefined) {
     return null;
   }
 
-  if (true === isUser) {
+  if (user.exists()) {
     return <Navigate to={appPath.home} />;
   }
 

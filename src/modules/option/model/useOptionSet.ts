@@ -8,11 +8,9 @@ export const useOptionSetList = () => {
   const [optionSetList, setOptionSetList] = useState<TOptionSet[]>();
 
   useEffect(() => {
-    const unsubscribe = onSnapshot(collection(firebaseFirestore, 'optionSet'), (snap) => {
+    return onSnapshot(collection(firebaseFirestore, 'optionSet'), (snap) => {
       setOptionSetList(snap.docs.map((doc) => doc.data() as TOptionSet));
     });
-
-    return unsubscribe;
   }, [firebaseFirestore]);
 
   return optionSetList;
