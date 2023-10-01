@@ -61,9 +61,10 @@ export const RevealButton = ({isVoted, taskId, votes}: RevealButtonProps) => {
 
 type TaskProps = {
   game: TGame;
+  gameId: string;
 };
 
-export const Task = ({game}: TaskProps) => {
+export const Task = ({game, gameId}: TaskProps) => {
   const task = useTask(game.taskId);
   const userSelf = useUserSelf();
 
@@ -88,6 +89,7 @@ export const Task = ({game}: TaskProps) => {
           <tbody>
             {Object.keys(game.memberIds).map((memberId) => (
               <GameMember
+                gameId={gameId}
                 isCreator={game.creatorId === memberId}
                 isSelf={userSelf.id === memberId}
                 isVoted={taskData.isVoted}

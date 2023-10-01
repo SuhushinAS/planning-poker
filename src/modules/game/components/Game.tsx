@@ -8,7 +8,6 @@ import React from 'react';
 import {Route, Routes} from 'react-router';
 
 export const Game = () => {
-  useUserOnline();
   const user = useUserSelf();
 
   if (user === undefined) {

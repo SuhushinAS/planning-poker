@@ -1,12 +1,13 @@
 import 'modules/game/components/GameMember.less';
 import {Message} from 'modules/locale/components/Message';
 import {UNVOTED_OPTION} from 'modules/task/constants';
-import {useIsUserOnline} from 'modules/user/model/useIsUserOnline';
+import {useUserGameId} from 'modules/user/model/useUserGameId';
 import {useUser} from 'modules/user/model/useUser';
 import {TUser} from 'modules/user/types';
 import React, {useMemo} from 'react';
 
 type Props = {
+  gameId: string;
   isCreator: boolean;
   isSelf: boolean;
   isVoted: boolean;
@@ -15,9 +16,9 @@ type Props = {
   votes: Record<string, number>;
 };
 
-export const GameMember = ({isCreator, isSelf, isVoted, memberId, selfId, votes}: Props) => {
+export const GameMember = ({gameId, isCreator, isSelf, isVoted, memberId, selfId, votes}: Props) => {
   const user = useUser(memberId);
-  const isUserOnline = useIsUserOnline(memberId);
+  const userGameId = useUserGameId(memberId);
   const nameClassName = useMemo(() => {
     const classList = ['GameMember__name'];
 
@@ -49,7 +50,7 @@ export const GameMember = ({isCreator, isSelf, isVoted, memberId, selfId, votes}
     return '*';
   }, [isVoted, memberId, selfId, votes]);
 
-  if (user === undefined || !user.exists()) {
+  if (user === undefined || userGameId !== gameId || !user.exists()) {
     return null;
   }
 
@@ -58,7 +59,7 @@ export const GameMember = ({isCreator, isSelf, isVoted, memberId, selfId, votes}
   return (
     <tr>
       <td className={nameClassName}>{name}</td>
-      <td>{true === isUserOnline ? <Message id="user.status.online" /> : <Message id="user.status.offline" />}</td>
+      <td>{undefined === userGameId ? <Message id="user.status.offline" /> : <Message id="user.status.online" />}</td>
       <td>{vote}</td>
     </tr>
   );

@@ -3,7 +3,7 @@ import {useAnonymouslyContext} from 'modules/firebase/components/Anonymously';
 import {useDbRef} from 'modules/firebase/lib/useDbRef';
 import {useOnDbValue} from 'modules/firebase/lib/useOnDbValue';
 
-export const useUserOnline = () => {
+export const useUserOnline = (gameId: string) => {
   const anonymously = useAnonymouslyContext();
   const connectedDbRef = useDbRef('.info/connected');
   const userDbRef = useDbRef(`user/${anonymously.uid}`);
@@ -11,9 +11,9 @@ export const useUserOnline = () => {
   useOnDbValue(connectedDbRef, (snap) => {
     if (true === snap.val()) {
       onDisconnect(userDbRef)
-        .set(false)
+        .remove()
         .then(() => {
-          set(userDbRef, true);
+          set(userDbRef, gameId);
         });
     }
   });
