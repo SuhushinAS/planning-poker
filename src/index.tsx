@@ -1,7 +1,6 @@
 import {App} from 'app/components/App';
 import {store} from 'app/store';
 import {Config} from 'modules/config/components/Config';
-import {FirebaseProvider} from 'modules/firebase/components/Firebase';
 import {LocaleProvider} from 'modules/locale/components/LocaleProvider';
 import React from 'react';
 import {createRoot, Root} from 'react-dom/client';
@@ -16,9 +15,7 @@ const getRender = (root: Root) => () => {
         <LocaleProvider>
           <BrowserRouter>
             <Config>
-              <FirebaseProvider>
-                <App />
-              </FirebaseProvider>
+              <App />
             </Config>
           </BrowserRouter>
         </LocaleProvider>
