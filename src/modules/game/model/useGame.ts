@@ -1,27 +1,26 @@
-import {DocumentSnapshot, doc, onSnapshot, setDoc} from 'firebase/firestore';
-import {useFirebaseAnonymContext} from 'modules/firebase/components/FirebaseAuthAnonymously';
-import {useFirebaseFirestoreContext} from 'modules/firebase/components/FirebaseFirestore';
+import {DocumentSnapshot, onSnapshot, setDoc} from 'firebase/firestore';
+import {useAnonymouslyContext} from 'modules/firebase/components/Anonymously';
+import {useDocRef} from 'modules/firebase/lib/useDocRef';
 import {TGame} from 'modules/game/types';
-import {useEffect, useMemo, useState} from 'react';
+import {useEffect, useState} from 'react';
 
 export const useGame = (gameId: string) => {
-  const firebaseAnonym = useFirebaseAnonymContext();
-  const firebaseFirestore = useFirebaseFirestoreContext();
+  const anonymously = useAnonymouslyContext();
   const [game, setGame] = useState<DocumentSnapshot>();
-  const gameDoc = useMemo(() => doc(firebaseFirestore, 'game', gameId), [firebaseFirestore, gameId]);
+  const gameDocRef = useDocRef('game', gameId);
 
-  useEffect(() => onSnapshot(gameDoc, setGame), [gameDoc]);
+  useEffect(() => onSnapshot(gameDocRef, setGame), [gameDocRef]);
 
   useEffect(() => {
     if (game !== undefined && game.exists()) {
       const gameData = game.data() as TGame;
 
-      setDoc(gameDoc, {
+      setDoc(gameDocRef, {
         ...gameData,
-        memberIdList: [...new Set([...gameData.memberIdList, firebaseAnonym.uid])],
+        memberIdList: [...new Set([...gameData.memberIdList, anonymously.uid])],
       });
     }
-  }, [firebaseAnonym.uid, game, gameDoc]);
+  }, [anonymously.uid, game, gameDocRef]);
 
   return game;
 };

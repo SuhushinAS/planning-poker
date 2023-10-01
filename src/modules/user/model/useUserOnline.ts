@@ -1,25 +1,19 @@
-import {onDisconnect, onValue, push, ref, set} from 'firebase/database';
-import {useFirebaseAnonymContext} from 'modules/firebase/components/FirebaseAuthAnonymously';
-import {useFirebaseDatabaseContext} from 'modules/firebase/components/FirebaseDatabase';
-import {useEffect, useMemo} from 'react';
+import {onDisconnect, push, set} from 'firebase/database';
+import {useAnonymouslyContext} from 'modules/firebase/components/Anonymously';
+import {useDbRef} from 'modules/firebase/lib/useDbRef';
+import {useOnDbValue} from 'modules/firebase/lib/useOnDbValue';
 
 export const useUserOnline = () => {
-  const firebaseAnonym = useFirebaseAnonymContext();
-  const firebaseDatabase = useFirebaseDatabaseContext();
-  const connectedRef = useMemo(() => ref(firebaseDatabase, '.info/connected'), [firebaseDatabase]);
-  const userRef = useMemo(
-    () => ref(firebaseDatabase, `user/${firebaseAnonym.uid}`),
-    [firebaseAnonym.uid, firebaseDatabase]
-  );
+  const anonymously = useAnonymouslyContext();
+  const connectedDbRef = useDbRef('.info/connected');
+  const userDbRef = useDbRef(`user/${anonymously.uid}`);
 
-  useEffect(() => {
-    onValue(connectedRef, (snap) => {
-      if (true === snap.val()) {
-        const connection = push(userRef);
+  useOnDbValue(connectedDbRef, (snap) => {
+    if (true === snap.val()) {
+      const connection = push(userDbRef);
 
-        onDisconnect(connection).remove();
-        set(connection, true);
-      }
-    });
-  }, [connectedRef, userRef]);
+      onDisconnect(connection).remove();
+      set(connection, true);
+    }
+  });
 };

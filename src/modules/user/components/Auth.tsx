@@ -1,7 +1,7 @@
 import {appPath} from 'app/constants';
-import {doc, setDoc} from 'firebase/firestore';
-import {useFirebaseAnonymContext} from 'modules/firebase/components/FirebaseAuthAnonymously';
-import {useFirebaseFirestoreContext} from 'modules/firebase/components/FirebaseFirestore';
+import {setDoc} from 'firebase/firestore';
+import {useAnonymouslyContext} from 'modules/firebase/components/Anonymously';
+import {useDocRef} from 'modules/firebase/lib/useDocRef';
 import {Form} from 'modules/form/components/Form';
 import {AuthForm} from 'modules/user/components/AuthForm';
 import {useUser} from 'modules/user/model/useUser';
@@ -13,14 +13,10 @@ import {Navigate} from 'react-router';
 export const Auth = () => {
   const user = useUser();
   const defaultValues = useMemo<DeepPartial<TAuthFormValues>>(() => ({name: ''}), []);
-  const firebaseAnonym = useFirebaseAnonymContext();
-  const firebaseFirestore = useFirebaseFirestoreContext();
-  const userRef = useMemo(
-    () => doc(firebaseFirestore, 'user', firebaseAnonym.uid),
-    [firebaseAnonym.uid, firebaseFirestore]
-  );
+  const anonymously = useAnonymouslyContext();
+  const userDocRef = useDocRef('user', anonymously.uid);
 
-  const onSubmit = useCallback<SubmitHandler<TAuthFormValues>>((values) => setDoc(userRef, values), [userRef]);
+  const onSubmit = useCallback<SubmitHandler<TAuthFormValues>>((values) => setDoc(userDocRef, values), [userDocRef]);
 
   if (user === undefined) {
     return null;

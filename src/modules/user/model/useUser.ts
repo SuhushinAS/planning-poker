@@ -1,18 +1,14 @@
-import {DocumentSnapshot, doc, onSnapshot} from 'firebase/firestore';
-import {useFirebaseAnonymContext} from 'modules/firebase/components/FirebaseAuthAnonymously';
-import {useFirebaseFirestoreContext} from 'modules/firebase/components/FirebaseFirestore';
-import {useEffect, useMemo, useState} from 'react';
+import {DocumentSnapshot, onSnapshot} from 'firebase/firestore';
+import {useAnonymouslyContext} from 'modules/firebase/components/Anonymously';
+import {useDocRef} from 'modules/firebase/lib/useDocRef';
+import {useEffect, useState} from 'react';
 
 export const useUser = () => {
-  const firebaseAnonym = useFirebaseAnonymContext();
-  const firebaseFirestore = useFirebaseFirestoreContext();
+  const anonymously = useAnonymouslyContext();
   const [user, setUser] = useState<DocumentSnapshot>();
-  const userRef = useMemo(
-    () => doc(firebaseFirestore, 'user', firebaseAnonym.uid),
-    [firebaseAnonym.uid, firebaseFirestore]
-  );
+  const userDocRef = useDocRef('user', anonymously.uid);
 
-  useEffect(() => onSnapshot(userRef, setUser), [userRef]);
+  useEffect(() => onSnapshot(userDocRef, setUser), [userDocRef]);
 
   return user;
 };

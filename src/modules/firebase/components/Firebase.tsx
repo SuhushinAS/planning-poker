@@ -1,8 +1,8 @@
+import {AnonymouslyProvider} from 'modules/firebase/components/Anonymously';
+import {AuthProvider} from 'modules/firebase/components/Auth';
+import {DatabaseProvider} from 'modules/firebase/components/Database';
 import {FirebaseAppProvider} from 'modules/firebase/components/FirebaseApp';
-import {FirebaseAuthProvider} from 'modules/firebase/components/FirebaseAuth';
-import {FirebaseAnonymProvider} from 'modules/firebase/components/FirebaseAuthAnonymously';
-import {FirebaseDatabaseProvider} from 'modules/firebase/components/FirebaseDatabase';
-import {FirebaseFirestoreProvider} from 'modules/firebase/components/FirebaseFirestore';
+import {FirestoreProvider} from 'modules/firebase/components/Firestore';
 import React, {ReactNode} from 'react';
 
 type Props = {
@@ -11,12 +11,12 @@ type Props = {
 
 export const FirebaseProvider = ({children}: Props) => (
   <FirebaseAppProvider>
-    <FirebaseAuthProvider>
-      <FirebaseAnonymProvider>
-        <FirebaseFirestoreProvider>
-          <FirebaseDatabaseProvider>{children}</FirebaseDatabaseProvider>
-        </FirebaseFirestoreProvider>
-      </FirebaseAnonymProvider>
-    </FirebaseAuthProvider>
+    <AuthProvider>
+      <AnonymouslyProvider>
+        <FirestoreProvider>
+          <DatabaseProvider>{children}</DatabaseProvider>
+        </FirestoreProvider>
+      </AnonymouslyProvider>
+    </AuthProvider>
   </FirebaseAppProvider>
 );

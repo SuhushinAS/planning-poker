@@ -1,6 +1,6 @@
-import {addDoc, collection} from 'firebase/firestore';
-import {useFirebaseAnonymContext} from 'modules/firebase/components/FirebaseAuthAnonymously';
-import {useFirebaseFirestoreContext} from 'modules/firebase/components/FirebaseFirestore';
+import {addDoc, serverTimestamp} from 'firebase/firestore';
+import {useAnonymouslyContext} from 'modules/firebase/components/Anonymously';
+import {useCollectionRef} from 'modules/firebase/lib/useCollectionRef';
 import {Form} from 'modules/form/components/Form';
 import {GameCreateForm} from 'modules/game/components/GameCreateForm';
 import {gamePath} from 'modules/game/constants';
@@ -17,8 +17,8 @@ type Props = {
 
 export const GameCreateWithOptions = ({optionSetList}: Props) => {
   const navigate = useNavigate();
-  const firebaseAnonym = useFirebaseAnonymContext();
-  const firebaseFirestore = useFirebaseFirestoreContext();
+  const anonymously = useAnonymouslyContext();
+  const gameCollectionRef = useCollectionRef('game');
   const defaultValues = useMemo(() => {
     const result: DeepPartial<TGame> = {
       title: '',
@@ -33,16 +33,16 @@ export const GameCreateWithOptions = ({optionSetList}: Props) => {
 
   const onSubmit = useCallback(
     (values) => {
-      return addDoc(collection(firebaseFirestore, 'game'), {
+      return addDoc(gameCollectionRef, {
         ...values,
-        createDate: Date.now(),
-        creatorId: firebaseAnonym.uid,
+        createDate: serverTimestamp(),
+        creatorId: anonymously.uid,
         memberIdList: [],
       }).then((game) => {
         navigate(generatePath(gamePath.item, {gameId: game.id}));
       });
     },
-    [firebaseAnonym.uid, firebaseFirestore, navigate]
+    [anonymously.uid, gameCollectionRef, navigate]
   );
 
   return (
