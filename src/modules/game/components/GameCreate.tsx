@@ -18,6 +18,7 @@ type Props = {
 export const GameCreateWithOptions = ({optionSetList}: Props) => {
   const navigate = useNavigate();
   const anonymously = useAnonymouslyContext();
+  const taskCollectionRef = useCollectionRef('task');
   const gameCollectionRef = useCollectionRef('game');
   const defaultValues = useMemo(() => {
     const result: DeepPartial<TGame> = {
@@ -25,24 +26,27 @@ export const GameCreateWithOptions = ({optionSetList}: Props) => {
     };
 
     if (1 === optionSetList.length) {
-      result.options = optionSetList[0].options;
+      result.optionList = optionSetList[0].optionList;
     }
 
     return result;
   }, [optionSetList]);
 
   const onSubmit = useCallback(
-    (values) => {
-      return addDoc(gameCollectionRef, {
-        ...values,
-        createDate: serverTimestamp(),
-        creatorId: anonymously.uid,
-        taskIds: {},
-      }).then((game) => {
-        navigate(generatePath(gamePath.item, {gameId: game.id}));
-      });
-    },
-    [anonymously.uid, gameCollectionRef, navigate]
+    (values) =>
+      addDoc(taskCollectionRef, {isVoted: false, title: '', votes: {}})
+        .then((task) =>
+          addDoc(gameCollectionRef, {
+            ...values,
+            createDate: serverTimestamp(),
+            creatorId: anonymously.uid,
+            taskId: task.id,
+          })
+        )
+        .then((game) => {
+          navigate(generatePath(gamePath.item, {gameId: game.id}));
+        }),
+    [anonymously.uid, gameCollectionRef, navigate, taskCollectionRef]
   );
 
   return (

@@ -1,29 +1,25 @@
 import {appPath} from 'app/constants';
-import {GameMember} from 'modules/game/components/GameMember';
 import {useGame} from 'modules/game/model/useGame';
 import {useGameMemberIds} from 'modules/game/model/useGameMemberIds';
 import {TGame} from 'modules/game/types';
+import {Task} from 'modules/task/components/Task';
 import React from 'react';
 import {Navigate, useParams} from 'react-router';
 
-type Props = {
+type GameItemContentProps = {
   game: TGame;
   gameId: string;
 };
 
-export const GameItemContent = ({game, gameId}: Props) => {
+export const GameItemContent = ({game, gameId}: GameItemContentProps) => {
   useGameMemberIds(gameId);
 
   return (
     <div>
       <h1>{game.title}</h1>
-      <table>
-        <tbody>
-          {Object.keys(game.memberIds).map((memberId) => (
-            <GameMember isCreator={game.creatorId === memberId} key={memberId} memberId={memberId} />
-          ))}
-        </tbody>
-      </table>
+      <div>
+        <Task game={game} />
+      </div>
     </div>
   );
 };

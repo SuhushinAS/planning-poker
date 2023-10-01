@@ -1,4 +1,4 @@
 export type TOptionSet = {
-  options: number[];
+  optionList: number[];
   title: string;
 };

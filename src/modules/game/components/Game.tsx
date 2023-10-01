@@ -1,10 +1,10 @@
-import {appPath} from 'app/constants';
 import {GameCreate} from 'modules/game/components/GameCreate';
 import {GameItem} from 'modules/game/components/GameItem';
 import {gamePath} from 'modules/game/constants';
+import {Auth} from 'modules/user/components/Auth';
 import {useUserSelf} from 'modules/user/model/useUserSelf';
 import React from 'react';
-import {Navigate, Route, Routes} from 'react-router';
+import {Route, Routes} from 'react-router';
 
 export const Game = () => {
   const user = useUserSelf();
@@ -14,7 +14,7 @@ export const Game = () => {
   }
 
   if (!user.exists()) {
-    return <Navigate to={appPath.auth} />;
+    return <Auth />;
   }
 
   return (
