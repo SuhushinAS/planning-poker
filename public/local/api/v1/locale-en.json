@@ -7,5 +7,7 @@
   "game.title": "Title",
   "home.description": "Home description",
   "home.title": "Home",
-  "user.name": "Name"
+  "user.name": "Name",
+  "user.status.offline": "Offline",
+  "user.status.online": "Online"
 }

@@ -14,8 +14,6 @@ const IgnorePluginOptions = {contextRegExp: /moment$/u, resourceRegExp: /^\.\/lo
 
 const getPlugins = ({mode}) => (getIsProd(mode) ? [new webpack.LoaderOptionsPlugin(LoaderOptionsPluginOptions)] : []);
 
-console.log(dotenv.config().parsed);
-
 module.exports = (config) => ({
   module: {
     rules: [

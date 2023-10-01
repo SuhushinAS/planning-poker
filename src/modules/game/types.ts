@@ -1,7 +1,7 @@
 export type TGame = {
   creatorId: string;
   createDate: number;
-  memberIdList: string[];
+  memberIds: Record<string, boolean>;
   options: number[];
   title: string;
 };

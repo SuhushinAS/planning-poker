@@ -7,5 +7,7 @@
   "game.title": "Название",
   "home.description": "Описание главной",
   "home.title": "Главная",
-  "user.name": "Имя"
+  "user.name": "Имя",
+  "user.status.offline": "Не в сети",
+  "user.status.online": "В сети"
 }

@@ -4,19 +4,19 @@ import {useAnonymouslyContext} from 'modules/firebase/components/Anonymously';
 import {useDocRef} from 'modules/firebase/lib/useDocRef';
 import {Form} from 'modules/form/components/Form';
 import {AuthForm} from 'modules/user/components/AuthForm';
-import {useUser} from 'modules/user/model/useUser';
-import {TAuthFormValues} from 'modules/user/types';
+import {useUserSelf} from 'modules/user/model/useUserSelf';
+import {TUser} from 'modules/user/types';
 import React, {useCallback, useMemo} from 'react';
 import {DeepPartial, SubmitHandler} from 'react-hook-form';
 import {Navigate} from 'react-router';
 
 export const Auth = () => {
-  const user = useUser();
-  const defaultValues = useMemo<DeepPartial<TAuthFormValues>>(() => ({name: ''}), []);
+  const user = useUserSelf();
+  const defaultValues = useMemo<DeepPartial<TUser>>(() => ({name: ''}), []);
   const anonymously = useAnonymouslyContext();
   const userDocRef = useDocRef('user', anonymously.uid);
 
-  const onSubmit = useCallback<SubmitHandler<TAuthFormValues>>((values) => setDoc(userDocRef, values), [userDocRef]);
+  const onSubmit = useCallback<SubmitHandler<TUser>>((values) => setDoc(userDocRef, values), [userDocRef]);
 
   if (user === undefined) {
     return null;

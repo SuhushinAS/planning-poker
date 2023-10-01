@@ -2,12 +2,12 @@ import {appPath} from 'app/constants';
 import {GameCreate} from 'modules/game/components/GameCreate';
 import {GameItem} from 'modules/game/components/GameItem';
 import {gamePath} from 'modules/game/constants';
-import {useUser} from 'modules/user/model/useUser';
+import {useUserSelf} from 'modules/user/model/useUserSelf';
 import React from 'react';
 import {Navigate, Route, Routes} from 'react-router';
 
 export const Game = () => {
-  const user = useUser();
+  const user = useUserSelf();
 
   if (user === undefined) {
     return null;

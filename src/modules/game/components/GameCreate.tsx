@@ -37,7 +37,7 @@ export const GameCreateWithOptions = ({optionSetList}: Props) => {
         ...values,
         createDate: serverTimestamp(),
         creatorId: anonymously.uid,
-        memberIdList: [],
+        taskIds: {},
       }).then((game) => {
         navigate(generatePath(gamePath.item, {gameId: game.id}));
       });

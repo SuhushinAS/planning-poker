@@ -1,4 +1,4 @@
-import {onDisconnect, push, set} from 'firebase/database';
+import {onDisconnect, set} from 'firebase/database';
 import {useAnonymouslyContext} from 'modules/firebase/components/Anonymously';
 import {useDbRef} from 'modules/firebase/lib/useDbRef';
 import {useOnDbValue} from 'modules/firebase/lib/useOnDbValue';
@@ -10,10 +10,11 @@ export const useUserOnline = () => {
 
   useOnDbValue(connectedDbRef, (snap) => {
     if (true === snap.val()) {
-      const connection = push(userDbRef);
-
-      onDisconnect(connection).remove();
-      set(connection, true);
+      onDisconnect(userDbRef)
+        .set(false)
+        .then(() => {
+          set(userDbRef, true);
+        });
     }
   });
 };
