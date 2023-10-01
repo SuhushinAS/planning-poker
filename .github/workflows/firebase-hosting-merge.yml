@@ -7,15 +7,6 @@ name: Deploy to Firebase Hosting on merge
     branches:
       - master
 
-env:
-  FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
-  FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
-  FIREBASE_AUTH_DOMAIN: ${{ secrets.FIREBASE_AUTH_DOMAIN }}
-  FIREBASE_DATABASE_URL: ${{ secrets.FIREBASE_DATABASE_URL }}
-  FIREBASE_MESSAGING_SENDERID: ${{ secrets.FIREBASE_MESSAGING_SENDERID }}
-  FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
-  FIREBASE_STORAGE_BUCKET: ${{ secrets.FIREBASE_STORAGE_BUCKET }}
-
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
@@ -28,3 +19,11 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TST_PROJECT_B3FC3 }}'
           channelId: live
           projectId: tst-project-b3fc3
+        env:
+          FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
+          FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
+          FIREBASE_AUTH_DOMAIN: ${{ secrets.FIREBASE_AUTH_DOMAIN }}
+          FIREBASE_DATABASE_URL: ${{ secrets.FIREBASE_DATABASE_URL }}
+          FIREBASE_MESSAGING_SENDERID: ${{ secrets.FIREBASE_MESSAGING_SENDERID }}
+          FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
+          FIREBASE_STORAGE_BUCKET: ${{ secrets.FIREBASE_STORAGE_BUCKET }}
