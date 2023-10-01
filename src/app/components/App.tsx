@@ -10,14 +10,16 @@ import {Route, Routes} from 'react-router-dom';
 export const App = () => {
   return (
     <Layout>
-      <RenderProvider>
-        <FirebaseProvider>
-          <Routes>
-            <Route element={<Example />} path={`${appPath.example}/*`} />
-            <Route element={<Game />} path="*" />
-          </Routes>
-        </FirebaseProvider>
-      </RenderProvider>
+      <div className="box">
+        <RenderProvider>
+          <FirebaseProvider>
+            <Routes>
+              <Route element={<Example />} path={`${appPath.example}/*`} />
+              <Route element={<Game />} path="*" />
+            </Routes>
+          </FirebaseProvider>
+        </RenderProvider>
+      </div>
     </Layout>
   );
 };

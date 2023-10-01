@@ -18,7 +18,7 @@ export const GameItemContent = ({game, gameId}: GameItemContentProps) => {
 
   return (
     <div>
-      <h1>{game.title}</h1>
+      <h3>{game.title}</h3>
       <div>
         <Task game={game} gameId={gameId} />
       </div>

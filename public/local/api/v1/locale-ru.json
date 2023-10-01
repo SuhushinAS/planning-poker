@@ -1,15 +1,16 @@
 {
+  "app.title": "Покер-планирование",
   "example.item.description": "Описание примера элемента",
   "example.list.description": "Описание примера списка",
   "example.list.title": "Пример списка",
-  "footer.power.title": "Сделано в",
+  "footer.power.title": "Сделал",
   "form.save": "Сохранить",
   "game.reset": "Сбросить",
   "game.reveal": "Вскрываем",
-  "game.title": "Название",
+  "game.title": "Название игры",
   "home.description": "Описание главной",
   "home.title": "Главная",
-  "user.name": "Имя",
+  "user.name": "Ваше имя",
   "user.status.offline": "Не в сети",
   "user.status.online": "В сети"
 }

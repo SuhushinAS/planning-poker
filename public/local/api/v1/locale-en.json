@@ -1,4 +1,5 @@
 {
+  "app.title": "Planning poker",
   "example.item.description": "Example item description",
   "example.list.description": "Example list description",
   "example.list.title": "Example list",
@@ -6,10 +7,10 @@
   "form.save": "Save",
   "game.reset": "Reset",
   "game.reveal": "Reveal",
-  "game.title": "Title",
+  "game.title": "Game title",
   "home.description": "Home description",
   "home.title": "Home",
-  "user.name": "Name",
+  "user.name": "Your name",
   "user.status.offline": "Offline",
   "user.status.online": "Online"
 }

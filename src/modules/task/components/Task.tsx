@@ -25,7 +25,7 @@ export const VoteButton = ({option, taskId, userId}: OptionButtonProps) => {
 
   return (
     <Button onClick={onVote} type="button">
-      {option === UNVOTED_OPTION ? '\u00A0' : option}
+      <h4>{option === UNVOTED_OPTION ? '\u00A0' : option}</h4>
     </Button>
   );
 };
@@ -54,7 +54,9 @@ export const RevealButton = ({isVoted, taskId, votes}: RevealButtonProps) => {
 
   return (
     <Button disabled={!hasVote} onClick={onReveal} type="button">
-      <Message id={messageId} />
+      <h4>
+        <Message id={messageId} />
+      </h4>
     </Button>
   );
 };

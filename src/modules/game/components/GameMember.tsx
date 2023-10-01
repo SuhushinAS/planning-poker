@@ -1,8 +1,8 @@
 import 'modules/game/components/GameMember.less';
 import {Message} from 'modules/locale/components/Message';
 import {UNVOTED_OPTION} from 'modules/task/constants';
-import {useUserGameId} from 'modules/user/model/useUserGameId';
 import {useUser} from 'modules/user/model/useUser';
+import {useUserGameId} from 'modules/user/model/useUserGameId';
 import {TUser} from 'modules/user/types';
 import React, {useMemo} from 'react';
 
@@ -47,7 +47,7 @@ export const GameMember = ({gameId, isCreator, isSelf, isVoted, memberId, selfId
       return vote;
     }
 
-    return '*';
+    return 'X';
   }, [isVoted, memberId, selfId, votes]);
 
   if (user === undefined || userGameId !== gameId || !user.exists()) {
@@ -58,9 +58,17 @@ export const GameMember = ({gameId, isCreator, isSelf, isVoted, memberId, selfId
 
   return (
     <tr>
-      <td className={nameClassName}>{name}</td>
-      <td>{undefined === userGameId ? <Message id="user.status.offline" /> : <Message id="user.status.online" />}</td>
-      <td>{vote}</td>
+      <td>
+        <h6 className={nameClassName}>{name}</h6>
+        <sup>
+          {undefined === userGameId ? <Message id="user.status.offline" /> : <Message id="user.status.online" />}
+        </sup>
+      </td>
+      <td></td>
+      <td>
+        <h6>{vote}</h6>
+        <sup>&nbsp;</sup>
+      </td>
     </tr>
   );
 };
