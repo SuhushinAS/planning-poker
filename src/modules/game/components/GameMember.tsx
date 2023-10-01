@@ -9,12 +9,13 @@ import React, {useMemo} from 'react';
 type Props = {
   isCreator: boolean;
   isSelf: boolean;
+  isVoted: boolean;
   memberId: string;
   selfId: string;
   votes: Record<string, number>;
 };
 
-export const GameMember = ({isCreator, isSelf, memberId, selfId, votes}: Props) => {
+export const GameMember = ({isCreator, isSelf, isVoted, memberId, selfId, votes}: Props) => {
   const user = useUser(memberId);
   const isUserOnline = useIsUserOnline(memberId);
   const nameClassName = useMemo(() => {
@@ -41,8 +42,12 @@ export const GameMember = ({isCreator, isSelf, memberId, selfId, votes}: Props) 
       return vote;
     }
 
+    if (isVoted) {
+      return vote;
+    }
+
     return '*';
-  }, [memberId, selfId, votes]);
+  }, [isVoted, memberId, selfId, votes]);
 
   if (user === undefined || !user.exists()) {
     return null;

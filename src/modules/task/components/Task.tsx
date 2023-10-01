@@ -3,11 +3,12 @@ import {useDocRef} from 'modules/firebase/lib/useDocRef';
 import {Button} from 'modules/form/components/Button';
 import {GameMember} from 'modules/game/components/GameMember';
 import {TGame} from 'modules/game/types';
+import {Message} from 'modules/locale/components/Message';
 import {UNVOTED_OPTION} from 'modules/task/constants';
 import {useTask} from 'modules/task/model/useTask';
 import {TTask} from 'modules/task/types';
 import {useUserSelf} from 'modules/user/model/useUserSelf';
-import React, {useCallback} from 'react';
+import React, {Fragment, useCallback, useMemo} from 'react';
 
 type OptionButtonProps = {
   option: number;
@@ -15,7 +16,7 @@ type OptionButtonProps = {
   userId: string;
 };
 
-export const OptionButton = ({option, taskId, userId}: OptionButtonProps) => {
+export const VoteButton = ({option, taskId, userId}: OptionButtonProps) => {
   const taskDocRef = useDocRef('task', taskId);
 
   const onVote = useCallback(() => {
@@ -24,7 +25,36 @@ export const OptionButton = ({option, taskId, userId}: OptionButtonProps) => {
 
   return (
     <Button onClick={onVote} type="button">
-      {option ?? '\u00A0'}
+      {option === UNVOTED_OPTION ? '\u00A0' : option}
+    </Button>
+  );
+};
+
+type RevealButtonProps = {
+  isVoted: boolean;
+  taskId: string;
+  votes: Record<string, number>;
+};
+
+export const RevealButton = ({isVoted, taskId, votes}: RevealButtonProps) => {
+  const taskDocRef = useDocRef('task', taskId);
+  const hasVote = useMemo(() => Object.values(votes).some((vote) => vote !== UNVOTED_OPTION), [votes]);
+  const messageId = useMemo(() => (isVoted ? 'game.reset' : 'game.reveal'), [isVoted]);
+
+  const onReveal = useCallback(() => {
+    if (isVoted) {
+      return updateDoc(taskDocRef, {
+        isVoted: false,
+        votes: {},
+      });
+    }
+
+    return updateDoc(taskDocRef, {isVoted: true});
+  }, [isVoted, taskDocRef]);
+
+  return (
+    <Button disabled={!hasVote} onClick={onReveal} type="button">
+      <Message id={messageId} />
     </Button>
   );
 };
@@ -46,12 +76,21 @@ export const Task = ({game}: TaskProps) => {
   return (
     <div>
       <div>
+        {game.optionList.map((option) => (
+          <Fragment key={option}>
+            <VoteButton option={option} taskId={game.taskId} userId={userSelf.id} />{' '}
+          </Fragment>
+        ))}
+        <VoteButton option={UNVOTED_OPTION} taskId={game.taskId} userId={userSelf.id} />
+      </div>
+      <div>
         <table>
           <tbody>
             {Object.keys(game.memberIds).map((memberId) => (
               <GameMember
                 isCreator={game.creatorId === memberId}
                 isSelf={userSelf.id === memberId}
+                isVoted={taskData.isVoted}
                 key={memberId}
                 memberId={memberId}
                 selfId={userSelf.id}
@@ -61,14 +100,11 @@ export const Task = ({game}: TaskProps) => {
           </tbody>
         </table>
       </div>
-      <div>
-        {game.optionList.map((option) => (
-          <>
-            <OptionButton key={option} option={option} taskId={game.taskId} userId={userSelf.id} />{' '}
-          </>
-        ))}
-        <OptionButton option={UNVOTED_OPTION} taskId={game.taskId} userId={userSelf.id} />
-      </div>
+      {game.creatorId === userSelf.id && (
+        <div>
+          <RevealButton isVoted={taskData.isVoted} taskId={game.taskId} votes={taskData.votes} />
+        </div>
+      )}
     </div>
   );
 };
