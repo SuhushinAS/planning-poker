@@ -15,12 +15,7 @@ export const Auth = () => {
   const defaultValues = useMemo<DeepPartial<TUser>>(() => ({name: ''}), []);
 
   const onSubmit = useCallback<SubmitHandler<TUser>>(
-    (values) =>
-      setDoc(userDocRef, values).then((result) => {
-        if (result === undefined) {
-          render(false);
-        }
-      }),
+    (values) => setDoc(userDocRef, values).then(() => render(false)),
     [render, userDocRef]
   );
 

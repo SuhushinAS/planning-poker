@@ -1,6 +1,6 @@
-const dotenv = require('dotenv');
 const webpack = require('webpack');
 const getIsProd = require('./get-is-prod');
+require('dotenv').config();
 
 const customInterpolateName = (url) => url.toLowerCase();
 
