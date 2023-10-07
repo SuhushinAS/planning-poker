@@ -1,5 +1,4 @@
 import 'modules/game/components/GameMember.less';
-import {Message} from 'modules/locale/components/Message';
 import {UNVOTED_OPTION} from 'modules/task/constants';
 import {useUser} from 'modules/user/model/useUser';
 import {useUserGameId} from 'modules/user/model/useUserGameId';
@@ -12,22 +11,21 @@ type Props = {
   isSelf: boolean;
   isVoted: boolean;
   memberId: string;
-  selfId: string;
   votes: Record<string, number>;
 };
 
-export const GameMember = ({gameId, isCreator, isSelf, isVoted, memberId, selfId, votes}: Props) => {
+export const GameMember = ({gameId, isCreator, isSelf, isVoted, memberId, votes}: Props) => {
   const user = useUser(memberId);
   const userGameId = useUserGameId(memberId);
   const nameClassName = useMemo(() => {
-    const classList = ['GameMember__name'];
+    const classList = ['GameMember__Name'];
 
     if (isCreator) {
-      classList.push('GameMember__name_creator');
+      classList.push('GameMember__Name_Creator');
     }
 
     if (isSelf) {
-      classList.push('GameMember__name_self');
+      classList.push('GameMember__Name_Self');
     }
 
     return classList.join(' ');
@@ -39,16 +37,12 @@ export const GameMember = ({gameId, isCreator, isSelf, isVoted, memberId, selfId
       return '';
     }
 
-    if (selfId === memberId) {
-      return vote;
-    }
-
     if (isVoted) {
       return vote;
     }
 
     return 'X';
-  }, [isVoted, memberId, selfId, votes]);
+  }, [isVoted, memberId, votes]);
 
   if (user === undefined || userGameId !== gameId || !user.exists()) {
     return null;
@@ -57,17 +51,12 @@ export const GameMember = ({gameId, isCreator, isSelf, isVoted, memberId, selfId
   const {name} = user.data() as TUser;
 
   return (
-    <tr>
-      <td>
+    <tr className="GameMember">
+      <td className="GameMember__Cell GameMember__Cell_Name">
         <h6 className={nameClassName}>{name}</h6>
-        <sup>
-          {undefined === userGameId ? <Message id="user.status.offline" /> : <Message id="user.status.online" />}
-        </sup>
       </td>
-      <td></td>
-      <td>
+      <td className="GameMember__Cell GameMember__Cell_Vote">
         <h6>{vote}</h6>
-        <sup>&nbsp;</sup>
       </td>
     </tr>
   );

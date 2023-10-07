@@ -1,10 +1,29 @@
+@import (reference) 'src/styles/mixins';
+
 .GameMember {
-  &__name {
-    &_creator {
+  &__Cell {
+    .fluid-prop-sm(padding, @grid-offset-sm, @grid-offset-md);
+
+    border: 1px solid;
+
+    &_Name {
+      width: 100%;
+    }
+
+    &_Vote {
+      .fluid-prop-sm(width, 42px, 60px);
+      text-align: center;
+    }
+  }
+
+  &__Name {
+    .ellipsis(1);
+
+    &_Creator {
       text-decoration: underline;
     }
 
-    &_self {
+    &_Self {
       font-style: italic;
     }
   }

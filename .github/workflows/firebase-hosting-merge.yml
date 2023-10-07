@@ -6,7 +6,6 @@ name: Deploy to Firebase Hosting on merge
   push:
     branches:
       - master
-
 env:
   FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
   FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
@@ -15,7 +14,6 @@ env:
   FIREBASE_MESSAGING_SENDERID: ${{ secrets.FIREBASE_MESSAGING_SENDERID }}
   FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
   FIREBASE_STORAGE_BUCKET: ${{ secrets.FIREBASE_STORAGE_BUCKET }}
-
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
