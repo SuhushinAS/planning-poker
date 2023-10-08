@@ -2,7 +2,7 @@ import React from 'react';
 import {DeepPartial, FieldValues, FormProvider, useForm} from 'react-hook-form';
 import {SubmitHandler, UseFormProps} from 'react-hook-form/dist/types/form';
 
-type Props<Values extends FieldValues> = UseFormProps & {
+type Props<Values extends FieldValues> = UseFormProps<Values> & {
   children: React.ReactNode;
   defaultValues?: DeepPartial<Values>;
   onSubmit: SubmitHandler<Values>;

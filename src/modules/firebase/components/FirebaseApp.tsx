@@ -1,6 +1,6 @@
-import {FirebaseApp, deleteApp, initializeApp} from 'firebase/app';
+import {deleteApp, FirebaseApp, initializeApp} from 'firebase/app';
 import {config} from 'modules/firebase/constants';
-import React, {ReactNode, createContext, useContext, useEffect, useState} from 'react';
+import React, {createContext, ReactNode, useContext, useEffect, useState} from 'react';
 
 type Props = {
   children: ReactNode;
@@ -12,7 +12,9 @@ export const FirebaseAppProvider = ({children}: Props) => {
   const [app, setApp] = useState<FirebaseApp>();
 
   useEffect(() => {
-    setApp(initializeApp(config));
+    if (app === undefined) {
+      setApp(initializeApp(config));
+    }
 
     return () => {
       if (app !== undefined) {

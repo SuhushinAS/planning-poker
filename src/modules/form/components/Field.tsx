@@ -1,3 +1,4 @@
+import 'modules/form/components/Field.less';
 import React from 'react';
 
 type Props = {

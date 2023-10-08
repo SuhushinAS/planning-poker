@@ -41,7 +41,7 @@ export const GameMember = ({gameId, isCreator, isSelf, isVoted, memberId, votes}
       return vote;
     }
 
-    return 'X';
+    return '#';
   }, [isVoted, memberId, votes]);
 
   if (user === undefined || userGameId !== gameId || !user.exists()) {
@@ -53,10 +53,10 @@ export const GameMember = ({gameId, isCreator, isSelf, isVoted, memberId, votes}
   return (
     <tr className="GameMember">
       <td className="GameMember__Cell GameMember__Cell_Name">
-        <h6 className={nameClassName}>{name}</h6>
+        <p className={nameClassName}>{name}</p>
       </td>
       <td className="GameMember__Cell GameMember__Cell_Vote">
-        <h6>{vote}</h6>
+        <p>{vote}</p>
       </td>
     </tr>
   );

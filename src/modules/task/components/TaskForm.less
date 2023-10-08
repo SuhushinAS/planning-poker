@@ -1,0 +1,43 @@
+@import (reference) 'src/styles/mixins';
+@import (reference) 'src/styles/font';
+
+.TaskForm {
+  border-collapse: separate;
+  table-layout: fixed;
+  width: 100%;
+
+  &__Cell {
+    background-color: @c-black-05;
+    padding: 0;
+
+    &_Title {
+      width: 100%;
+    }
+
+    &_Control {
+      .fluid-prop-sm(width, 42px, 60px);
+
+      text-align: center;
+    }
+  }
+
+  &__Input {
+    .f_p();
+    .fluid-prop-sm(padding, @grid-offset-sm / 2, @grid-offset-md / 2);
+
+    border: 2px solid @c-black-05;
+    display: block;
+    width: 100%;
+  }
+
+  &__Submit {
+    .f_p();
+    .fluid-prop-sm(padding, @grid-offset-sm / 2, @grid-offset-md / 2);
+
+    border: 2px solid @c-black-05;
+    color: inherit;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+  }
+}

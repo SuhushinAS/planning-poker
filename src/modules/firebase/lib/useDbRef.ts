@@ -1,10 +1,9 @@
 import {ref} from 'firebase/database';
 import {useDatabaseContext} from 'modules/firebase/components/Database';
-import {useRef} from 'react';
+import {useMemo} from 'react';
 
 export const useDbRef = (path?: string) => {
   const database = useDatabaseContext();
-  const docRef = useRef(ref(database, path));
 
-  return docRef.current;
+  return useMemo(() => ref(database, path), [database, path]);
 };
