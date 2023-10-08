@@ -1,3 +1,4 @@
+import {Table} from 'modules/common/components/Table';
 import {ButtonSubmit} from 'modules/form/components/ButtonSubmit';
 import {Input} from 'modules/form/components/Input';
 import {useMessage} from 'modules/locale/hooks';
@@ -27,18 +28,16 @@ export const TaskForm = (props: Props) => {
   return (
     <FormProvider {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
-        <table className="TaskForm">
-          <tbody>
-            <tr>
-              <td className="TaskForm__Cell TaskForm__Cell_Title">
-                <Input className="TaskForm__Input" name="title" placeholder={placeholder} />
-              </td>
-              <td className="TaskForm__Cell TaskForm__Cell_Control">
-                <ButtonSubmit>+</ButtonSubmit>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <Table>
+          <tr>
+            <td className="TaskForm__Cell TaskForm__Cell_Title">
+              <Input className="TaskForm__Input" name="title" placeholder={placeholder} />
+            </td>
+            <td className="TaskForm__Cell TaskForm__Cell_Control">
+              <ButtonSubmit>+</ButtonSubmit>
+            </td>
+          </tr>
+        </Table>
       </form>
     </FormProvider>
   );

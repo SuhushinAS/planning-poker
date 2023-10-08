@@ -36,7 +36,7 @@ export const TaskItem = ({game, gameId, isCreator, task, taskId}: Props) => {
     <tr className="TaskItem">
       <td className="TaskItem__Cell TaskItem__Cell_Title">
         {isCreator ? (
-          <Button className="TaskItem__Title" onClick={onTaskSelect} title={task.title} type="button">
+          <Button onClick={onTaskSelect} title={task.title} type="button">
             <span className={titleClassName}>{task.title}</span>
           </Button>
         ) : (
