@@ -1,9 +1,26 @@
+@import (reference) 'src/styles/font';
 @import (reference) 'src/styles/mixins';
 
 .GameItemControl {
-  &__Group {
-    .fluid-prop-sm(padding, @grid-offset-sm / 2, @grid-offset-md / 2);
+  border-collapse: separate;
+  overflow: hidden;
+  max-width: 100%;
+  table-layout: fixed;
+  width: 100%;
 
-    text-align: center;
+  &__Cell {
+    background-color: @c-black-05;
+    padding: 0;
+
+    &_Vote {
+      overflow: hidden;
+      text-align: center;
+      width: 100%;
+
+    }
+
+    &_Reveal {
+
+    }
   }
 }

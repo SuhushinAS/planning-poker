@@ -15,7 +15,7 @@
     }
 
     &_Control {
-      .fluid-prop-sm(width, 42px, 60px);
+      .fluid-prop-sm(width, 36px, 48px);
 
       text-align: center;
     }
@@ -25,19 +25,23 @@
     .f_p();
     .fluid-prop-sm(padding, @grid-offset-sm / 2, @grid-offset-md / 2);
 
-    border: 2px solid @c-black-05;
+    border: 2px solid @c-black-20;
+    color: @c-black-50;
     display: block;
     width: 100%;
-  }
+    transition: border @animation, color @animation;
 
-  &__Submit {
-    .f_p();
-    .fluid-prop-sm(padding, @grid-offset-sm / 2, @grid-offset-md / 2);
+    &:hover, &:focus {
+      border: 2px solid @c-black-40;
+      color: @c-black-60;
+      transition: none;
+    }
 
-    border: 2px solid @c-black-05;
-    color: inherit;
-    cursor: pointer;
-    display: block;
-    width: 100%;
+    &:disabled {
+      border: 2px solid @c-black-20;
+      color: @c-black-20;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
   }
 }

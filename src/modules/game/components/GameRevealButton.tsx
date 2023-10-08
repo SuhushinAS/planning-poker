@@ -29,9 +29,7 @@ export const GameRevealButton = ({isVoted, taskId, votes}: Props) => {
 
   return (
     <Button disabled={!hasVote} onClick={onReveal} type="button">
-      <h4>
-        <Message id={messageId} />
-      </h4>
+      <Message id={messageId} />
     </Button>
   );
 };

@@ -20,7 +20,7 @@ export const GameVoteButton = ({isVoted, option, taskId, userId}: Props) => {
 
   return (
     <Button disabled={isVoted} onClick={onVote} type="button">
-      <h4>{option === UNVOTED_OPTION ? '\u00A0' : option}</h4>
+      {option === UNVOTED_OPTION ? '\u00A0' : option}
     </Button>
   );
 };

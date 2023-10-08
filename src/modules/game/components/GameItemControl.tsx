@@ -4,7 +4,7 @@ import {GameVoteButton} from 'modules/game/components/GameVoteButton';
 import {TGame} from 'modules/game/types';
 import {UNVOTED_OPTION} from 'modules/task/constants';
 import {TTask} from 'modules/task/types';
-import React, {Fragment} from 'react';
+import React from 'react';
 
 type Props = {
   game: TGame;
@@ -19,20 +19,26 @@ export const GameItemControl = ({game, taskData, taskId, userId}: Props) => {
   }
 
   return (
-    <div className="GameItemControl box">
-      <div className="GameItemControl__Group GameItemControl__Group_Vote">
-        {game.optionList.map((option) => (
-          <Fragment key={option}>
-            <GameVoteButton isVoted={taskData.isVoted} key={option} option={option} taskId={taskId} userId={userId} />{' '}
-          </Fragment>
-        ))}
-        <GameVoteButton isVoted={taskData.isVoted} option={UNVOTED_OPTION} taskId={taskId} userId={userId} />
-      </div>
-      {game.creatorId === userId && (
-        <div className="GameItemControl__Group GameItemControl__Group_Reveal">
-          <GameRevealButton isVoted={taskData.isVoted} taskId={taskId} votes={taskData.votes} />
-        </div>
-      )}
-    </div>
+    <table className="GameItemControl">
+      <tbody>
+        <tr>
+          {game.optionList.map((option) => (
+            <td className="GameItemControl__Cell GameItemControl__Cell_Vote" key={option}>
+              <GameVoteButton isVoted={taskData.isVoted} key={option} option={option} taskId={taskId} userId={userId} />
+            </td>
+          ))}
+          <td className="GameItemControl__Cell GameItemControl__Cell_Vote">
+            <GameVoteButton isVoted={taskData.isVoted} option={UNVOTED_OPTION} taskId={taskId} userId={userId} />
+          </td>
+        </tr>
+        {game.creatorId === userId && (
+          <tr>
+            <td className="GameItemControl__Cell GameItemControl__Cell_Reveal" colSpan={game.optionList.length + 1}>
+              <GameRevealButton isVoted={taskData.isVoted} taskId={taskId} votes={taskData.votes} />
+            </td>
+          </tr>
+        )}
+      </tbody>
+    </table>
   );
 };

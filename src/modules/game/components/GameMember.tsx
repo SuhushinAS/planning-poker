@@ -53,7 +53,9 @@ export const GameMember = ({gameId, isCreator, isSelf, isVoted, memberId, votes}
   return (
     <tr className="GameMember">
       <td className="GameMember__Cell GameMember__Cell_Name">
-        <p className={nameClassName}>{name}</p>
+        <p className={nameClassName} title={name}>
+          {name}
+        </p>
       </td>
       <td className="GameMember__Cell GameMember__Cell_Vote">
         <p>{vote}</p>

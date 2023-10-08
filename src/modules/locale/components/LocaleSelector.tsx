@@ -1,5 +1,6 @@
 import {useAppDispatch, useAppSelector} from 'app/hooks';
 import {actionLocaleSetCurrent} from 'modules/locale/actions';
+import 'modules/locale/components/LocaleSelector.less';
 import {selectLocaleCurrent, selectLocaleList} from 'modules/locale/selectors';
 import React, {useCallback} from 'react';
 
@@ -22,7 +23,7 @@ export const LocaleSelectorContainer = () => {
   );
 
   return (
-    <select name="locale" onChange={onLocaleChange} value={localeCurrent}>
+    <select className="LocaleSelector" name="locale" onChange={onLocaleChange} value={localeCurrent}>
       {localeList.map(renderLocaleOption)}
     </select>
   );

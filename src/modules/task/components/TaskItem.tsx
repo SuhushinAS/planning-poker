@@ -1,5 +1,6 @@
 import {deleteDoc, setDoc} from 'firebase/firestore';
 import {useDocRef} from 'modules/firebase/lib/useDocRef';
+import {Button} from 'modules/form/components/Button';
 import {TGame} from 'modules/game/types';
 import 'modules/task/components/TaskItem.less';
 import {TTask} from 'modules/task/types';
@@ -22,35 +23,33 @@ export const TaskItem = ({game, gameId, isCreator, task, taskId}: Props) => {
   const onTaskDelete = useCallback(() => deleteDoc(taskDocRef), [taskDocRef]);
 
   const titleClassName = useMemo(() => {
-    const titleClassList = ['TaskItem__Title'];
-
-    if (isCreator) {
-      titleClassList.push('TaskItem__Button');
-    }
+    const titleClassList = ['TaskItem__TitleInner'];
 
     if (taskId === game.taskId) {
-      titleClassList.push('TaskItem__Title_Current');
+      titleClassList.push('TaskItem__TitleInner_Current');
     }
 
     return titleClassList.join(' ');
-  }, [game.taskId, isCreator, taskId]);
+  }, [game.taskId, taskId]);
 
   return (
     <tr className="TaskItem">
       <td className="TaskItem__Cell TaskItem__Cell_Title">
         {isCreator ? (
-          <button className={titleClassName} onClick={onTaskSelect} type="button">
-            {task.title}
-          </button>
+          <Button className="TaskItem__Title" onClick={onTaskSelect} title={task.title} type="button">
+            <span className={titleClassName}>{task.title}</span>
+          </Button>
         ) : (
-          <span className={titleClassName}>{task.title}</span>
+          <span className="TaskItem__Title" title={task.title}>
+            <span className={titleClassName}>{task.title}</span>
+          </span>
         )}
       </td>
       {isCreator && (
         <td className="TaskItem__Cell TaskItem__Cell_Control">
-          <button className="TaskItem__Button TaskItem__Button_Control" onClick={onTaskDelete} type="button">
+          <Button className="TaskItem__Button TaskItem__Button_Control" onClick={onTaskDelete} type="button">
             &times;
-          </button>
+          </Button>
         </td>
       )}
     </tr>

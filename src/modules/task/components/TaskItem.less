@@ -2,26 +2,22 @@
 @import (reference) 'src/styles/mixins';
 
 .TaskItem {
-  &__Button {
-    .f_p();
+  &__Title {
     .fluid-prop-sm(padding, @grid-offset-sm / 2, @grid-offset-md / 2);
 
-    border: 2px solid @c-black-05;
-    color: inherit;
-    cursor: pointer;
+    border: 2px solid transparent;
     display: block;
+    font-weight: normal;
+    text-align: left;
     width: 100%;
   }
 
-  &__Title {
+  &__TitleInner {
+    .ellipsis(1);
     .f_p();
-    .fluid-prop-sm(padding, @grid-offset-sm / 2, @grid-offset-md / 2);
 
-    background-color: transparent;
-    border: 2px solid @c-black-05;
     display: block;
-    text-align: left;
-    width: 100%;
+    font-weight: normal;
 
     &_Current {
       font-weight: bold;
@@ -33,7 +29,7 @@
     padding: 0;
 
     &_Control {
-      .fluid-prop-sm(width, 42px, 60px);
+      .fluid-prop-sm(width, 36px, 48px);
 
       text-align: center;
     }

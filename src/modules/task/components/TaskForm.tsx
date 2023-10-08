@@ -34,7 +34,7 @@ export const TaskForm = (props: Props) => {
                 <Input className="TaskForm__Input" name="title" placeholder={placeholder} />
               </td>
               <td className="TaskForm__Cell TaskForm__Cell_Control">
-                <ButtonSubmit className="TaskForm__Submit">+</ButtonSubmit>
+                <ButtonSubmit>+</ButtonSubmit>
               </td>
             </tr>
           </tbody>
