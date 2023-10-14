@@ -5,26 +5,36 @@
   .f_h6();
   .fluid-prop-sm(padding, @grid-offset-sm / 2, @grid-offset-md / 2);
 
-  background-color: @c-primary-30;
-  border: 2px solid @c-black-20;
-  color: @c-black-50;
+  background-color: @c-gray-20;
+  border: 0;
+  color: @c-black-40;
   cursor: pointer;
   display: block;
   width: 100%;
   transition: background-color @animation, border @animation, color @animation;
 
-  &:hover, &:focus {
-    background-color: @c-primary-40;
-    border: 2px solid @c-primary-50;
-    color: @c-primary-70;
+  &:hover, &:focus-visible {
+    background-color: @c-gray-30;
     transition: none;
   }
 
   &:disabled {
-    background-color: @c-primary-20;
-    border: 2px solid @c-black-10;
+    background-color: @c-gray-10;
+    border-color: @c-black-10;
     color: @c-black-20;
     cursor: not-allowed;
     pointer-events: none;
+  }
+
+  &_Primary {
+    background-color: @c-primary-20;
+
+    &:hover, &:focus-visible {
+      background-color: @c-primary-30;
+    }
+
+    &:disabled {
+      background-color: @c-primary-10;
+    }
   }
 }

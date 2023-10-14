@@ -2,12 +2,12 @@
 @import (reference) 'src/styles/mixins';
 
 .TaskItem {
+
   &__Title {
     .fluid-prop-sm(padding, @grid-offset-sm / 2, @grid-offset-md / 2);
 
     border: 2px solid transparent;
     display: block;
-    font-weight: normal;
     text-align: left;
     width: 100%;
   }
@@ -17,15 +17,12 @@
     .f_p();
 
     display: block;
-    font-weight: normal;
-
-    &_Current {
-      font-weight: bold;
-    }
+    text-align: left;
   }
 
   &__Cell {
-    background-color: @c-black-05;
+    background-color: @c-gray-20;
+    font-weight: bold;
     padding: 0;
 
     &_Control {
@@ -33,5 +30,9 @@
 
       text-align: center;
     }
+  }
+
+  &_Current &__Cell {
+    background-color: @c-gray-30;
   }
 }

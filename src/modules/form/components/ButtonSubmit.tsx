@@ -8,5 +8,11 @@ export const ButtonSubmit = (props: Props) => {
   const {formState} = useFormContext();
   const {isDirty, isLoading, isSubmitting, isValid, isValidating} = formState;
 
-  return <Button disabled={!isDirty || isLoading || isSubmitting || !isValid || isValidating} {...props} />;
+  return (
+    <Button
+      className="Button_Primary"
+      disabled={!isDirty || isLoading || isSubmitting || !isValid || isValidating}
+      {...props}
+    />
+  );
 };

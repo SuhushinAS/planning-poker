@@ -24,11 +24,24 @@ export const GameItemControl = ({game, taskData, taskId, userId}: Props) => {
       <tr>
         {game.optionList.map((option) => (
           <td className="GameItemControl__Cell GameItemControl__Cell_Vote" key={option}>
-            <GameVoteButton isVoted={taskData.isVoted} key={option} option={option} taskId={taskId} userId={userId} />
+            <GameVoteButton
+              isVoted={taskData.isVoted}
+              key={option}
+              option={option}
+              taskId={taskId}
+              userId={userId}
+              vote={taskData.votes[userId]}
+            />
           </td>
         ))}
         <td className="GameItemControl__Cell GameItemControl__Cell_Vote">
-          <GameVoteButton isVoted={taskData.isVoted} option={UNVOTED_OPTION} taskId={taskId} userId={userId} />
+          <GameVoteButton
+            isVoted={taskData.isVoted}
+            option={UNVOTED_OPTION}
+            taskId={taskId}
+            userId={userId}
+            vote={taskData.votes[userId]}
+          />
         </td>
       </tr>
       {game.creatorId === userId && (

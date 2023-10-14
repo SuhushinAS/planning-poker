@@ -66,6 +66,10 @@ export class Scroll extends React.Component<TScrollProps> {
   });
 
   render() {
+    if (!needCustomScrollbar) {
+      return this.props.children;
+    }
+
     return (
       <div className="Scroll" ref={this.references.scroll}>
         <div className="Scroll__Scroller" ref={this.references.scroller}>
