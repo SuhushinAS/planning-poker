@@ -41,7 +41,7 @@ const onRegisterError = (error: Error) => {
 
 const onWindowLoad = () => {
   if ('serviceWorker' in navigator && navigator.serviceWorker) {
-    navigator.serviceWorker.register('/sw.js').catch(onRegisterError);
+    navigator.serviceWorker.register('/planning-poker/sw.js').catch(onRegisterError);
   }
 };
 

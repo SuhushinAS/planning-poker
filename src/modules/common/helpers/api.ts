@@ -37,7 +37,7 @@ export class Api {
   }
 
   requestLocal<T>(url = ''): Promise<T> {
-    return this.fetch(url, '/local');
+    return this.fetch(url, '/planning-poker/local');
   }
 }
 

@@ -1,5 +1,5 @@
 const cacheName = 'cache_v1';
-const urlList = ['/main.min.js', '/vendor.min.js', '/'];
+const urlList = ['/planning-poker/main.min.js', '/planning-poker/vendor.min.js', '/planning-poker/'];
 
 /**
  * Привязать событие.

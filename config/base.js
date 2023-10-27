@@ -26,7 +26,7 @@ module.exports = (options) => {
       filename: '[name].min.js',
       library: ['pokerPlanner'],
       path: options.dist,
-      publicPath: '/',
+      publicPath: '/planning-poker/',
     },
     plugins: [new CopyWebpackPlugin({patterns: [{from: options.public, to: options.dist}]}), ...getPlugins(options)],
     resolve: {
