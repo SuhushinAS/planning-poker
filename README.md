@@ -1,4 +1,4 @@
-#ReactStarterKit
+#PlanningPoker
 
 ## Как использовать
 

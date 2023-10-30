@@ -5,7 +5,7 @@ import {LocaleProvider} from 'modules/locale/components/LocaleProvider';
 import React from 'react';
 import {createRoot, Root} from 'react-dom/client';
 import {Provider} from 'react-redux';
-import {BrowserRouter} from 'react-router-dom';
+import {HashRouter} from 'react-router-dom';
 import 'styles/index.less';
 
 const getRender = (root: Root) => () => {
@@ -13,11 +13,11 @@ const getRender = (root: Root) => () => {
     <React.StrictMode>
       <Provider store={store}>
         <LocaleProvider>
-          <BrowserRouter>
+          <HashRouter>
             <Config>
               <App />
             </Config>
-          </BrowserRouter>
+          </HashRouter>
         </LocaleProvider>
       </Provider>
     </React.StrictMode>

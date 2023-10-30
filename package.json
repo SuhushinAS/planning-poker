@@ -25,7 +25,7 @@
     "redux": "^4.2.1",
     "reselect": "^4.1.8"
   },
-  "description": "reactStarterKit",
+  "description": "planningPoker",
   "devDependencies": {
     "@babel/cli": "^7.22.15",
     "@babel/core": "^7.22.17",
@@ -88,7 +88,7 @@
     }
   },
   "keywords": [
-    "reactStarterKit"
+    "planningPoker"
   ],
   "license": "UNLICENSED",
   "lint-staged": {
@@ -99,11 +99,11 @@
       "eslint --fix"
     ]
   },
-  "name": "react-starter-kit",
+  "name": "planning-poker",
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git@github.com:SuhushinAS/react-starter-kit.git"
+    "url": "git@github.com:SuhushinAS/planning-poker.git"
   },
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack --progress --mode=production",
