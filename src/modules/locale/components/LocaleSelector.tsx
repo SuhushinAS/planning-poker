@@ -1,8 +1,8 @@
 import {useAppDispatch, useAppSelector} from 'app/hooks';
-import {actionLocaleSetCurrent} from 'modules/locale/actions';
+import {actionLocaleGetMessages, actionLocaleSetCurrent} from 'modules/locale/actions';
 import 'modules/locale/components/LocaleSelector.less';
-import {selectLocaleCurrent, selectLocaleList} from 'modules/locale/selectors';
-import React, {useCallback} from 'react';
+import {selectLocaleCurrent, selectLocaleData, selectLocaleList} from 'modules/locale/selectors';
+import React, {useCallback, useEffect, useState} from 'react';
 
 const renderLocaleOption = (locale: string) => (
   <option key={locale} value={locale}>
@@ -14,16 +14,23 @@ export const LocaleSelectorContainer = () => {
   const dispatch = useAppDispatch();
   const localeCurrent = useAppSelector(selectLocaleCurrent);
   const localeList = useAppSelector(selectLocaleList);
+  const localeData = useAppSelector(selectLocaleData);
+  const [locale, setLocale] = useState(localeCurrent);
 
-  const onLocaleChange = useCallback(
-    (event: React.ChangeEvent<HTMLSelectElement>) => {
-      dispatch(actionLocaleSetCurrent(event.target.value || ''));
-    },
-    [dispatch]
-  );
+  const onLocaleChange = useCallback((event: React.ChangeEvent<HTMLSelectElement>) => {
+    setLocale(event.target.value);
+  }, []);
+
+  useEffect(() => {
+    if (!localeData[locale]) {
+      dispatch(actionLocaleGetMessages(locale));
+    } else if (locale !== localeCurrent) {
+      dispatch(actionLocaleSetCurrent(locale));
+    }
+  }, [dispatch, locale, localeCurrent, localeData]);
 
   return (
-    <select className="LocaleSelector" name="locale" onChange={onLocaleChange} value={localeCurrent}>
+    <select className="LocaleSelector" name="locale" onBlur={onLocaleChange} onChange={onLocaleChange} value={locale}>
       {localeList.map(renderLocaleOption)}
     </select>
   );
