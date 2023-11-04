@@ -8,8 +8,8 @@ import {TGame} from 'modules/game/types';
 import {useOptionSetList} from 'modules/option/model/useOptionSet';
 import {TOptionSet} from 'modules/option/types';
 import React, {useCallback, useMemo} from 'react';
+import {DefaultValues} from 'react-hook-form';
 import {generatePath, useNavigate} from 'react-router';
-import {DeepPartial} from 'redux';
 
 type Props = {
   optionSetList: TOptionSet[];
@@ -20,7 +20,7 @@ export const GameCreateWithOptions = ({optionSetList}: Props) => {
   const anonymously = useAnonymouslyContext();
   const gameCollectionRef = useCollectionRef('game');
   const defaultValues = useMemo(() => {
-    const result: DeepPartial<TGame> = {
+    const result: DefaultValues<TGame> = {
       title: '',
     };
 

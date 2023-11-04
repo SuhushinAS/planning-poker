@@ -5,10 +5,10 @@ import {useMessage} from 'modules/locale/hooks';
 import 'modules/task/components/TaskForm.less';
 import {TTask} from 'modules/task/types';
 import React, {useCallback} from 'react';
-import {DeepPartial, FormProvider, SubmitHandler, useForm} from 'react-hook-form';
+import {DefaultValues, FormProvider, SubmitHandler, useForm} from 'react-hook-form';
 
 type Props = {
-  defaultValues: DeepPartial<TTask>;
+  defaultValues: DefaultValues<TTask>;
   onSubmit: SubmitHandler<TTask>;
 };
 

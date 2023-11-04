@@ -1,4 +1,4 @@
-import {deleteDoc, setDoc} from 'firebase/firestore';
+import {deleteDoc, deleteField, updateDoc} from 'firebase/firestore';
 import {useDocRef} from 'modules/firebase/lib/useDocRef';
 import {Button} from 'modules/form/components/Button';
 import {TGame} from 'modules/game/types';
@@ -13,9 +13,10 @@ type Props = {
   isCreator: boolean;
   task: TTask;
   taskId: string;
+  taskIdSelect?: string;
 };
 
-export const TaskItem = ({game, gameId, isCreator, task, taskId}: Props) => {
+export const TaskItem = ({game, gameId, isCreator, task, taskId, taskIdSelect}: Props) => {
   const gameDocRef = useDocRef('game', gameId);
   const taskDocRef = useDocRef('task', taskId);
 
@@ -44,11 +45,19 @@ export const TaskItem = ({game, gameId, isCreator, task, taskId}: Props) => {
     return Math.round(voteValueList.reduce((sum, vote) => sum + vote, 0) / length);
   }, [task]);
 
-  const onTaskSelect = useCallback(() => {
-    return setDoc(gameDocRef, {...game, taskId});
-  }, [game, gameDocRef, taskId]);
+  const onTaskSelect = useCallback(() => updateDoc(gameDocRef, {taskId}), [gameDocRef, taskId]);
 
-  const onTaskDelete = useCallback(() => deleteDoc(taskDocRef), [taskDocRef]);
+  const onTaskDelete = useCallback(() => {
+    if (taskId === game.taskId) {
+      if (taskIdSelect === undefined) {
+        updateDoc(gameDocRef, {taskId: deleteField()});
+      } else {
+        updateDoc(gameDocRef, {taskId: taskIdSelect});
+      }
+    }
+
+    return deleteDoc(taskDocRef);
+  }, [game.taskId, gameDocRef, taskDocRef, taskId, taskIdSelect]);
 
   return (
     <tr className={taskItemClassName}>
