@@ -21,7 +21,7 @@ module.exports = (options) => {
     output: {
       clean: true,
       filename: '[name].min.js',
-      library: ['planningPoker'],
+      library: ['pokerPlanner'],
       path: options.dist,
       publicPath: '/',
     },

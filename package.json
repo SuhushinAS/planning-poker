@@ -25,7 +25,7 @@
     "redux": "^4.2.1",
     "reselect": "^4.1.8"
   },
-  "description": "planningPoker",
+  "description": "pokerPlanner",
   "devDependencies": {
     "@babel/cli": "^7.22.15",
     "@babel/core": "^7.22.17",
@@ -88,7 +88,7 @@
     }
   },
   "keywords": [
-    "planningPoker"
+    "pokerPlanner"
   ],
   "license": "UNLICENSED",
   "lint-staged": {
@@ -99,7 +99,7 @@
       "eslint --fix"
     ]
   },
-  "name": "planning-poker",
+  "name": "poker-planner",
   "private": true,
   "repository": {
     "type": "git",

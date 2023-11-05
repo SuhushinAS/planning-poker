@@ -57,8 +57,8 @@
       "type": "image/png"
     }
   ],
-  "name": "PlanningPoker",
-  "short_name": "PlanningPoker",
+  "name": "Покер-планер",
+  "short_name": "Покер-планер",
   "start_url": "/",
   "theme_color": "#d6e4ff"
 }
