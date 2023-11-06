@@ -10,7 +10,7 @@ const renderLocaleOption = (locale: string) => (
   </option>
 );
 
-export const LocaleSelectorContainer = () => {
+export const LocaleSelector = () => {
   const dispatch = useAppDispatch();
   const localeCurrent = useAppSelector(selectLocaleCurrent);
   const localeList = useAppSelector(selectLocaleList);

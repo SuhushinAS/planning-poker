@@ -1,5 +1,5 @@
 import 'modules/layout/components/Header.less';
-import {LocaleSelectorContainer} from 'modules/locale/components/LocaleSelector';
+import {LocaleSelector} from 'modules/locale/components/LocaleSelector';
 import {Message} from 'modules/locale/components/Message';
 import React from 'react';
 
@@ -10,7 +10,7 @@ export const Header = () => (
         <Message id="app.title" />
       </h1>
       <div className="Header__Lang">
-        <LocaleSelectorContainer />
+        <LocaleSelector />
       </div>
     </div>
   </div>

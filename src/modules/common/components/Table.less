@@ -3,10 +3,11 @@
 
 .Table {
   border-collapse: separate;
+  border-spacing: 2px;
   table-layout: fixed;
   width: 100%;
 
   &__Title {
-    .fluid-prop-sm(padding, @grid-offset-sm / 2, @grid-offset-md / 2);
+    .fluid-prop-sm(padding, @grid-offset-sm, @grid-offset-md);
   }
 }

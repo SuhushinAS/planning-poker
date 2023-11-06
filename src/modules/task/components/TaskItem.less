@@ -4,7 +4,7 @@
 .TaskItem {
 
   &__Title {
-    .fluid-prop-sm(padding, @grid-offset-sm / 2, @grid-offset-md / 2);
+    .fluid-prop-sm(padding, @grid-offset-sm, @grid-offset-md);
 
     border: 2px solid transparent;
     display: block;
@@ -15,6 +15,7 @@
   &__TitleInner {
     .ellipsis(1);
     .f_p();
+    .fluid-prop-sm(min-height, 24px, 28px);
 
     display: block;
     text-align: left;
