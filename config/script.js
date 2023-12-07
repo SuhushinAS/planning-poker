@@ -2,6 +2,16 @@ const webpack = require('webpack');
 const getIsProd = require('./get-is-prod');
 require('dotenv').config();
 
+const envKeyList = [
+  'FIREBASE_API_KEY',
+  'FIREBASE_APP_ID',
+  'FIREBASE_AUTH_DOMAIN',
+  'FIREBASE_DATABASE_URL',
+  'FIREBASE_MESSAGING_SENDERID',
+  'FIREBASE_PROJECT_ID',
+  'FIREBASE_STORAGE_BUCKET',
+];
+
 const customInterpolateName = (url) => url.toLowerCase();
 
 const LoaderOptionsPluginOptions = {
@@ -27,13 +37,7 @@ module.exports = (config) => ({
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
-        FIREBASE_API_KEY: JSON.stringify(process.env.FIREBASE_API_KEY),
-        FIREBASE_APP_ID: JSON.stringify(process.env.FIREBASE_APP_ID),
-        FIREBASE_AUTH_DOMAIN: JSON.stringify(process.env.FIREBASE_AUTH_DOMAIN),
-        FIREBASE_DATABASE_URL: JSON.stringify(process.env.FIREBASE_DATABASE_URL),
-        FIREBASE_MESSAGING_SENDERID: JSON.stringify(process.env.FIREBASE_MESSAGING_SENDERID),
-        FIREBASE_PROJECT_ID: JSON.stringify(process.env.FIREBASE_PROJECT_ID),
-        FIREBASE_STORAGE_BUCKET: JSON.stringify(process.env.FIREBASE_STORAGE_BUCKET),
+        ...Object.fromEntries(envKeyList.map((key) => [key, JSON.stringify(process.env[key])])),
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
       },
     }),
