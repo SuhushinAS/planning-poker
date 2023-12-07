@@ -1,5 +1,3 @@
-import {appPath} from 'app/constants';
-import {Example} from 'modules/example/components/Example';
 import {FirebaseProvider} from 'modules/firebase/components/Firebase';
 import {Game} from 'modules/game/components/Game';
 import {Layout} from 'modules/layout/components/Layout';
@@ -11,7 +9,6 @@ export const App = () => {
     <Layout>
       <FirebaseProvider>
         <Routes>
-          <Route element={<Example />} path={`${appPath.example}/*`} />
           <Route element={<Game />} path="*" />
         </Routes>
       </FirebaseProvider>
