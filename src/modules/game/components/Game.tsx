@@ -19,7 +19,7 @@ export const Game = () => {
 
   return (
     <Routes>
-      <Route element={<GameCreate />} path={`${gamePath.home}/*`} />
+      <Route element={<GameCreate />} path={`${gamePath.home}*`} />
       <Route element={<GameItem />} path={gamePath.item} />
     </Routes>
   );

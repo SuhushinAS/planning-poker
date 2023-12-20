@@ -63,13 +63,7 @@ export const TaskItem = ({game, gameId, isCreator, task, taskId, taskIdSelect}: 
     <tr className={taskItemClassName}>
       <td className="TaskItem__Cell">
         {isCreator ? (
-          <Button
-            className="Button_Primary"
-            disabled={taskId === game.taskId}
-            onClick={onTaskSelect}
-            title={task.title}
-            type="button"
-          >
+          <Button className="Button_Primary" disabled={taskId === game.taskId} onClick={onTaskSelect} title={task.title} type="button">
             <span className="TaskItem__TitleInner">{task.title}</span>
           </Button>
         ) : (
