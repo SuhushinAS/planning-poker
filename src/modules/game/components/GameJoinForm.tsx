@@ -6,27 +6,27 @@ import {useMessage} from 'modules/locale/hooks';
 import React from 'react';
 import Message from 'react-intl/src/components/message';
 
-export const GameCreateForm = () => {
-  const placeholder = useMessage('game.new.placeholder');
+export const GameJoinForm = () => {
+  const placeholder = useMessage('game.join.placeholder');
 
   return (
     <Table>
       <tr>
         <td className="Form__Cell">
           <Label htmlFor="title">
-            <Message id="game.new.label" />
+            <Message id="game.join.label" />
           </Label>
         </td>
       </tr>
       <tr>
         <td className="Form__Cell">
-          <Input name="title" placeholder={placeholder} />
+          <Input name="gameId" placeholder={placeholder} />
         </td>
       </tr>
       <tr>
         <td className="Form__Cell">
           <ButtonSubmit>
-            <Message id="game.new.action" />
+            <Message id="game.join.action" />
           </ButtonSubmit>
         </td>
       </tr>

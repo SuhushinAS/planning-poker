@@ -1,5 +1,5 @@
-import {GameCreate} from 'modules/game/components/GameCreate';
 import {GameItem} from 'modules/game/components/GameItem';
+import {GameNew} from 'modules/game/components/GameNew';
 import {gamePath} from 'modules/game/constants';
 import {Auth} from 'modules/user/components/Auth';
 import {useUserSelf} from 'modules/user/model/useUserSelf';
@@ -19,7 +19,7 @@ export const Game = () => {
 
   return (
     <Routes>
-      <Route element={<GameCreate />} path={`${gamePath.home}*`} />
+      <Route element={<GameNew />} path={`${gamePath.home}*`} />
       <Route element={<GameItem />} path={gamePath.item} />
     </Routes>
   );

@@ -1,0 +1,15 @@
+@import (reference) 'src/styles/mixins';
+
+.GameNew {
+  &__Item {
+    @item-offset-multiplier-bottom: 2;
+    @item-offset-sm-bottom: @grid-offset-sm * @item-offset-multiplier-bottom;
+    @item-offset-md-bottom: @grid-offset-md * @item-offset-multiplier-bottom;
+    @item-offset-multiplier-top: 4;
+    @item-offset-sm-top: @grid-offset-sm * @item-offset-multiplier-top;
+    @item-offset-md-top: @grid-offset-md * @item-offset-multiplier-top;
+
+    .fluid-prop-sm(padding-bottom, @item-offset-sm-bottom, @item-offset-md-bottom);
+    .fluid-prop-sm(padding-top, @item-offset-sm-top, @item-offset-md-top);
+  }
+}

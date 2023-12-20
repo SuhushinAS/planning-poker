@@ -1,9 +1,27 @@
+@import (reference) 'src/styles/mixins';
+
 .GameItemContent {
   display: flex;
   flex-direction: column;
   flex-basis: 100%;
 
+  &__Header {
+    @header-offset-multiplier-bottom: 2;
+    @header-offset-sm-bottom: @grid-offset-sm * @header-offset-multiplier-bottom;
+    @header-offset-md-bottom: @grid-offset-md * @header-offset-multiplier-bottom;
+    @header-offset-multiplier-top: 4;
+    @header-offset-sm-top: @grid-offset-sm * @header-offset-multiplier-top;
+    @header-offset-md-top: @grid-offset-md * @header-offset-multiplier-top;
+
+    .fluid-prop-sm(padding-bottom, @header-offset-sm-bottom, @header-offset-md-bottom);
+    .fluid-prop-sm(padding-top, @header-offset-sm-top, @header-offset-md-top);
+  }
+
   &__Title {
+    text-align: center;
+  }
+
+  &__Code {
     text-align: center;
   }
 
