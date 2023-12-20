@@ -3,7 +3,7 @@
 
 .Header {
   background-color: @c-primary-20;
-  color: @c-black-60;
+  color: @c-black-50;
   height: 100%;
 
   &__Inner {
@@ -17,6 +17,33 @@
     .ellipsis(1);
 
     flex-basis: 100%;
+  }
+
+  &__TitleLink {
+    @color: @c-black-60;
+
+    color: @color;
+    text-decoration: none;
+
+    &:link {
+      color: @color;
+    }
+
+    &:visited {
+      color: @color;
+    }
+
+    &:hover {
+      color: @color;
+    }
+
+    &:active {
+      color: @color;
+    }
+
+    &:focus-visible {
+      color: @color;
+    }
   }
 
   &__Lang {

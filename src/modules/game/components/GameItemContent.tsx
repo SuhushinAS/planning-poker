@@ -23,9 +23,12 @@ export const GameItemContent = ({game, gameId}: Props) => {
   return (
     <div className="GameItemContent">
       <div className="GameItemContent__Header box">
-        <h3 className="GameItemContent__Title">
-          {gameData.title} ({gameData.createDate.toDate().toLocaleDateString()})
-        </h3>
+        <div className="box__row">
+          <h3 className="GameItemContent__Title box__col box__col_xs_12 box__col_sm_5">
+            {gameData.title} ({gameData.createDate.toDate().toLocaleDateString()})
+          </h3>
+          <h4 className="GameItemContent__Code box__col box__col_xs_12 box__col_sm_7">{gameId}</h4>
+        </div>
       </div>
       <div className="GameItemContent__Main box">
         <div className="box__row">
