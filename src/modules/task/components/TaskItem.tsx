@@ -2,9 +2,10 @@ import {deleteDoc, deleteField, updateDoc} from 'firebase/firestore';
 import {useDocRef} from 'modules/firebase/lib/useDocRef';
 import {Button} from 'modules/form/components/Button';
 import {TGame} from 'modules/game/types';
+import {OptionType} from 'modules/option/constants';
 import 'modules/task/components/TaskItem.less';
-import {UNVOTED_OPTION} from 'modules/task/constants';
 import {TTask} from 'modules/task/types';
+import {GetVoteValue, useVoteValue} from 'modules/vote/model/useVoteValue';
 import React, {useCallback, useMemo} from 'react';
 
 type Props = {
@@ -15,6 +16,8 @@ type Props = {
   taskId: string;
   taskIdSelect?: string;
 };
+
+const getVoteAve: GetVoteValue = (voteValueList) => Math.round(voteValueList.reduce((sum, vote) => sum + vote, 0) / voteValueList.length);
 
 export const TaskItem = ({game, gameId, isCreator, task, taskId, taskIdSelect}: Props) => {
   const gameDocRef = useDocRef('game', gameId);
@@ -30,20 +33,9 @@ export const TaskItem = ({game, gameId, isCreator, task, taskId, taskIdSelect}: 
     return classList.join(' ');
   }, [game.taskId, taskId]);
 
-  const votes = useMemo(() => {
-    const voteValueList = Object.values(task.votes).filter((vote) => vote !== UNVOTED_OPTION);
-    const {length} = voteValueList;
+  const voteValueList = useMemo(() => Object.values(task.votes).filter((vote) => vote !== OptionType.reset), [task.votes]);
 
-    if (0 === length) {
-      return '\u00A0';
-    }
-
-    if (!task.isVoted) {
-      return '#';
-    }
-
-    return Math.round(voteValueList.reduce((sum, vote) => sum + vote, 0) / length);
-  }, [task]);
+  const voteAve = useVoteValue(voteValueList, task.isVoted, getVoteAve);
 
   const onTaskSelect = useCallback(() => updateDoc(gameDocRef, {taskId}), [gameDocRef, taskId]);
 
@@ -61,7 +53,7 @@ export const TaskItem = ({game, gameId, isCreator, task, taskId, taskIdSelect}: 
 
   return (
     <tr className={taskItemClassName}>
-      <td className="TaskItem__Cell">
+      <td className="TaskItem__Cell TaskItem__Cell_Title">
         {isCreator ? (
           <Button className="Button_Primary" disabled={taskId === game.taskId} onClick={onTaskSelect} title={task.title} type="button">
             <span className="TaskItem__TitleInner">{task.title}</span>
@@ -72,7 +64,7 @@ export const TaskItem = ({game, gameId, isCreator, task, taskId, taskIdSelect}: 
           </span>
         )}
       </td>
-      <td className="TaskItem__Cell TaskItem__Cell_Control">{votes}</td>
+      <td className="TaskItem__Cell TaskItem__Cell_Control">{voteAve}</td>
       {isCreator && (
         <td className="TaskItem__Cell TaskItem__Cell_Control">
           <Button className="Button_Primary" onClick={onTaskDelete} type="button">

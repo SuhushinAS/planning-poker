@@ -1,16 +1,11 @@
+import {useClassName} from 'modules/common/helpers/useClassName';
 import 'modules/form/components/Button.less';
-import React, {ButtonHTMLAttributes, useMemo} from 'react';
+import React, {ButtonHTMLAttributes} from 'react';
 
 type Props = ButtonHTMLAttributes<HTMLButtonElement>;
 
-export const Button = ({className = '', ...props}: Props) => {
-  const buttonClassName = useMemo(() => {
-    const buttonClassList = className.split(' ');
-
-    buttonClassList.push('Button');
-
-    return buttonClassList.join(' ');
-  }, [className]);
+export const Button = ({className, ...props}: Props) => {
+  const buttonClassName = useClassName('Button', className);
 
   return <button className={buttonClassName} {...props} />;
 };

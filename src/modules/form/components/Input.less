@@ -3,7 +3,7 @@
 
 .Input {
   .f_p();
-  .fluid-prop-sm(padding, @grid-offset-sm - 2px, @grid-offset-md - 2px);
+  .fluid-prop-md(padding, @grid-offset-sm - 2px, @grid-offset-md - 2px);
 
   border: 2px solid @c-black-30;
   color: @c-black-50;
@@ -12,8 +12,6 @@
   transition: border @animation, color @animation;
 
   &:hover, &:focus-visible {
-    @animation-hover: @animation-duration-100 ease @animation-duration-200;
-
     border: 2px solid @c-black-40;
     transition: border @animation-hover, color @animation-hover;
   }

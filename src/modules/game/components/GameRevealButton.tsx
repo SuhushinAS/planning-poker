@@ -2,7 +2,7 @@ import {updateDoc} from 'firebase/firestore';
 import {useDocRef} from 'modules/firebase/lib/useDocRef';
 import {Button} from 'modules/form/components/Button';
 import {Message} from 'modules/locale/components/Message';
-import {UNVOTED_OPTION} from 'modules/task/constants';
+import {OptionType} from 'modules/option/constants';
 import React, {useCallback, useMemo} from 'react';
 
 type Props = {
@@ -13,7 +13,7 @@ type Props = {
 
 export const GameRevealButton = ({isVoted, taskId, votes}: Props) => {
   const taskDocRef = useDocRef('task', taskId);
-  const hasVote = useMemo(() => Object.values(votes).some((vote) => vote !== UNVOTED_OPTION), [votes]);
+  const hasVote = useMemo(() => Object.values(votes).some((vote) => vote !== OptionType.reset), [votes]);
   const messageId = useMemo(() => (isVoted ? 'game.reset' : 'game.reveal'), [isVoted]);
 
   const onReveal = useCallback(() => {

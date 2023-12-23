@@ -3,7 +3,7 @@
 
 .LocaleSelector {
   .f_h6();
-  .fluid-prop-sm(padding, @grid-offset-sm, @grid-offset-md);
+  .fluid-prop-md(padding, @grid-offset-sm, @grid-offset-md);
 
   background-color: @c-primary-20;
   border: 0;
@@ -14,8 +14,6 @@
   transition: background-color @animation;
 
   &:hover, &:focus-visible {
-    @animation-hover: @animation-duration-100 ease @animation-duration-200;
-
     background-color: @c-primary-30;
     transition: background-color @animation-hover;
   }

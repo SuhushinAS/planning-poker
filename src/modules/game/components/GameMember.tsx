@@ -1,8 +1,9 @@
 import 'modules/game/components/GameMember.less';
-import {UNVOTED_OPTION} from 'modules/task/constants';
+import {optionTitleMap, OptionType} from 'modules/option/constants';
 import {useUser} from 'modules/user/model/useUser';
 import {useUserGameId} from 'modules/user/model/useUserGameId';
 import {TUser} from 'modules/user/types';
+import {voteHidden} from 'modules/vote/constants';
 import React, {useMemo} from 'react';
 
 type Props = {
@@ -32,16 +33,21 @@ export const GameMember = ({gameId, isCreator, isSelf, isVoted, memberId, votes}
   }, [isCreator, isSelf]);
 
   const vote = useMemo(() => {
-    const vote = votes[memberId] ?? UNVOTED_OPTION;
-    if (UNVOTED_OPTION === vote) {
-      return '';
+    const vote = votes[memberId] ?? OptionType.reset;
+
+    if (OptionType.reset === vote) {
+      return optionTitleMap[OptionType.reset];
     }
 
-    if (isVoted) {
-      return vote;
+    if (!isVoted) {
+      return voteHidden;
     }
 
-    return '#';
+    if (OptionType[vote]) {
+      return optionTitleMap[vote];
+    }
+
+    return vote;
   }, [isVoted, memberId, votes]);
 
   if (user === undefined || userGameId !== gameId || !user.exists()) {
