@@ -33,7 +33,7 @@ export const GameItemContent = ({game, gameId}: Props) => {
       <div className="GameItemContent__Main box">
         <div className="box__row">
           <div className="GameItemContent__MemeberList box__col box__col_xs_12 box__col_md_5">
-            <GameTask game={gameData} gameId={gameId} taskId={gameData.taskId} userId={userId} />
+            <GameTask game={gameData} taskId={gameData.taskId} userId={userId} />
           </div>
           <div className="GameItemContent__TaskList box__col box__col_xs_12 box__col_md_7">
             <Task creatorId={gameData.creatorId} game={gameData} gameId={gameId} userId={userId} />

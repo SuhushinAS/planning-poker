@@ -15,7 +15,7 @@ export const useVoteValue = (voteValueList: number[], isVoted: boolean, getVoteV
     }
 
     const voteSpecialList = voteValueList.filter((voteValue) => OptionType[voteValue]);
-    const voteSpecial = Math.min(...voteSpecialList);
+    const voteSpecial = Math.min(0, ...voteSpecialList);
 
     if (voteSpecial) {
       return optionTitleMap[voteSpecial];

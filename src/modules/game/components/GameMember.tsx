@@ -1,13 +1,11 @@
 import 'modules/game/components/GameMember.less';
 import {optionTitleMap, OptionType} from 'modules/option/constants';
 import {useUser} from 'modules/user/model/useUser';
-import {useUserGameId} from 'modules/user/model/useUserGameId';
 import {TUser} from 'modules/user/types';
 import {voteHidden} from 'modules/vote/constants';
 import React, {useMemo} from 'react';
 
 type Props = {
-  gameId: string;
   isCreator: boolean;
   isSelf: boolean;
   isVoted: boolean;
@@ -15,9 +13,8 @@ type Props = {
   votes: Record<string, number>;
 };
 
-export const GameMember = ({gameId, isCreator, isSelf, isVoted, memberId, votes}: Props) => {
+export const GameMember = ({isCreator, isSelf, isVoted, memberId, votes}: Props) => {
   const user = useUser(memberId);
-  const userGameId = useUserGameId(memberId);
   const nameClassName = useMemo(() => {
     const classList = ['GameMember__Name'];
 
@@ -50,7 +47,7 @@ export const GameMember = ({gameId, isCreator, isSelf, isVoted, memberId, votes}
     return vote;
   }, [isVoted, memberId, votes]);
 
-  if (user === undefined || userGameId !== gameId || !user.exists()) {
+  if (user === undefined || !user.exists()) {
     return null;
   }
 

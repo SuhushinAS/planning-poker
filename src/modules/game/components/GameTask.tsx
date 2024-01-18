@@ -8,12 +8,11 @@ import React, {useMemo} from 'react';
 
 type GameTaskInnerProps = {
   game: TGame;
-  gameId: string;
   taskId: string;
   userId: string;
 };
 
-export const GameTaskInner = ({game, gameId, taskId, userId}: GameTaskInnerProps) => {
+export const GameTaskInner = ({game, taskId, userId}: GameTaskInnerProps) => {
   const task = useTask(taskId);
 
   const taskData = useMemo(() => {
@@ -26,7 +25,7 @@ export const GameTaskInner = ({game, gameId, taskId, userId}: GameTaskInnerProps
 
   return (
     <>
-      <GameItemTask game={game} gameId={gameId} taskData={taskData} userId={userId} />
+      <GameItemTask game={game} taskData={taskData} userId={userId} />
       <GameItemControl game={game} taskData={taskData} taskId={taskId} userId={userId} />
     </>
   );
@@ -34,15 +33,14 @@ export const GameTaskInner = ({game, gameId, taskId, userId}: GameTaskInnerProps
 
 type GameTaskProps = {
   game: TGame;
-  gameId: string;
   taskId?: string;
   userId: string;
 };
 
-export const GameTask = ({game, gameId, taskId, userId}: GameTaskProps) => {
+export const GameTask = ({game, taskId, userId}: GameTaskProps) => {
   if (taskId === undefined) {
     return <GameTaskEmpty />;
   }
 
-  return <GameTaskInner game={game} gameId={gameId} taskId={taskId} userId={userId} />;
+  return <GameTaskInner game={game} taskId={taskId} userId={userId} />;
 };

@@ -6,17 +6,15 @@ import React from 'react';
 
 type Props = {
   game: TGame;
-  gameId: string;
   taskData: TTask;
   title: string;
   userId: string;
 };
 
-export const GameMemberList = ({game, gameId, taskData, title, userId}: Props) => (
+export const GameMemberList = ({game, taskData, title, userId}: Props) => (
   <Table title={<h5>{title}</h5>}>
     {Object.keys(game.memberIds).map((memberId) => (
       <GameMember
-        gameId={gameId}
         isCreator={game.creatorId === memberId}
         isSelf={userId === memberId}
         isVoted={taskData.isVoted}
