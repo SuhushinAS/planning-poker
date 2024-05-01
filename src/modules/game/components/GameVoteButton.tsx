@@ -20,7 +20,7 @@ export const GameVoteButton = ({children, isVoted, option, taskId, userId, vote}
   }, [option, taskDocRef, userId]);
 
   return (
-    <Button className="Button_Primary" disabled={isVoted || vote === option} onClick={onVote} type="button">
+    <Button className="Button_Primary offset_ver" disabled={isVoted || vote === option} onClick={onVote} type="button">
       {children ?? option}
     </Button>
   );

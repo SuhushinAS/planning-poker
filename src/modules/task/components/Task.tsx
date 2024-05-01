@@ -22,13 +22,7 @@ export const Task = ({creatorId, game, gameId, userId}: Props) => {
 
   return (
     <div>
-      <div>
-        {taskList.empty ? (
-          <TaskEmpty />
-        ) : (
-          <TaskList game={game} gameId={gameId} isCreator={isCreator} taskList={taskList.docs} />
-        )}
-      </div>
+      <div>{taskList.empty ? <TaskEmpty /> : <TaskList game={game} gameId={gameId} isCreator={isCreator} taskList={taskList.docs} />}</div>
       {isCreator && (
         <div>
           <TaskCreate creatorId={creatorId} gameId={gameId} />

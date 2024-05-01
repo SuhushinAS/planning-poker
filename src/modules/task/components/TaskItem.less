@@ -1,39 +1,18 @@
 @import (reference) 'src/styles/font';
 @import (reference) 'src/styles/mixins';
+@import (reference) 'src/styles/offset';
 
 .TaskItem {
-
-  &__Title {
-    .fluid-prop-md(padding, @grid-offset-sm, @grid-offset-md);
-
-    border: 2px solid transparent;
-    display: block;
-    text-align: left;
-    width: 100%;
-  }
-
   &__TitleInner {
     .ellipsis(1);
-    .f_p();
-    .fluid-prop-md(min-height, 24px, 28px);
+    .fluid-prop-sm(min-height, 24px, 28px);
+    .offset();
 
     display: block;
     text-align: left;
   }
 
-  &__Cell {
-    background-color: @c-gray-20;
-    font-weight: bold;
-    padding: 0;
-
-    &_Control {
-      .fluid-prop-md(width, 36px, 48px);
-
-      text-align: center;
-    }
-  }
-
-  &_Current &__Cell {
+  &_Current .Table__Cell {
     background-color: @c-gray-30;
   }
 }

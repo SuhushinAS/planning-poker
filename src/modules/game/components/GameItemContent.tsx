@@ -24,18 +24,18 @@ export const GameItemContent = ({game, gameId}: Props) => {
     <div className="GameItemContent">
       <div className="GameItemContent__Header box">
         <div className="box__row">
-          <h3 className="GameItemContent__Title box__col box__col_xs_12 box__col_md_5">
+          <h2 className="GameItemContent__Title box__col box__col_xs_12 box__col_sm_5 box__col_md_4">
             {gameData.title} ({gameData.createDate.toDate().toLocaleDateString()})
-          </h3>
-          <h4 className="GameItemContent__Code box__col box__col_xs_12 box__col_md_7">{gameId}</h4>
+          </h2>
+          <h2 className="GameItemContent__Code box__col box__col_xs_12 box__col_sm_7 box__col_md_8">{gameId}</h2>
         </div>
       </div>
       <div className="GameItemContent__Main box">
         <div className="box__row">
-          <div className="GameItemContent__MemeberList box__col box__col_xs_12 box__col_md_5">
+          <div className="GameItemContent__MemeberList box__col box__col_xs_12 box__col_sm_5 box__col_md_4">
             <GameTask game={gameData} taskId={gameData.taskId} userId={userId} />
           </div>
-          <div className="GameItemContent__TaskList box__col box__col_xs_12 box__col_md_7">
+          <div className="GameItemContent__TaskList box__col box__col_xs_12 box__col_sm_7 box__col_md_8">
             <Task creatorId={gameData.creatorId} game={gameData} gameId={gameId} userId={userId} />
           </div>
         </div>

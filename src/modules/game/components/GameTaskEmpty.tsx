@@ -3,11 +3,11 @@ import React from 'react';
 
 export const GameTaskEmpty = () => (
   <div>
-    <h5>
+    <h3>
       <Message id="gameTask.empty.title" />
-    </h5>
-    <div>
+    </h3>
+    <p>
       <Message id="gameTask.empty.description" />
-    </div>
+    </p>
   </div>
 );

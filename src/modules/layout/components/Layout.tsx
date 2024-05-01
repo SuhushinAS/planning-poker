@@ -16,7 +16,6 @@ export const Layout = ({children}: TLayoutProps) => {
       <div className="Layout__Scroll">
         <Scroll dirList={['h', 'v']}>
           <div className="Layout__Inner">
-            <div className="Layout__HeaderSize" />
             <main className="Layout__Body">{children}</main>
           </div>
         </Scroll>

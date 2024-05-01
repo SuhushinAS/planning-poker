@@ -1,0 +1,25 @@
+@import (reference) 'mixins';
+
+.offset {
+  .fluid-prop-sm(padding, @grid-offset-sm, @grid-offset-md);
+
+  &_0 {
+    padding: 0;
+  }
+
+  &_hor {
+    .fluid-prop-sm(padding-left, @grid-offset-sm, @grid-offset-md);
+    .fluid-prop-sm(padding-right, @grid-offset-sm, @grid-offset-md);
+
+    padding-bottom: 0;
+    padding-top: 0;
+  }
+
+  &_ver {
+    .fluid-prop-sm(padding-bottom, @grid-offset-sm, @grid-offset-md);
+    .fluid-prop-sm(padding-top, @grid-offset-sm, @grid-offset-md);
+
+    padding-left: 0;
+    padding-right: 0;
+  }
+}

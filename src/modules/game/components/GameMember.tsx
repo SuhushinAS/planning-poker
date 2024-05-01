@@ -16,7 +16,7 @@ type Props = {
 export const GameMember = ({isCreator, isSelf, isVoted, memberId, votes}: Props) => {
   const user = useUser(memberId);
   const nameClassName = useMemo(() => {
-    const classList = ['GameMember__Name'];
+    const classList = ['GameMember__Name', 'offset'];
 
     if (isCreator) {
       classList.push('GameMember__Name_Creator');
@@ -55,13 +55,13 @@ export const GameMember = ({isCreator, isSelf, isVoted, memberId, votes}: Props)
 
   return (
     <tr className="GameMember">
-      <td className="GameMember__Cell GameMember__Cell_Name">
+      <td className="Table__Cell Table__Cell_Title">
         <p className={nameClassName} title={name}>
           {name}
         </p>
       </td>
-      <td className="GameMember__Cell GameMember__Cell_Vote">
-        <p>{vote}</p>
+      <td className="Table__Cell Table__Cell_Control Table__Cell_Control_Fixed">
+        <h4 className="offset">{vote}</h4>
       </td>
     </tr>
   );

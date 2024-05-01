@@ -1,6 +1,5 @@
 import React from 'react';
 import {DefaultValues, FieldValues, FormProvider, SubmitHandler, useForm, UseFormProps} from 'react-hook-form';
-import './Form.less';
 
 type Props<Values extends FieldValues> = UseFormProps<Values> & {
   children: React.ReactNode;

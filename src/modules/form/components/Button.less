@@ -2,16 +2,15 @@
 @import (reference) 'src/styles/mixins';
 
 .Button {
-  .f_h6();
-  .fluid-prop-md(padding, @grid-offset-sm, @grid-offset-md);
+  .f_h4();
 
   background-color: @c-gray-20;
   border: 0;
   color: @c-black-40;
   cursor: pointer;
   display: block;
-  width: 100%;
   transition: background-color @animation, border @animation, color @animation;
+  width: 100%;
 
   &:hover, &:focus-visible {
     background-color: @c-gray-30;

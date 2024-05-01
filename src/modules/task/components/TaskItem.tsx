@@ -53,21 +53,23 @@ export const TaskItem = ({game, gameId, isCreator, task, taskId, taskIdSelect}: 
 
   return (
     <tr className={taskItemClassName}>
-      <td className="TaskItem__Cell TaskItem__Cell_Title">
+      <td className="Table__Cell Table__Cell_Title">
         {isCreator ? (
-          <Button className="Button_Primary" disabled={taskId === game.taskId} onClick={onTaskSelect} title={task.title} type="button">
-            <span className="TaskItem__TitleInner">{task.title}</span>
+          <Button className="Button_Primary offset_0" disabled={taskId === game.taskId} onClick={onTaskSelect} title={task.title} type="button">
+            <h4 className="TaskItem__TitleInner">{task.title}</h4>
           </Button>
         ) : (
-          <span className="TaskItem__Title" title={task.title}>
-            <span className="TaskItem__TitleInner">{task.title}</span>
-          </span>
+          <h4 className="TaskItem__TitleInner" title={task.title}>
+            {task.title}
+          </h4>
         )}
       </td>
-      <td className="TaskItem__Cell TaskItem__Cell_Control">{voteAve}</td>
+      <td className="Table__Cell Table__Cell_Control Table__Cell_Control_Fixed">
+        <h4 className="offset">{voteAve}</h4>
+      </td>
       {isCreator && (
-        <td className="TaskItem__Cell TaskItem__Cell_Control">
-          <Button className="Button_Primary" onClick={onTaskDelete} type="button">
+        <td className="Table__Cell Table__Cell_Control Table__Cell_Control_Fixed">
+          <Button className="Button_Primary offset" onClick={onTaskDelete} type="button">
             &times;
           </Button>
         </td>

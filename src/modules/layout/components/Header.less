@@ -4,12 +4,13 @@
 .Header {
   background-color: @c-primary-20;
   color: @c-black-50;
-  height: 100%;
 
   &__Inner {
+    .fluid-prop-sm(padding-bottom, @grid-offset-sm, @grid-offset-md);
+    .fluid-prop-sm(padding-top, @grid-offset-sm, @grid-offset-md);
+
     align-items: center;
     display: flex;
-    height: 100%;
     overflow: hidden;
   }
 
@@ -47,7 +48,7 @@
   }
 
   &__Lang {
-    .fluid-prop-md(margin-left, @grid-offset-sm * 2, @grid-offset-md * 2);
+    .fluid-prop-sm(margin-left, @grid-offset-sm * 2, @grid-offset-md * 2);
 
     flex-shrink: 0;
   }

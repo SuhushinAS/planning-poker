@@ -2,25 +2,6 @@
 @import (reference) 'src/styles/mixins';
 
 .GameMember {
-  &__Cell {
-    .f_p();
-    .fluid-prop-md(padding, @grid-offset-sm, @grid-offset-md);
-
-    background-color: @c-gray-20;
-    border: 2px solid transparent;
-
-    &_Name {
-      width: 100%;
-    }
-
-    &_Vote {
-      .fluid-prop-md(width, 36px, 48px);
-
-      font-weight: bold;
-      text-align: center;
-    }
-  }
-
   &__Name {
     .ellipsis(1);
 

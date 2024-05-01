@@ -1,5 +1,4 @@
 import {Table} from 'modules/common/components/Table';
-import 'modules/game/components/GameItemControl.less';
 import {GameRevealButton} from 'modules/game/components/GameRevealButton';
 import {GameVoteButton} from 'modules/game/components/GameVoteButton';
 import {TGame} from 'modules/game/types';
@@ -23,21 +22,21 @@ export const GameItemControl = ({game, taskData, taskId, userId}: Props) => {
     <Table>
       <tr>
         {game.optionList.map((option) => (
-          <td className="GameItemControl__Cell GameItemControl__Cell_Vote" key={option}>
+          <td className="Table__Cell Table__Cell_Title Table__Cell_Control" key={option}>
             <GameVoteButton isVoted={taskData.isVoted} key={option} option={option} taskId={taskId} userId={userId} vote={taskData.votes[userId]} />
           </td>
         ))}
-        <td className="GameItemControl__Cell GameItemControl__Cell_Vote">
+        <td className="Table__Cell Table__Cell_Title Table__Cell_Control">
           <GameVoteButton isVoted={taskData.isVoted} option={OptionType.unsure} taskId={taskId} userId={userId} vote={taskData.votes[userId]}>
             {optionTitleMap[OptionType.unsure]}
           </GameVoteButton>
         </td>
-        <td className="GameItemControl__Cell GameItemControl__Cell_Vote">
+        <td className="Table__Cell Table__Cell_Title Table__Cell_Control">
           <GameVoteButton isVoted={taskData.isVoted} option={OptionType.coffee} taskId={taskId} userId={userId} vote={taskData.votes[userId]}>
             {optionTitleMap[OptionType.coffee]}
           </GameVoteButton>
         </td>
-        <td className="GameItemControl__Cell GameItemControl__Cell_Vote">
+        <td className="Table__Cell Table__Cell_Title Table__Cell_Control">
           <GameVoteButton isVoted={taskData.isVoted} option={OptionType.reset} taskId={taskId} userId={userId} vote={taskData.votes[userId]}>
             {optionTitleMap[OptionType.reset]}
           </GameVoteButton>
