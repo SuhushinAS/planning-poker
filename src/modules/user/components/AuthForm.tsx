@@ -22,7 +22,7 @@ export const AuthForm = () => (
       </tr>
       <tr>
         <td className="Form__Cell">
-          <ButtonSubmit>
+          <ButtonSubmit className="offset">
             <Message id="form.save" />
           </ButtonSubmit>
         </td>

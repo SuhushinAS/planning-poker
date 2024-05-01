@@ -25,7 +25,7 @@ export const GameCreateForm = () => {
       </tr>
       <tr>
         <td className="Form__Cell">
-          <ButtonSubmit>
+          <ButtonSubmit className="offset">
             <Message id="game.new.action" />
           </ButtonSubmit>
         </td>
