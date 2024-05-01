@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './List.less';
 
 type TListProps = {
@@ -6,7 +6,7 @@ type TListProps = {
   list: string[];
 };
 
-export class List extends React.Component<TListProps> {
+export class List extends Component<TListProps> {
   render() {
     return <div className="list">{this.props.list.map(this.renderItem)}</div>;
   }

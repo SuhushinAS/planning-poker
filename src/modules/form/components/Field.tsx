@@ -1,12 +1,14 @@
 import 'modules/form/components/Field.less';
-import React from 'react';
+import React, {ReactNode} from 'react';
 
 type Props = {
-  control: React.ReactNode;
-  label: React.ReactNode;
+  control: ReactNode;
+  label: ReactNode;
 };
 
-export const Field = ({control, label}: Props) => {
+export const Field = (props: Props) => {
+  const {control, label} = props;
+
   return (
     <div className="Field">
       <div className="Field__Label">{label}</div>

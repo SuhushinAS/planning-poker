@@ -1,6 +1,6 @@
 import {Firestore, getFirestore} from 'firebase/firestore';
 import {useFirebaseAppContext} from 'modules/firebase/components/FirebaseApp';
-import React, {ReactNode, createContext, useContext, useEffect, useState} from 'react';
+import React, {createContext, ReactNode, useContext, useEffect, useState} from 'react';
 
 type Props = {
   children: ReactNode;
@@ -8,7 +8,8 @@ type Props = {
 
 const FirestoreContext = createContext<Firestore | undefined>(undefined);
 
-export const FirestoreProvider = ({children}: Props) => {
+export const FirestoreProvider = (props: Props) => {
+  const {children} = props;
   const firebaseApp = useFirebaseAppContext();
   const [firestore, setFirestore] = useState<Firestore>();
 

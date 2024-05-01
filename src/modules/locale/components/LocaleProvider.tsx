@@ -3,14 +3,15 @@ import {actionLocaleGetList, actionLocaleGetMessages, actionLocaleInit} from 'mo
 import {locale} from 'modules/locale/reducers';
 import {selectLocaleCurrent, selectMessages} from 'modules/locale/selectors';
 import {selectLoadItem} from 'modules/status/selectors';
-import React, {useEffect} from 'react';
+import React, {ReactNode, useEffect} from 'react';
 import {IntlProvider} from 'react-intl';
 
 type TLocaleProps = {
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
-export const LocaleProvider = ({children}: TLocaleProps) => {
+export const LocaleProvider = (props: TLocaleProps) => {
+  const {children} = props;
   const dispatch = useAppDispatch();
 
   useEffect(() => {

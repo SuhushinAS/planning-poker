@@ -12,7 +12,8 @@ type Props = {
   userId: string;
 };
 
-export const Task = ({creatorId, game, gameId, userId}: Props) => {
+export const Task = (props: Props) => {
+  const {creatorId, game, gameId, userId} = props;
   const taskList = useTaskList(gameId);
   const isCreator = userId === creatorId;
 

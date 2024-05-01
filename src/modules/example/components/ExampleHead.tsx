@@ -1,18 +1,22 @@
-import React from 'react';
+import React, {ReactNode} from 'react';
 import {Link} from 'react-router-dom';
 import './ExampleHead.less';
 
-type TProps = {
-  linkText: React.ReactNode;
+type Props = {
+  linkText: ReactNode;
   linkUrl: string;
-  title: React.ReactNode;
+  title: ReactNode;
 };
 
-export const ExampleHead = ({linkText, linkUrl, title}: TProps) => (
-  <>
-    <h1 className="ExampleHead__Title">{title}</h1>
-    <p>
-      <Link to={linkUrl}>{linkText}</Link>
-    </p>
-  </>
-);
+export const ExampleHead = (props: Props) => {
+  const {linkText, linkUrl, title} = props;
+
+  return (
+    <>
+      <h1 className="ExampleHead__Title">{title}</h1>
+      <p>
+        <Link to={linkUrl}>{linkText}</Link>
+      </p>
+    </>
+  );
+};

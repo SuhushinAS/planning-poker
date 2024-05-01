@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PureComponent} from 'react';
 import './SvgIcon.less';
 
 type TIconProps = {
@@ -18,7 +18,7 @@ type TIcon = {
   viewBox: string;
 };
 
-export class SvgIcon extends React.PureComponent<TIconProps, TIconState> {
+export class SvgIcon extends PureComponent<TIconProps, TIconState> {
   static defaultProps = {
     name: '',
   };

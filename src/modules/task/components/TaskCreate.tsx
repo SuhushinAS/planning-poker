@@ -11,7 +11,9 @@ type Props = {
   gameId: string;
 };
 
-export const TaskCreate = ({creatorId, gameId}: Props) => {
+export const TaskCreate = (props: Props) => {
+  const {creatorId, gameId} = props;
+
   const defaultValues = useMemo<TTask>(() => {
     return {
       creatorId,

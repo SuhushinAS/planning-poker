@@ -5,14 +5,17 @@ import React from 'react';
 
 type Props = {
   game: TGame;
+  gameId: string;
   taskData?: TTask;
   userId: string;
 };
 
-export const GameItemTask = ({game, taskData, userId}: Props) => {
+export const GameItemTask = (props: Props) => {
+  const {game, gameId, taskData, userId} = props;
+
   if (taskData === undefined) {
     return null;
   }
 
-  return <GameMemberList game={game} taskData={taskData} title={taskData.title} userId={userId} />;
+  return <GameMemberList game={game} gameId={gameId} taskData={taskData} title={taskData.title} userId={userId} />;
 };

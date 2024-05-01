@@ -9,14 +9,18 @@ type Props = {
   children: ReactNode;
 };
 
-export const FirebaseProvider = ({children}: Props) => (
-  <FirebaseAppProvider>
-    <AuthProvider>
-      <AnonymouslyProvider>
-        <FirestoreProvider>
-          <DatabaseProvider>{children}</DatabaseProvider>
-        </FirestoreProvider>
-      </AnonymouslyProvider>
-    </AuthProvider>
-  </FirebaseAppProvider>
-);
+export const FirebaseProvider = (props: Props) => {
+  const {children} = props;
+
+  return (
+    <FirebaseAppProvider>
+      <AuthProvider>
+        <AnonymouslyProvider>
+          <FirestoreProvider>
+            <DatabaseProvider>{children}</DatabaseProvider>
+          </FirestoreProvider>
+        </AnonymouslyProvider>
+      </AuthProvider>
+    </FirebaseAppProvider>
+  );
+};

@@ -22,7 +22,9 @@ const getSortProp = (data: TTask) => {
   return [createDate, title].join('_');
 };
 
-export const TaskList = ({game, gameId, isCreator, taskList}: Props) => {
+export const TaskList = (props: Props) => {
+  const {game, gameId, isCreator, taskList} = props;
+
   const taskListSorted = useMemo(() => {
     const taskListSorted = taskList.map((task) => ({data: task.data() as TTask, id: task.id}));
 
@@ -63,13 +65,6 @@ export const TaskList = ({game, gameId, isCreator, taskList}: Props) => {
         </h4>
       }
     >
-      {taskListSorted.map(renderTask)}
-      {taskListSorted.map(renderTask)}
-      {taskListSorted.map(renderTask)}
-      {taskListSorted.map(renderTask)}
-      {taskListSorted.map(renderTask)}
-      {taskListSorted.map(renderTask)}
-      {taskListSorted.map(renderTask)}
       {taskListSorted.map(renderTask)}
     </Table>
   );

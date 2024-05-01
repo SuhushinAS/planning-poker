@@ -1,6 +1,6 @@
 import {Auth, getAuth} from 'firebase/auth';
 import {useFirebaseAppContext} from 'modules/firebase/components/FirebaseApp';
-import React, {ReactNode, createContext, useContext, useEffect, useState} from 'react';
+import React, {createContext, ReactNode, useContext, useEffect, useState} from 'react';
 
 type Props = {
   children: ReactNode;
@@ -8,7 +8,8 @@ type Props = {
 
 const AuthContext = createContext<Auth | undefined>(undefined);
 
-export const AuthProvider = ({children}: Props) => {
+export const AuthProvider = (props: Props) => {
+  const {children} = props;
   const firebaseApp = useFirebaseAppContext();
   const [auth, setAuth] = useState<Auth>();
 

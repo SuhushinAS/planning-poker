@@ -13,7 +13,9 @@ type Props = {
   userId: string;
 };
 
-export const GameItemControl = ({game, taskData, taskId, userId}: Props) => {
+export const GameItemControl = (props: Props) => {
+  const {game, taskData, taskId, userId} = props;
+
   if (taskData === undefined) {
     return null;
   }

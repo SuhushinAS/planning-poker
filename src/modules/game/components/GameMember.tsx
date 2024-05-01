@@ -1,11 +1,13 @@
 import 'modules/game/components/GameMember.less';
 import {optionTitleMap, OptionType} from 'modules/option/constants';
 import {useUser} from 'modules/user/model/useUser';
+import {useUserGameId} from 'modules/user/model/useUserGameId';
 import {TUser} from 'modules/user/types';
 import {voteHidden} from 'modules/vote/constants';
 import React, {useMemo} from 'react';
 
 type Props = {
+  gameId: string;
   isCreator: boolean;
   isSelf: boolean;
   isVoted: boolean;
@@ -13,8 +15,12 @@ type Props = {
   votes: Record<string, number>;
 };
 
-export const GameMember = ({isCreator, isSelf, isVoted, memberId, votes}: Props) => {
+export const GameMember = (props: Props) => {
+  const {gameId, isCreator, isSelf, isVoted, memberId, votes} = props;
+
   const user = useUser(memberId);
+  const userGameId = useUserGameId(memberId);
+
   const nameClassName = useMemo(() => {
     const classList = ['GameMember__Name', 'offset'];
 
@@ -26,8 +32,12 @@ export const GameMember = ({isCreator, isSelf, isVoted, memberId, votes}: Props)
       classList.push('GameMember__Name_Self');
     }
 
+    if (userGameId === gameId) {
+      classList.push('GameMember__Name_Online');
+    }
+
     return classList.join(' ');
-  }, [isCreator, isSelf]);
+  }, [gameId, isCreator, isSelf, userGameId]);
 
   const vote = useMemo(() => {
     const vote = votes[memberId] ?? OptionType.reset;
@@ -61,7 +71,7 @@ export const GameMember = ({isCreator, isSelf, isVoted, memberId, votes}: Props)
         </p>
       </td>
       <td className="Table__Cell Table__Cell_Control Table__Cell_Control_Fixed">
-        <h4 className="offset">{vote}</h4>
+        <h4 className="offset_ver">{vote}</h4>
       </td>
     </tr>
   );

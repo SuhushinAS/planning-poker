@@ -11,8 +11,10 @@ type Props = {
   votes: Record<string, number>;
 };
 
-export const GameRevealButton = ({isVoted, taskId, votes}: Props) => {
+export const GameRevealButton = (props: Props) => {
+  const {isVoted, taskId, votes} = props;
   const taskDocRef = useDocRef('task', taskId);
+
   const hasVote = useMemo(() => Object.values(votes).some((vote) => vote !== OptionType.reset), [votes]);
   const messageId = useMemo(() => (isVoted ? 'game.reset' : 'game.reveal'), [isVoted]);
 

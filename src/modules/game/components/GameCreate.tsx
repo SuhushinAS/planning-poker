@@ -15,7 +15,8 @@ type Props = {
   optionSetList: TOptionSet[];
 };
 
-export const GameCreateWithOptions = ({optionSetList}: Props) => {
+export const GameCreateWithOptions = (props: Props) => {
+  const {optionSetList} = props;
   const navigate = useNavigate();
   const anonymously = useAnonymouslyContext();
   const gameCollectionRef = useCollectionRef('game');

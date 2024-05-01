@@ -1,6 +1,6 @@
 import {Database, getDatabase} from 'firebase/database';
 import {useFirebaseAppContext} from 'modules/firebase/components/FirebaseApp';
-import React, {ReactNode, createContext, useContext, useEffect, useState} from 'react';
+import React, {createContext, ReactNode, useContext, useEffect, useState} from 'react';
 
 type Props = {
   children: ReactNode;
@@ -8,7 +8,8 @@ type Props = {
 
 const DatabaseContext = createContext<Database | undefined>(undefined);
 
-export const DatabaseProvider = ({children}: Props) => {
+export const DatabaseProvider = (props: Props) => {
+  const {children} = props;
   const firebaseApp = useFirebaseAppContext();
   const [database, setDatabase] = useState<Database>();
 

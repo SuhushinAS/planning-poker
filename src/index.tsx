@@ -2,15 +2,14 @@ import {App} from 'app/components/App';
 import {store} from 'app/store';
 import {Config} from 'modules/config/components/Config';
 import {LocaleProvider} from 'modules/locale/components/LocaleProvider';
-import React from 'react';
+import React, {StrictMode} from 'react';
 import {createRoot, Root} from 'react-dom/client';
 import {Provider} from 'react-redux';
 import {HashRouter} from 'react-router-dom';
-import 'styles/index.less';
 
 const getRender = (root: Root) => () => {
   root.render(
-    <React.StrictMode>
+    <StrictMode>
       <Provider store={store}>
         <LocaleProvider>
           <HashRouter>
@@ -20,7 +19,7 @@ const getRender = (root: Root) => () => {
           </HashRouter>
         </LocaleProvider>
       </Provider>
-    </React.StrictMode>
+    </StrictMode>
   );
 };
 

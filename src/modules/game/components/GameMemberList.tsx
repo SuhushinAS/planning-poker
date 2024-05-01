@@ -6,17 +6,21 @@ import React, {useCallback, useMemo} from 'react';
 
 type Props = {
   game: TGame;
+  gameId: string;
   taskData: TTask;
   title: string;
   userId: string;
 };
 
-export const GameMemberList = ({game, taskData, title, userId}: Props) => {
+export const GameMemberList = (props: Props) => {
+  const {game, gameId, taskData, title, userId} = props;
+
   const memberIdList = useMemo(() => Object.keys(game.memberIds), [game.memberIds]);
 
   const renderMember = useCallback(
     (memberId) => (
       <GameMember
+        gameId={gameId}
         isCreator={game.creatorId === memberId}
         isSelf={userId === memberId}
         isVoted={taskData.isVoted}

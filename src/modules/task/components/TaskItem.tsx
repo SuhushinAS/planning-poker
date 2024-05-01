@@ -19,7 +19,8 @@ type Props = {
 
 const getVoteAve: GetVoteValue = (voteValueList) => Math.round(voteValueList.reduce((sum, vote) => sum + vote, 0) / voteValueList.length);
 
-export const TaskItem = ({game, gameId, isCreator, task, taskId, taskIdSelect}: Props) => {
+export const TaskItem = (props: Props) => {
+  const {game, gameId, isCreator, task, taskId, taskIdSelect} = props;
   const gameDocRef = useDocRef('game', gameId);
   const taskDocRef = useDocRef('task', taskId);
 
@@ -65,11 +66,11 @@ export const TaskItem = ({game, gameId, isCreator, task, taskId, taskIdSelect}: 
         )}
       </td>
       <td className="Table__Cell Table__Cell_Control Table__Cell_Control_Fixed">
-        <h4 className="offset">{voteAve}</h4>
+        <h4 className="offset_ver">{voteAve}</h4>
       </td>
       {isCreator && (
         <td className="Table__Cell Table__Cell_Control Table__Cell_Control_Fixed">
-          <Button className="Button_Primary offset" onClick={onTaskDelete} type="button">
+          <Button className="Button_Primary offset_ver" onClick={onTaskDelete} type="button">
             &times;
           </Button>
         </td>
