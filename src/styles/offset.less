@@ -1,0 +1,35 @@
+@import (reference) 'mixins';
+
+.offset {
+  @multiplier-hor: 3;
+  @multiplier-ver: 2;
+  @offset-hor-sm: @grid-offset-sm * @multiplier-hor;
+  @offset-ver-sm: @grid-offset-sm * @multiplier-ver;
+  @offset-hor-md: @grid-offset-md * @multiplier-hor;
+  @offset-ver-md: @grid-offset-md * @multiplier-ver;
+
+  .fluid-prop-sm(padding-bottom, @offset-ver-sm, @offset-ver-md);
+  .fluid-prop-sm(padding-left, @offset-hor-sm, @offset-hor-md);
+  .fluid-prop-sm(padding-right, @offset-hor-sm, @offset-hor-md);
+  .fluid-prop-sm(padding-top, @offset-ver-sm, @offset-ver-md);
+
+  &_0 {
+    padding: 0;
+  }
+
+  &_hor {
+    .fluid-prop-sm(padding-left, @offset-hor-sm, @offset-hor-md);
+    .fluid-prop-sm(padding-right, @offset-hor-sm, @offset-hor-md);
+
+    padding-bottom: 0;
+    padding-top: 0;
+  }
+
+  &_ver {
+    .fluid-prop-sm(padding-bottom, @offset-ver-sm, @offset-ver-md);
+    .fluid-prop-sm(padding-top, @offset-ver-sm, @offset-ver-md);
+
+    padding-left: 0;
+    padding-right: 0;
+  }
+}

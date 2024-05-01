@@ -1,6 +1,6 @@
 import baron from 'baron';
 import {debounce} from 'modules/common/helpers/debounce';
-import React, {ReactNode} from 'react';
+import React, {Component, createRef, ReactNode} from 'react';
 import './Scroll.less';
 
 type TScrollProps = {
@@ -41,12 +41,12 @@ function getTrackKey(dir) {
   return `track_${dir}`;
 }
 
-export class Scroll extends React.Component<TScrollProps> {
+export class Scroll extends Component<TScrollProps> {
   instanceList: baron[] = [];
   isMount = false;
   references = {
-    scroll: React.createRef<HTMLDivElement>(),
-    scroller: React.createRef<HTMLDivElement>(),
+    scroll: createRef<HTMLDivElement>(),
+    scroller: createRef<HTMLDivElement>(),
   };
   updateOnLayoutChange = debounce(() => {
     if (this.isMount) {
@@ -61,8 +61,8 @@ export class Scroll extends React.Component<TScrollProps> {
 
   referencesInit = (acc, dir) => ({
     ...acc,
-    [getBarKey(dir)]: React.createRef<HTMLDivElement>(),
-    [getTrackKey(dir)]: React.createRef<HTMLDivElement>(),
+    [getBarKey(dir)]: createRef<HTMLDivElement>(),
+    [getTrackKey(dir)]: createRef<HTMLDivElement>(),
   });
 
   render() {

@@ -12,7 +12,8 @@ type Props = {
   vote: number;
 };
 
-export const GameVoteButton = ({children, isVoted, option, taskId, userId, vote}: Props) => {
+export const GameVoteButton = (props: Props) => {
+  const {children, isVoted, option, taskId, userId, vote} = props;
   const taskDocRef = useDocRef('task', taskId);
 
   const onVote = useCallback(() => {
@@ -20,7 +21,7 @@ export const GameVoteButton = ({children, isVoted, option, taskId, userId, vote}
   }, [option, taskDocRef, userId]);
 
   return (
-    <Button className="Button_Primary" disabled={isVoted || vote === option} onClick={onVote} type="button">
+    <Button className="Button_Primary offset_ver" disabled={isVoted || vote === option} onClick={onVote} type="button">
       {children ?? option}
     </Button>
   );

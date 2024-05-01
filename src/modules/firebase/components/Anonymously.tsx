@@ -1,6 +1,6 @@
-import {User, signInAnonymously} from 'firebase/auth';
+import {signInAnonymously, User} from 'firebase/auth';
 import {useAuthContext} from 'modules/firebase/components/Auth';
-import React, {ReactNode, createContext, useContext, useEffect, useState} from 'react';
+import React, {createContext, ReactNode, useContext, useEffect, useState} from 'react';
 
 type Props = {
   children: ReactNode;
@@ -8,7 +8,8 @@ type Props = {
 
 const AnonymouslyContext = createContext<User | undefined>(undefined);
 
-export const AnonymouslyProvider = ({children}: Props) => {
+export const AnonymouslyProvider = (props: Props) => {
+  const {children} = props;
   const auth = useAuthContext();
   const [anonymously, setAnonymously] = useState<User>();
 

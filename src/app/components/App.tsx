@@ -4,6 +4,7 @@ import {Game} from 'modules/game/components/Game';
 import {Layout} from 'modules/layout/components/Layout';
 import React from 'react';
 import {Route, Routes} from 'react-router-dom';
+import 'styles/index.less';
 
 export const App = () => {
   return (

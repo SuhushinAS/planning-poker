@@ -8,6 +8,24 @@
   width: 100%;
 
   &__Title {
-    .fluid-prop-md(padding, @grid-offset-sm, @grid-offset-md);
+    .fluid-prop-sm(padding, @grid-offset-sm, @grid-offset-md);
+  }
+
+  &__Cell {
+    background-color: @c-gray-20;
+    overflow: hidden;
+    padding: 0;
+
+    &_Title {
+      width: 100%;
+    }
+
+    &_Control {
+      text-align: center;
+    }
+
+    &_Control_Fixed {
+      .fluid-prop-sm(width, 32px, 44px);
+    }
   }
 }

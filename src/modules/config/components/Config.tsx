@@ -4,16 +4,16 @@ import {Api} from 'modules/common/helpers/api';
 import {actionConfigGet} from 'modules/config/actions';
 import {selectConfig} from 'modules/config/selectors';
 import type {TConfig} from 'modules/config/types';
-import React from 'react';
+import {Component, ReactNode} from 'react';
 import {connect} from 'react-redux';
 
 type TConfigProps = {
-  children: React.ReactNode;
+  children: ReactNode;
   config: TConfig;
   dispatch: TDispatch;
 };
 
-export class ConfigComponent extends React.Component<TConfigProps, TConfig> {
+export class ConfigComponent extends Component<TConfigProps, TConfig> {
   state;
 
   constructor(props: TConfigProps) {

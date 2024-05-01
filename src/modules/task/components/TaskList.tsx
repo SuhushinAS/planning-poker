@@ -5,7 +5,7 @@ import {TGame} from 'modules/game/types';
 import {Message} from 'modules/locale/components/Message';
 import {TaskItem} from 'modules/task/components/TaskItem';
 import {TTask} from 'modules/task/types';
-import React, {useMemo} from 'react';
+import React, {useCallback, useMemo} from 'react';
 
 type Props = {
   game: TGame;
@@ -22,7 +22,9 @@ const getSortProp = (data: TTask) => {
   return [createDate, title].join('_');
 };
 
-export const TaskList = ({game, gameId, isCreator, taskList}: Props) => {
+export const TaskList = (props: Props) => {
+  const {game, gameId, isCreator, taskList} = props;
+
   const taskListSorted = useMemo(() => {
     const taskListSorted = taskList.map((task) => ({data: task.data() as TTask, id: task.id}));
 
@@ -44,29 +46,26 @@ export const TaskList = ({game, gameId, isCreator, taskList}: Props) => {
     return taskListSorted;
   }, [taskList]);
 
+  const renderTask = useCallback(
+    (task, index) => {
+      const taskSelect = taskListSorted[index + 1] ?? taskListSorted[index - 1];
+
+      return (
+        <TaskItem game={game} gameId={gameId} isCreator={isCreator} key={task.id} task={task.data} taskId={task.id} taskIdSelect={taskSelect?.id} />
+      );
+    },
+    [game, gameId, isCreator, taskListSorted]
+  );
+
   return (
     <Table
       title={
-        <h5>
+        <h4>
           <Message id="task.list.title" />
-        </h5>
+        </h4>
       }
     >
-      {taskListSorted.map((task, index) => {
-        const taskSelect = taskListSorted[index + 1] ?? taskListSorted[index - 1];
-
-        return (
-          <TaskItem
-            game={game}
-            gameId={gameId}
-            isCreator={isCreator}
-            key={task.id}
-            task={task.data}
-            taskId={task.id}
-            taskIdSelect={taskSelect?.id}
-          />
-        );
-      })}
+      {taskListSorted.map(renderTask)}
     </Table>
   );
 };

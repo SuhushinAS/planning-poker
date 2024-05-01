@@ -1,11 +1,13 @@
-import React from 'react';
+import React, {ReactNode} from 'react';
 
 type Props = {
-  children: React.ReactNode;
+  children: ReactNode;
   htmlFor: string;
 };
 
-export const Label = ({children, htmlFor}: Props) => {
+export const Label = (props: Props) => {
+  const {children, htmlFor} = props;
+
   return (
     <label className="Label" htmlFor={htmlFor}>
       {children}

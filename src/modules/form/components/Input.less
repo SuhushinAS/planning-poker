@@ -3,7 +3,17 @@
 
 .Input {
   .f_p();
-  .fluid-prop-md(padding, @grid-offset-sm - 2px, @grid-offset-md - 2px);
+  @multiplier-hor: 3;
+  @multiplier-ver: 2;
+  @offset-hor-sm: @grid-offset-sm * @multiplier-hor - 2px;
+  @offset-ver-sm: @grid-offset-sm * @multiplier-ver - 2px;
+  @offset-hor-md: @grid-offset-md * @multiplier-hor - 2px;
+  @offset-ver-md: @grid-offset-md * @multiplier-ver - 2px;
+
+  .fluid-prop-sm(padding-bottom, @offset-ver-sm, @offset-ver-md);
+  .fluid-prop-sm(padding-left, @offset-hor-sm, @offset-hor-md);
+  .fluid-prop-sm(padding-right, @offset-hor-sm, @offset-hor-md);
+  .fluid-prop-sm(padding-top, @offset-ver-sm, @offset-ver-md);
 
   border: 2px solid @c-black-30;
   color: @c-black-50;

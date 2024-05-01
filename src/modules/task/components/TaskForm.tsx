@@ -2,7 +2,6 @@ import {Table} from 'modules/common/components/Table';
 import {ButtonSubmit} from 'modules/form/components/ButtonSubmit';
 import {Input} from 'modules/form/components/Input';
 import {useMessage} from 'modules/locale/hooks';
-import 'modules/task/components/TaskForm.less';
 import {TTask} from 'modules/task/types';
 import React, {useCallback} from 'react';
 import {DefaultValues, FormProvider, SubmitHandler, useForm} from 'react-hook-form';
@@ -30,11 +29,11 @@ export const TaskForm = (props: Props) => {
       <form onSubmit={form.handleSubmit(onSubmit)}>
         <Table>
           <tr>
-            <td className="TaskForm__Cell TaskForm__Cell_Title">
+            <td className="Table__Cell Table__Cell_Title">
               <Input className="TaskForm__Input" name="title" placeholder={placeholder} />
             </td>
-            <td className="TaskForm__Cell TaskForm__Cell_Control">
-              <ButtonSubmit>+</ButtonSubmit>
+            <td className="Table__Cell Table__Cell_Control Table__Cell_Control_Fixed">
+              <ButtonSubmit className="offset">+</ButtonSubmit>
             </td>
           </tr>
         </Table>

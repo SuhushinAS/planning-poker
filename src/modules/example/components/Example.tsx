@@ -3,15 +3,15 @@ import {actionExampleGetList} from 'modules/example/actions';
 import {ExamplePageItem} from 'modules/example/components/ExamplePageItem';
 import {ExamplePageList} from 'modules/example/components/ExamplePageList';
 import {examplePath} from 'modules/example/constants';
-import React from 'react';
+import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Route, Routes} from 'react-router-dom';
 
-type TProps = {
+type Props = {
   dispatch: TDispatch;
 };
 
-export class ExampleComponent extends React.Component<TProps> {
+export class ExampleComponent extends Component<Props> {
   static defaultProps = {};
 
   // constructor(props: TExampleProps) {
