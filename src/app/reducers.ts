@@ -1,8 +1,8 @@
+import {combineReducers} from '@reduxjs/toolkit';
 import {config} from 'modules/config/redux';
 import {example} from 'modules/example/reducers';
 import {locale} from 'modules/locale/reducers';
 import {status} from 'modules/status/reducers';
-import {combineReducers} from 'redux';
 
 export const rootReducer = combineReducers({
   [config.name]: config.reducer,
