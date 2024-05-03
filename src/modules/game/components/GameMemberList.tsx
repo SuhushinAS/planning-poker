@@ -15,7 +15,9 @@ type Props = {
 export const GameMemberList = (props: Props) => {
   const {game, gameId, taskData, title, userId} = props;
 
-  const memberIdList = useMemo(() => Object.keys(game.memberIds), [game.memberIds]);
+  const memberIdList = useMemo(() => {
+    return Object.keys(game.memberIds).toSorted();
+  }, [game.memberIds]);
 
   const renderMember = useCallback(
     (memberId) => (
@@ -29,7 +31,7 @@ export const GameMemberList = (props: Props) => {
         votes={taskData.votes}
       />
     ),
-    [game.creatorId, taskData.isVoted, taskData.votes, userId]
+    [game.creatorId, gameId, taskData.isVoted, taskData.votes, userId]
   );
 
   return <Table title={<h4>{title}</h4>}>{memberIdList.map(renderMember)}</Table>;

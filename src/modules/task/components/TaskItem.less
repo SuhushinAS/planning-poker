@@ -3,7 +3,7 @@
 @import (reference) 'src/styles/offset';
 
 .TaskItem {
-  &__TitleInner {
+  &__Title {
     .ellipsis(1);
     .fluid-prop-sm(min-height, 24px, 28px);
     .offset();
@@ -12,7 +12,17 @@
     text-align: left;
   }
 
-  &_Current .Table__Cell {
+  &_Hover &__Cell {
+    cursor: pointer;
+    transition: background-color @animation, border @animation, color @animation;
+  }
+
+  &_Hover:hover &__Cell, &_Hover:focus-visible &__Cell {
+    background-color: @c-gray-30;
+    transition: background-color @animation-hover, border @animation-hover, color @animation-hover;
+  }
+
+  &_Current &__Cell {
     background-color: @c-gray-30;
   }
 }

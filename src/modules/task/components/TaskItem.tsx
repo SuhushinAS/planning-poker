@@ -1,16 +1,16 @@
-import {deleteDoc, deleteField, updateDoc} from 'firebase/firestore';
-import {useDocRef} from 'modules/firebase/lib/useDocRef';
-import {Button} from 'modules/form/components/Button';
 import {TGame} from 'modules/game/types';
 import {OptionType} from 'modules/option/constants';
 import 'modules/task/components/TaskItem.less';
+import {TaskItemBase} from 'modules/task/components/TaskItemBase';
+import {TaskItemEdit} from 'modules/task/components/TaskItemEdit';
 import {TTask} from 'modules/task/types';
 import {GetVoteValue, useVoteValue} from 'modules/vote/model/useVoteValue';
-import React, {useCallback, useMemo} from 'react';
+import React, {useMemo} from 'react';
 
 type Props = {
   game: TGame;
   gameId: string;
+  index: number;
   isCreator: boolean;
   task: TTask;
   taskId: string;
@@ -20,11 +20,9 @@ type Props = {
 const getVoteAve: GetVoteValue = (voteValueList) => Math.round(voteValueList.reduce((sum, vote) => sum + vote, 0) / voteValueList.length);
 
 export const TaskItem = (props: Props) => {
-  const {game, gameId, isCreator, task, taskId, taskIdSelect} = props;
-  const gameDocRef = useDocRef('game', gameId);
-  const taskDocRef = useDocRef('task', taskId);
+  const {game, gameId, index, isCreator, task, taskId, taskIdSelect} = props;
 
-  const taskItemClassName = useMemo(() => {
+  const className = useMemo(() => {
     const classList = ['TaskItem'];
 
     if (taskId === game.taskId) {
@@ -38,43 +36,20 @@ export const TaskItem = (props: Props) => {
 
   const voteAve = useVoteValue(voteValueList, task.isVoted, getVoteAve);
 
-  const onTaskSelect = useCallback(() => updateDoc(gameDocRef, {taskId}), [gameDocRef, taskId]);
+  if (isCreator) {
+    return (
+      <TaskItemEdit
+        className={className}
+        game={game}
+        gameId={gameId}
+        index={index}
+        task={task}
+        taskId={taskId}
+        taskIdSelect={taskIdSelect}
+        voteAve={voteAve}
+      />
+    );
+  }
 
-  const onTaskDelete = useCallback(() => {
-    if (taskId === game.taskId) {
-      if (taskIdSelect === undefined) {
-        updateDoc(gameDocRef, {taskId: deleteField()});
-      } else {
-        updateDoc(gameDocRef, {taskId: taskIdSelect});
-      }
-    }
-
-    return deleteDoc(taskDocRef);
-  }, [game.taskId, gameDocRef, taskDocRef, taskId, taskIdSelect]);
-
-  return (
-    <tr className={taskItemClassName}>
-      <td className="Table__Cell Table__Cell_Title">
-        {isCreator ? (
-          <Button className="Button_Primary offset_0" disabled={taskId === game.taskId} onClick={onTaskSelect} title={task.title} type="button">
-            <h4 className="TaskItem__TitleInner">{task.title}</h4>
-          </Button>
-        ) : (
-          <h4 className="TaskItem__TitleInner" title={task.title}>
-            {task.title}
-          </h4>
-        )}
-      </td>
-      <td className="Table__Cell Table__Cell_Control Table__Cell_Control_Fixed">
-        <h4 className="offset_ver">{voteAve}</h4>
-      </td>
-      {isCreator && (
-        <td className="Table__Cell Table__Cell_Control Table__Cell_Control_Fixed">
-          <Button className="Button_Primary offset_ver" onClick={onTaskDelete} type="button">
-            &times;
-          </Button>
-        </td>
-      )}
-    </tr>
-  );
+  return <TaskItemBase className={className} index={index} task={task} voteAve={voteAve} />;
 };

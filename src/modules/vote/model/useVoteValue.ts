@@ -5,7 +5,7 @@ import {useMemo} from 'react';
 export type GetVoteValue = (voteValueList: number[]) => string | number;
 
 export const useVoteValue = (voteValueList: number[], isVoted: boolean, getVoteValue: GetVoteValue) => {
-  return useMemo(() => {
+  return useMemo<string | number>(() => {
     if (0 === voteValueList.length) {
       return optionTitleMap[OptionType.reset];
     }
