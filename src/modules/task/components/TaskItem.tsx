@@ -4,6 +4,7 @@ import {Button} from 'modules/form/components/Button';
 import {TGame} from 'modules/game/types';
 import {OptionType} from 'modules/option/constants';
 import 'modules/task/components/TaskItem.less';
+import {TaskItemTitle} from 'modules/task/components/TaskItemTitle';
 import {TTask} from 'modules/task/types';
 import {GetVoteValue, useVoteValue} from 'modules/vote/model/useVoteValue';
 import React, {useCallback, useMemo} from 'react';
@@ -11,6 +12,7 @@ import React, {useCallback, useMemo} from 'react';
 type Props = {
   game: TGame;
   gameId: string;
+  index: number;
   isCreator: boolean;
   task: TTask;
   taskId: string;
@@ -20,7 +22,7 @@ type Props = {
 const getVoteAve: GetVoteValue = (voteValueList) => Math.round(voteValueList.reduce((sum, vote) => sum + vote, 0) / voteValueList.length);
 
 export const TaskItem = (props: Props) => {
-  const {game, gameId, isCreator, task, taskId, taskIdSelect} = props;
+  const {game, gameId, index, isCreator, task, taskId, taskIdSelect} = props;
   const gameDocRef = useDocRef('game', gameId);
   const taskDocRef = useDocRef('task', taskId);
 
@@ -38,8 +40,6 @@ export const TaskItem = (props: Props) => {
 
   const voteAve = useVoteValue(voteValueList, task.isVoted, getVoteAve);
 
-  const onTaskSelect = useCallback(() => updateDoc(gameDocRef, {taskId}), [gameDocRef, taskId]);
-
   const onTaskDelete = useCallback(() => {
     if (taskId === game.taskId) {
       if (taskIdSelect === undefined) {
@@ -54,16 +54,11 @@ export const TaskItem = (props: Props) => {
 
   return (
     <tr className={taskItemClassName}>
+      <td className="Table__Cell Table__Cell_Control Table__Cell_Control_Fixed">
+        <h4 className="offset_ver">{index + 1}</h4>
+      </td>
       <td className="Table__Cell Table__Cell_Title">
-        {isCreator ? (
-          <Button className="Button_Primary offset_0" disabled={taskId === game.taskId} onClick={onTaskSelect} title={task.title} type="button">
-            <h4 className="TaskItem__TitleInner">{task.title}</h4>
-          </Button>
-        ) : (
-          <h4 className="TaskItem__TitleInner" title={task.title}>
-            {task.title}
-          </h4>
-        )}
+        <TaskItemTitle game={game} gameId={gameId} isCreator={isCreator} task={task} taskId={taskId} />
       </td>
       <td className="Table__Cell Table__Cell_Control Table__Cell_Control_Fixed">
         <h4 className="offset_ver">{voteAve}</h4>

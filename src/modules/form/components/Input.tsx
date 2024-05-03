@@ -9,7 +9,7 @@ export const Input = (props: Props) => {
   const {className, id, name, ...restProps} = props;
   const {control} = useFormContext();
   const {field} = useController({control, name});
-  const inputClassName = useClassName('Input offset', className);
+  const inputClassName = useClassName('Input', className);
 
   return <input className={inputClassName} id={id ?? name} {...field} {...restProps} />;
 };

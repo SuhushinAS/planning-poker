@@ -26,24 +26,22 @@ export const TaskList = (props: Props) => {
   const {game, gameId, isCreator, taskList} = props;
 
   const taskListSorted = useMemo(() => {
-    const taskListSorted = taskList.map((task) => ({data: task.data() as TTask, id: task.id}));
+    return taskList
+      .map((task) => ({data: task.data() as TTask, id: task.id}))
+      .toSorted((a, b) => {
+        const sortPropA = getSortProp(a.data);
+        const sortPropB = getSortProp(b.data);
 
-    taskListSorted.sort((a, b) => {
-      const sortPropA = getSortProp(a.data);
-      const sortPropB = getSortProp(b.data);
+        if (sortPropA === sortPropB) {
+          return 0;
+        }
 
-      if (sortPropA === sortPropB) {
-        return 0;
-      }
+        if (sortPropA > sortPropB) {
+          return 1;
+        }
 
-      if (sortPropA > sortPropB) {
-        return 1;
-      }
-
-      return -1;
-    });
-
-    return taskListSorted;
+        return -1;
+      });
   }, [taskList]);
 
   const renderTask = useCallback(
@@ -51,7 +49,16 @@ export const TaskList = (props: Props) => {
       const taskSelect = taskListSorted[index + 1] ?? taskListSorted[index - 1];
 
       return (
-        <TaskItem game={game} gameId={gameId} isCreator={isCreator} key={task.id} task={task.data} taskId={task.id} taskIdSelect={taskSelect?.id} />
+        <TaskItem
+          game={game}
+          gameId={gameId}
+          index={index}
+          isCreator={isCreator}
+          key={task.id}
+          task={task.data}
+          taskId={task.id}
+          taskIdSelect={taskSelect?.id}
+        />
       );
     },
     [game, gameId, isCreator, taskListSorted]
