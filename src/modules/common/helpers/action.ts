@@ -1,5 +1,5 @@
+import {Action, ActionCreator} from '@reduxjs/toolkit';
 import {TDispatch} from 'app/types';
-import {Action, ActionCreator} from 'redux';
 
 type TDispatchData = <TD>(dispatch: TDispatch, action: ActionCreator<Action>) => (data: TD) => TD;
 

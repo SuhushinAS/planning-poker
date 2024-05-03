@@ -1,3 +1,4 @@
+import {Action} from '@reduxjs/toolkit';
 import {TDispatch, TGetState} from 'app/types';
 import {dispatchData} from 'modules/common/helpers/action';
 import {api} from 'modules/common/helpers/api';
@@ -8,7 +9,6 @@ import {selectLocaleCurrent} from 'modules/locale/selectors';
 import {TLocale} from 'modules/locale/types';
 import {loadStop} from 'modules/status/actions';
 import {status} from 'modules/status/reducers';
-import {Action} from 'redux';
 
 type TLocaleList = {list: string[]};
 
