@@ -17,16 +17,16 @@ export const TaskItemBase = (props: Props) => {
 
   return (
     <tr className={className}>
-      <td className="Table__Cell Table__Cell_Control Table__Cell_Control_Fixed" onClick={onClick}>
-        <h4 className="offset_ver">{index + 1}</h4>
+      <td className="TaskItem__Cell Table__Cell Table__Cell_Control Table__Cell_Control_Fixed" onClick={onClick}>
+        <p className="offset_ver">{index + 1}</p>
       </td>
-      <td className="Table__Cell Table__Cell_Title" onClick={onClick}>
-        <h4 className="TaskItem__Title" title={task.title}>
+      <td className="TaskItem__Cell Table__Cell Table__Cell_Title" onClick={onClick}>
+        <p className="TaskItem__Title" title={task.title}>
           {task.title}
-        </h4>
+        </p>
       </td>
-      <td className="Table__Cell Table__Cell_Control Table__Cell_Control_Fixed" onClick={onClick}>
-        <h4 className="offset_ver">{voteAve}</h4>
+      <td className="TaskItem__Cell Table__Cell Table__Cell_Control Table__Cell_Control_Fixed" onClick={onClick}>
+        <p className="offset_ver">{voteAve}</p>
       </td>
       {action}
     </tr>

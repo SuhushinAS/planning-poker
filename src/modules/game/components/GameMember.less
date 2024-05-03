@@ -17,17 +17,21 @@
       width: 4px;
     }
 
+    &_Online {
+      &:before {
+        background-color: @c-success-50;
+      }
+    }
+
     &_Creator {
-      font-style: italic;
+      &:before {
+        background-color: @c-warning-40;
+      }
     }
 
     &_Self {
-      font-weight: bold;
-    }
-
-    &_Online {
       &:before {
-        background-color: @c-success-60;
+        background-color: @c-info-30;
       }
     }
   }

@@ -44,7 +44,7 @@ export const TaskItemEdit = (props: Props) => {
     <TaskItemBase
       action={
         <td className="Table__Cell Table__Cell_Control Table__Cell_Control_Fixed">
-          <Button className="Button_Primary offset_ver" onClick={onTaskDelete} type="button">
+          <Button className="Button_Danger offset_ver" onClick={onTaskDelete} type="button">
             &times;
           </Button>
         </td>
