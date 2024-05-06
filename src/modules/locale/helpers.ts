@@ -1,3 +1,4 @@
+import {localeCurrentKey, localeDefault} from 'modules/locale/constants';
 import {TMessage} from 'modules/locale/types';
 import {IntlShape} from 'react-intl';
 
@@ -14,3 +15,21 @@ export const getMessage: TGetMessage =
   <V>(intl) =>
   (id, values: V) =>
     intl.formatMessage(getOptions(id), values);
+
+export const getLocaleCurrent = (localeList: string[]): string => {
+  try {
+    const localeCurrent = localStorage.getItem(localeCurrentKey);
+
+    if (null === localeCurrent) {
+      return localeDefault;
+    }
+
+    if (localeList.includes(localeCurrent)) {
+      return localeCurrent;
+    }
+
+    return localeDefault;
+  } catch {
+    return localeDefault;
+  }
+};

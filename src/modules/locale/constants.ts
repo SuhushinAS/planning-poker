@@ -1,2 +1,2 @@
-export const defaultLocale = 'ru';
-export const currentLocaleKey = 'currentLocale';
+export const localeDefault = 'ru';
+export const localeCurrentKey = 'localeCurrent';

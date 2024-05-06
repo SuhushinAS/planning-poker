@@ -17,3 +17,5 @@ export const status = createSlice({
     },
   },
 });
+
+export const statusActions = status.actions;

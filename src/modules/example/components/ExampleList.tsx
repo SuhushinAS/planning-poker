@@ -1,7 +1,7 @@
 import {appPath} from 'app/constants';
 import {useAppSelector} from 'app/hooks';
 import {exampleIdKey} from 'modules/example/constants';
-import {example} from 'modules/example/reducers';
+import {exampleActions} from 'modules/example/reducers';
 import {selectExampleList} from 'modules/example/selectors';
 import {TExample} from 'modules/example/types';
 import {selectLoadItem} from 'modules/status/selectors';
@@ -13,7 +13,7 @@ const fields: Array<keyof TExample> = ['name', 'email', 'age', 'balance'];
 
 export const ExampleList = () => {
   const list = useAppSelector(selectExampleList);
-  const load = useAppSelector(selectLoadItem(example.actions.getList.type));
+  const load = useAppSelector(selectLoadItem(exampleActions.getList.type));
 
   if ('undefined' === typeof load) {
     return null;

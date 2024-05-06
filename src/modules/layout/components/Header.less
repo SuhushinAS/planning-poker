@@ -5,19 +5,16 @@
   background-color: @c-primary-20;
   color: @c-black-50;
 
-  &__Inner {
-    .fluid-prop-sm(padding-bottom, @grid-offset-sm, @grid-offset-md);
-    .fluid-prop-sm(padding-top, @grid-offset-sm, @grid-offset-md);
-
-    align-items: center;
-    display: flex;
+  &__Box {
     overflow: hidden;
+  }
+
+  &__Row {
+    align-items: center;
   }
 
   &__Title {
     .ellipsis(1);
-
-    flex-basis: 100%;
   }
 
   &__TitleLink {
@@ -47,9 +44,8 @@
     }
   }
 
-  &__Lang {
-    .fluid-prop-sm(margin-left, @grid-offset-sm * 2, @grid-offset-md * 2);
-
+  &__Col&__Col {
+    flex-grow: 0;
     flex-shrink: 0;
   }
 }

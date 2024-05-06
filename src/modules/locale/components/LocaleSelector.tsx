@@ -30,7 +30,7 @@ export const LocaleSelector = () => {
   }, [dispatch, locale, localeCurrent, localeData]);
 
   return (
-    <select className="LocaleSelector" name="locale" onBlur={onLocaleChange} onChange={onLocaleChange} value={locale}>
+    <select className="LocaleSelector offset_ver" name="locale" onBlur={onLocaleChange} onChange={onLocaleChange} value={locale}>
       {localeList.map(renderLocaleOption)}
     </select>
   );
