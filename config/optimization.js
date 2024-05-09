@@ -27,6 +27,7 @@ module.exports = ({mode}) => ({
         },
         icons: {
           chunks: 'all',
+          enforce: true,
           name: 'icons',
           test: /\.svg$/u,
         },
