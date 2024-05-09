@@ -1,9 +1,13 @@
-import {useAppDispatch} from 'app/hooks';
+import {useAppDispatch, useAppSelector} from 'app/hooks';
 import {actionThemeCurrentSet} from 'modules/theme/actions';
 import {themeDark} from 'modules/theme/constants';
 import {getThemeCurrent, getThemeDevice} from 'modules/theme/helpers';
 import {themeActions} from 'modules/theme/reducers';
+import {selectTheme} from 'modules/theme/selectors';
+import {TThemeDevice} from 'modules/theme/types';
 import {useCallback, useEffect} from 'react';
+
+const {body} = document;
 
 export const useThemeCurrent = () => {
   const dispatch = useAppDispatch();
@@ -40,4 +44,17 @@ export const useThemeDevice = () => {
       themeDark.removeEventListener('change', onChange);
     };
   }, [onChange]);
+};
+
+export const useTheme = () => {
+  const theme = useAppSelector(selectTheme);
+
+  useEffect(() => {
+    body.classList.add('theme');
+  }, []);
+
+  useEffect(() => {
+    body.classList.remove(`theme_${TThemeDevice.dark}`, `theme_${TThemeDevice.light}`);
+    body.classList.add(`theme_${theme}`);
+  }, [theme]);
 };

@@ -15,29 +15,72 @@
   .fluid-prop-sm(padding-right, @offset-hor-sm, @offset-hor-md);
   .fluid-prop-sm(padding-top, @offset-ver-sm, @offset-ver-md);
 
-  border: 2px solid @c-black-30;
-  color: @c-black-50;
+  border-style: solid;
+  border-width: 2px;
   display: block;
   width: 100%;
-  transition: border @animation, color @animation;
+  transition: background-color @animation, border-color @animation, color @animation;
 
-  &:hover, &:focus-visible {
-    border: 2px solid @c-black-40;
-    transition: border @animation-hover, color @animation-hover;
+  .theme_light & {
+    background-color: @c-white;
+    border-color: @c-black-30;
+    color: @c-black-50;
   }
 
-  &:disabled {
-    border: 2px solid @c-black-20;
-    color: @c-black-20;
-    cursor: not-allowed;
-    pointer-events: none;
+  .theme_dark & {
+    background-color: @c-gray-100;
+    border-color: @c-white-20;
+    color: @c-white-40;
+  }
 
-    &::placeholder {
-      color: @c-black-20;
+  &:hover, &:focus-visible {
+    transition: border-color @animation-hover;
+
+    .theme_light & {
+      border-color: @c-black-40;
+    }
+
+    .theme_dark & {
+      border-color: @c-white-30;
     }
   }
 
   &::placeholder {
-    color: @c-black-30;
+    transition: color @animation;
+
+    .theme_light & {
+      color: @c-black-30;
+    }
+
+    .theme_dark & {
+      color: @c-white-20;
+    }
+  }
+
+  &:disabled {
+    border-style: solid;
+    border-width: 2px;
+    cursor: not-allowed;
+    pointer-events: none;
+
+    .theme_light & {
+      border-color: @c-black-20;
+      color: @c-black-20;
+    }
+
+    .theme_dark & {
+      border-color: @c-white-10;
+      color: @c-white-20;
+    }
+
+    &::placeholder {
+      .theme_light & {
+        color: @c-black-20;
+      }
+
+      .theme_dark & {
+        color: @c-white-10;
+      }
+    }
   }
 }

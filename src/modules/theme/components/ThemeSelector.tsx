@@ -1,8 +1,8 @@
 import {useAppDispatch, useAppSelector} from 'app/hooks';
-import {Button} from 'modules/form/components/Button';
 import {actionThemeCurrentSet} from 'modules/theme/actions';
 import 'modules/theme/components/ThemeSelector.less';
-import {useThemeCurrent, useThemeDevice} from 'modules/theme/hooks';
+import {ThemeSelectorIcon} from 'modules/theme/components/ThemeSelectorIcon';
+import {useTheme, useThemeCurrent, useThemeDevice} from 'modules/theme/hooks';
 import {selectThemeCurrent} from 'modules/theme/selectors';
 import {TThemeAuto, TThemeDevice} from 'modules/theme/types';
 import React, {MouseEventHandler, useCallback} from 'react';
@@ -27,11 +27,15 @@ export const ThemeSelector = () => {
 
   useThemeDevice();
 
+  useTheme();
+
   return (
-    <div className="ThemeSelector">
-      <Button className="ThemeSelector__Button" onClick={onClick}>
-        {themeCurrent}
-      </Button>
-    </div>
+    <button className="ThemeSelector" onClick={onClick} type="button">
+      <div className="ThemeSelector__IconWrapper">
+        {themeList.map((theme) => {
+          return <ThemeSelectorIcon isCurrent={theme === themeCurrent} key={theme} theme={theme} />;
+        })}
+      </div>
+    </button>
   );
 };

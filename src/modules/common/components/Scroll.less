@@ -22,13 +22,21 @@
   }
 
   &__Track {
-    background-color: fade(@c-gray-40, 25%);
     border-radius: 4px;
     bottom: 1px;
     display: none;
     position: absolute;
     right: 1px;
+    transition: background-color @animation;
     z-index: 9;
+
+    .theme_light & {
+      background-color: @c-black-05;
+    }
+
+    .theme_dark & {
+      background-color: @c-white-20;
+    }
 
     &_h {
       height: 6px;
@@ -50,10 +58,17 @@
   }
 
   &__Bar {
-    background-color: @c-gray-60;
     border-radius: 3px;
     position: absolute;
-    transition: background @animation, border-radius @animation, width @animation;
+    transition: background-color @animation;
+
+    .theme_light & {
+      background-color: @c-black-20;
+    }
+
+    .theme_dark & {
+      background-color: @c-white-20;
+    }
 
     &_h {
       height: 4px;

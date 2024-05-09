@@ -27,7 +27,15 @@ body {
   .font-family-primary();
   .f_p();
 
-  color: @c-black-60;
+  transition: color @animation;
+
+  &.theme_light {
+    color: @c-black-50;
+  }
+
+  &.theme_dark {
+    color: @c-white-40;
+  }
 }
 
 h1,

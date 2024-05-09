@@ -1,4 +1,5 @@
 import {deleteDoc, deleteField, updateDoc} from 'firebase/firestore';
+import {SvgIcon} from 'modules/common/components/SvgIcon';
 import {useClassName} from 'modules/common/helpers/useClassName';
 import {useDocRef} from 'modules/firebase/lib/useDocRef';
 import {Button} from 'modules/form/components/Button';
@@ -24,7 +25,7 @@ export const TaskItemEdit = (props: Props) => {
   const gameDocRef = useDocRef('game', gameId);
   const taskDocRef = useDocRef('task', taskId);
 
-  const className = useClassName(props.className, 'TaskItem_Hover');
+  const className = useClassName('TaskItem_Hover', props.className);
 
   const onTaskSelect = useCallback(() => updateDoc(gameDocRef, {taskId}), [gameDocRef, taskId]);
 
@@ -45,7 +46,7 @@ export const TaskItemEdit = (props: Props) => {
       action={
         <td className="Table__Cell Table__Cell_Control Table__Cell_Control_Fixed">
           <Button className="Button_Danger offset_ver" onClick={onTaskDelete} type="button">
-            &times;
+            <SvgIcon name="close" />
           </Button>
         </td>
       }

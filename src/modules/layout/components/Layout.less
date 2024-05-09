@@ -6,7 +6,16 @@
   height: 100%;
   overflow: hidden;
   position: fixed;
+  transition: background-color @animation;
   width: 100%;
+
+  .theme_light & {
+    background-color: @c-white;
+  }
+
+  .theme_dark & {
+    background-color: @c-black;
+  }
 
   &__Header {
     flex-shrink: 0;

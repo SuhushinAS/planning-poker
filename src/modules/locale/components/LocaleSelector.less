@@ -2,25 +2,50 @@
 @import (reference) 'src/styles/font';
 
 .LocaleSelector {
-  background-color: @c-primary-20;
+  .f_h3();
+
   border: 0;
-  color: @c-black-40;
+  box-sizing: content-box;
   cursor: pointer;
   display: block;
-  width: 100%;
   text-transform: uppercase;
-  transition: background-color @animation;
+  transition: background-color @animation, color @animation;
 
   &:hover, &:focus-visible {
-    background-color: @c-primary-30;
-    transition: background-color @animation-hover;
+    transition: background-color @animation-hover, color @animation-hover;
   }
 
   &:disabled {
-    background-color: @c-primary-10;
     border-color: @c-black-10;
-    color: @c-black-20;
     cursor: not-allowed;
     pointer-events: none;
+  }
+
+  .theme_light & {
+    background-color: @c-primary-20;
+    color: @c-black-40;
+
+    &:hover, &:focus-visible {
+      background-color: @c-primary-30;
+    }
+
+    &:disabled {
+      background-color: @c-primary-10;
+      color: @c-black-20;
+    }
+  }
+
+  .theme_dark & {
+    background-color: shade(@c-primary-50, 60%);
+    color: @c-white-40;
+
+    &:hover, &:focus-visible {
+      background-color: shade(@c-primary-50, 50%);
+    }
+
+    &:disabled {
+      background-color: shade(@c-primary-50, 70%);
+      color: @c-white-20;
+    }
   }
 }
