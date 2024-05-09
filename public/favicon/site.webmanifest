@@ -1,5 +1,6 @@
 {
   "background_color": "#d6e4ff",
+  "description": "Приложение для командной оценки задач",
   "display": "standalone",
   "display_override": [
     "window-controls-overlay",
