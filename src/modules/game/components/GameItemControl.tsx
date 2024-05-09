@@ -46,7 +46,7 @@ export const GameItemControl = (props: Props) => {
       </tr>
       {game.creatorId === userId && (
         <tr>
-          <td className="GameItemControl__Cell GameItemControl__Cell_Reveal" colSpan={game.optionList.length + 3}>
+          <td className="Table__Cell" colSpan={game.optionList.length + 3}>
             <GameRevealButton isVoted={taskData.isVoted} taskId={taskId} votes={taskData.votes} />
           </td>
         </tr>

@@ -7,14 +7,18 @@
   table-layout: fixed;
   width: 100%;
 
-  &__Title {
-    .fluid-prop-sm(padding, @grid-offset-sm, @grid-offset-md);
-  }
-
   &__Cell {
-    background-color: @c-gray-20;
     overflow: hidden;
     padding: 0;
+    transition: background-color @animation;
+
+    .theme_light & {
+      background-color: @c-gray-20;
+    }
+
+    .theme_dark & {
+      background-color: @c-gray-100;
+    }
 
     &_Title {
       width: 100%;

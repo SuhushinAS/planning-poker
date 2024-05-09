@@ -11,7 +11,7 @@ export const Table = (props: Props) => {
 
   return (
     <table className="Table">
-      {title && <caption className="Table__Title">{title}</caption>}
+      {title && <caption className="offset">{title}</caption>}
       <tbody>{children}</tbody>
     </table>
   );

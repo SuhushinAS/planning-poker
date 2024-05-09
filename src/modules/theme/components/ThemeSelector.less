@@ -1,0 +1,47 @@
+@import (reference) 'src/styles/font';
+@import (reference) 'src/styles/mixins';
+
+.ThemeSelector {
+  .f_h2();
+
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  display: block;
+  transition: color @animation;
+
+  .theme_light & {
+    color: @c-black-40;
+  }
+
+  .theme_dark & {
+    color: @c-white-40;
+  }
+
+  &__IconWrapper {
+    height: 1em;
+    position: relative;
+    width: 1em;
+  }
+
+  &__Icon {
+    .f_h3();
+
+    bottom: 0;
+    height: 1em;
+    left: 0;
+    margin: auto;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: height @animation, opacity @animation, width @animation;
+    width: 1em;
+
+    &_Current {
+      .f_h2();
+
+      opacity: 1;
+    }
+  }
+}

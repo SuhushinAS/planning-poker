@@ -23,7 +23,7 @@ export const TaskItem = (props: Props) => {
   const {game, gameId, index, isCreator, task, taskId, taskIdSelect} = props;
 
   const className = useMemo(() => {
-    const classList = ['TaskItem'];
+    const classList = ['TaskItem', 'TaskItem_Hover'];
 
     if (taskId === game.taskId) {
       classList.push('TaskItem_Current');

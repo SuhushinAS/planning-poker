@@ -1,6 +1,7 @@
 import {useAppDispatch, useAppSelector} from 'app/hooks';
-import {actionLocaleGetList, actionLocaleGetMessages, actionLocaleInit} from 'modules/locale/actions';
-import {locale} from 'modules/locale/reducers';
+import {actionLocaleGetList, actionLocaleGetMessages} from 'modules/locale/actions';
+import {useLocaleCurrent} from 'modules/locale/hooks';
+import {localeActions} from 'modules/locale/reducers';
 import {selectLocaleCurrent, selectMessages} from 'modules/locale/selectors';
 import {selectLoadItem} from 'modules/status/selectors';
 import React, {ReactNode, useEffect} from 'react';
@@ -13,28 +14,28 @@ type TLocaleProps = {
 export const LocaleProvider = (props: TLocaleProps) => {
   const {children} = props;
   const dispatch = useAppDispatch();
+  const localeCurrent = useAppSelector(selectLocaleCurrent);
+  const loadMessages = useAppSelector(selectLoadItem(localeActions.getMessages.type));
+  const messages = useAppSelector(selectMessages(localeCurrent));
+
+  useLocaleCurrent();
 
   useEffect(() => {
     dispatch(actionLocaleGetList);
-    dispatch(actionLocaleInit);
   }, [dispatch]);
 
-  const language = useAppSelector(selectLocaleCurrent);
-  const loadMessages = useAppSelector(selectLoadItem(locale.actions.getMessages.type));
-  const messages = useAppSelector(selectMessages(language));
-
   useEffect(() => {
-    if (!messages && !loadMessages && language) {
-      dispatch(actionLocaleGetMessages(language));
+    if (!messages && !loadMessages && localeCurrent) {
+      dispatch(actionLocaleGetMessages(localeCurrent));
     }
-  }, [dispatch, loadMessages, language, messages]);
+  }, [dispatch, loadMessages, localeCurrent, messages]);
 
   if (!messages) {
     return null;
   }
 
   return (
-    <IntlProvider locale={language} messages={messages}>
+    <IntlProvider locale={localeCurrent} messages={messages}>
       {children}
     </IntlProvider>
   );

@@ -2,54 +2,43 @@
 @import (reference) 'src/styles/mixins';
 
 .Header {
-  background-color: @c-primary-20;
-  color: @c-black-50;
+  transition: background-color @animation;
 
-  &__Inner {
-    .fluid-prop-sm(padding-bottom, @grid-offset-sm, @grid-offset-md);
-    .fluid-prop-sm(padding-top, @grid-offset-sm, @grid-offset-md);
+  .theme_light & {
+    background-color: @c-primary-20;
+  }
 
-    align-items: center;
-    display: flex;
+  .theme_dark & {
+    background-color: shade(@c-primary-50, 60%);
+  }
+
+  &__Box {
     overflow: hidden;
+  }
+
+  &__Row {
+    align-items: center;
   }
 
   &__Title {
     .ellipsis(1);
-
-    flex-basis: 100%;
   }
 
   &__TitleLink {
-    @color: @c-black-60;
-
-    color: @color;
     text-decoration: none;
+    transition: color @animation;
 
-    &:link {
-      color: @color;
+    .theme_light & {
+      color: @c-black-50;
     }
 
-    &:visited {
-      color: @color;
-    }
-
-    &:hover {
-      color: @color;
-    }
-
-    &:active {
-      color: @color;
-    }
-
-    &:focus-visible {
-      color: @color;
+    .theme_dark & {
+      color: @c-white-40;
     }
   }
 
-  &__Lang {
-    .fluid-prop-sm(margin-left, @grid-offset-sm * 2, @grid-offset-md * 2);
-
+  &__Col&__Col {
+    flex-grow: 0;
     flex-shrink: 0;
   }
 }

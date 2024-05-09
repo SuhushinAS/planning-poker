@@ -20,3 +20,5 @@ export const example = createSlice({
     getList: (state, {payload}: PayloadAction<{data: TExample[]}>) => ({...state, ...normalizeExample(payload.data)}),
   },
 });
+
+export const exampleActions = example.actions;

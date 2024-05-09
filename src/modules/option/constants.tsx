@@ -1,4 +1,4 @@
-import {Coffee} from 'modules/option/components/Coffee';
+import {SvgIcon} from 'modules/common/components/SvgIcon';
 import React, {ReactNode} from 'react';
 
 export enum OptionType {
@@ -8,7 +8,7 @@ export enum OptionType {
 }
 
 export const optionTitleMap: Record<OptionType, ReactNode> = {
-  [OptionType.coffee]: <Coffee />,
+  [OptionType.coffee]: <SvgIcon name="coffee" />,
   [OptionType.reset]: '\u00A0',
-  [OptionType.unsure]: '?',
+  [OptionType.unsure]: <SvgIcon name="question" />,
 };

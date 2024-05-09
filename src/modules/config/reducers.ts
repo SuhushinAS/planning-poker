@@ -12,3 +12,5 @@ export const config = createSlice({
     update: (state, {payload}) => ({...state, ...payload}),
   },
 });
+
+export const configActions = config.actions;

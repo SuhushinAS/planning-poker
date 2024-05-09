@@ -1,11 +1,13 @@
+import {getClassName} from 'modules/common/helpers/getClassName';
 import React, {PureComponent} from 'react';
 import './SvgIcon.less';
 
-type TIconProps = {
+type Props = {
+  className?: string;
   name: string;
 };
 
-type TIconState = TIcon;
+type State = TIcon;
 
 type TImport = {
   default: TIcon;
@@ -18,7 +20,7 @@ type TIcon = {
   viewBox: string;
 };
 
-export class SvgIcon extends PureComponent<TIconProps, TIconState> {
+export class SvgIcon extends PureComponent<Props, State> {
   static defaultProps = {
     name: '',
   };
@@ -29,7 +31,7 @@ export class SvgIcon extends PureComponent<TIconProps, TIconState> {
     viewBox: '',
   };
 
-  constructor(props: TIconProps) {
+  constructor(props: Props) {
     super(props);
     const {name} = props;
 
@@ -44,7 +46,7 @@ export class SvgIcon extends PureComponent<TIconProps, TIconState> {
     this.isMount = true;
   }
 
-  componentDidUpdate(props: TIconProps) {
+  componentDidUpdate(props: Props) {
     const {name} = this.props;
     if (name !== props.name) {
       this.importSvg(name);
@@ -79,7 +81,7 @@ export class SvgIcon extends PureComponent<TIconProps, TIconState> {
 
     if (symbol) {
       return (
-        <svg className="svg-icon" viewBox={viewBox}>
+        <svg className={getClassName('SvgIcon', this.props.className)} viewBox={viewBox}>
           <use xlinkHref={symbol} />
         </svg>
       );

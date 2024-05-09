@@ -15,12 +15,14 @@ export const locale = createSlice({
       state.list = payload.list;
     },
     getMessages: (state, {payload}) => {
-      const {data, language} = payload;
+      const {data, locale} = payload;
 
-      state.data[language] = data;
+      state.data[locale] = data;
     },
     setCurrent: (state, {payload}) => {
       state.current = payload;
     },
   },
 });
+
+export const localeActions = locale.actions;

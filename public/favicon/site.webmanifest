@@ -1,6 +1,11 @@
 {
   "background_color": "#d6e4ff",
+  "description": "Приложение для командной оценки задач",
   "display": "standalone",
+  "display_override": [
+    "window-controls-overlay",
+    "minimal-ui"
+  ],
   "icons": [
     {
       "purpose": "any maskable",
@@ -57,6 +62,7 @@
       "type": "image/png"
     }
   ],
+  "id": "/",
   "name": "Покер-планер",
   "short_name": "Покер-планер",
   "start_url": "/",

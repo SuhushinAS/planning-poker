@@ -5,33 +5,78 @@
   &__Name {
     .ellipsis(1);
 
+    transition: color @animation;
+
+    .theme_light & {
+      color: @c-black-30;
+    }
+
+    .theme_dark & {
+      color: @c-white-30;
+    }
+
     position: relative;
 
     &:before {
-      background-color: @c-gray-40;
       bottom: 0;
       content: '';
       left: 0;
       position: absolute;
       top: 0;
       width: 4px;
+
+      transition: background-color @animation;
+
+      .theme_light & {
+        background-color: @c-gray-40;
+      }
+
+      .theme_dark & {
+        background-color: @c-gray-90;
+      }
     }
 
     &_Online {
+      .theme_light & {
+        color: @c-black-50;
+      }
+
+      .theme_dark & {
+        color: @c-white-40;
+      }
+
       &:before {
-        background-color: @c-success-50;
+        .theme_light & {
+          background-color: @c-success-50;
+        }
+
+        .theme_dark & {
+          background-color: shade(@c-success-60, 40%);
+        }
       }
     }
 
-    &_Creator {
+    &_Creator&_Online {
       &:before {
-        background-color: @c-warning-40;
+        .theme_light & {
+          background-color: @c-warning-40;
+        }
+
+        .theme_dark & {
+          background-color: shade(@c-warning-50, 40%);
+        }
       }
     }
 
-    &_Self {
+    &_Self&_Online {
       &:before {
-        background-color: @c-info-30;
+        .theme_light & {
+          background-color: @c-info-30;
+        }
+
+        .theme_dark & {
+          background-color: shade(@c-info-50, 40%);
+        }
       }
     }
   }

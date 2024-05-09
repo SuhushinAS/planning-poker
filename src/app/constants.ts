@@ -3,3 +3,5 @@ export const appPath = {
   example: '/example',
   home: '/',
 };
+
+export const rootElement = document.getElementById('root');

@@ -1,4 +1,5 @@
 import {App} from 'app/components/App';
+import {rootElement} from 'app/constants';
 import {store} from 'app/store';
 import {Config} from 'modules/config/components/Config';
 import {LocaleProvider} from 'modules/locale/components/LocaleProvider';
@@ -23,10 +24,8 @@ const getRender = (root: Root) => () => {
   );
 };
 
-const container = document.getElementById('root');
-
-if (container) {
-  const root = createRoot(container);
+if (rootElement) {
+  const root = createRoot(rootElement);
   const render = getRender(root);
 
   render();

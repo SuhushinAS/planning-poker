@@ -1,11 +1,8 @@
+import {getClassName} from 'modules/common/helpers/getClassName';
 import {useMemo} from 'react';
 
-export const useClassName = (classNameBase: string, className: string = '') => {
+export const useClassName = (classNameBase: string, className?: string) => {
   return useMemo(() => {
-    const buttonClassList = className.split(' ');
-
-    buttonClassList.push(classNameBase);
-
-    return buttonClassList.join(' ');
+    return getClassName(classNameBase, className);
   }, [className, classNameBase]);
 };
