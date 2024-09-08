@@ -1,7 +1,7 @@
+@import (reference) 'src/styles/font';
 @import (reference) './Control';
 
-.Input {
-  .f_p();
+.Select {
   @border-width: 2px;
   @multiplier-hor: 3;
   @multiplier-ver: 2;
@@ -13,4 +13,5 @@
   @offset-ver-md: @offset-md * @multiplier-ver;
 
   .Control(@border-width, @offset-hor-sm, @offset-hor-md, @offset-ver-sm, @offset-ver-md);
+  .fluid-prop-sm(height, 24px + @offset-ver-sm * 2, 28px + @offset-ver-md * 2);
 }

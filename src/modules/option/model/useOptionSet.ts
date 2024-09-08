@@ -9,9 +9,19 @@ export const useOptionSetList = () => {
 
   useEffect(() => {
     return onSnapshot(optionSetCollectionRef, (snap) => {
-      setOptionSetList(snap.docs.map((doc) => doc.data() as TOptionSet));
+      const optionSetListNew = snap.docs.map((doc) => {
+        return {
+          ...doc.data(),
+          id: doc.id,
+        } as TOptionSet;
+      });
+      setOptionSetList(optionSetListNew);
     });
   }, [optionSetCollectionRef]);
+
+  if (optionSetList === undefined) {
+    return undefined;
+  }
 
   return optionSetList;
 };

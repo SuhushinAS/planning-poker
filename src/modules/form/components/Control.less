@@ -1,0 +1,80 @@
+@import (reference) 'src/styles/font';
+@import (reference) 'src/styles/mixins';
+
+.Control(@border-width, @offset-hor-sm, @offset-hor-md, @offset-ver-sm, @offset-ver-md) {
+  .f_p();
+
+  .fluid-prop-sm(padding-bottom, @offset-ver-sm - @border-width, @offset-ver-md - @border-width);
+  .fluid-prop-sm(padding-top, @offset-ver-sm - @border-width, @offset-ver-md - @border-width);
+  .fluid-prop-sm(padding-left, @offset-hor-sm - @border-width, @offset-hor-md - @border-width);
+  .fluid-prop-sm(padding-right, @offset-hor-sm - @border-width, @offset-hor-md - @border-width);
+
+  border-style: solid;
+  border-width: @border-width;
+  display: block;
+  width: 100%;
+  transition: background-color @animation, border-color @animation, color @animation;
+
+  .theme_light & {
+    background-color: @c-white;
+    border-color: @c-black-30;
+    color: @c-black-50;
+  }
+
+  .theme_dark & {
+    background-color: @c-gray-100;
+    border-color: @c-white-20;
+    color: @c-white-40;
+  }
+
+  &:hover, &:focus-visible {
+    transition: border-color @animation-hover;
+
+    .theme_light & {
+      border-color: @c-black-40;
+    }
+
+    .theme_dark & {
+      border-color: @c-white-30;
+    }
+  }
+
+  &::placeholder {
+    transition: color @animation;
+
+    .theme_light & {
+      color: @c-black-30;
+    }
+
+    .theme_dark & {
+      color: @c-white-20;
+    }
+  }
+
+  &:disabled {
+    border-style: solid;
+    border-width: 2px;
+    cursor: not-allowed;
+    pointer-events: none;
+
+    .theme_light & {
+      border-color: @c-black-20;
+      color: @c-black-20;
+    }
+
+    .theme_dark & {
+      border-color: @c-white-10;
+      color: @c-white-20;
+    }
+
+    &::placeholder {
+      .theme_light & {
+        color: @c-black-20;
+      }
+
+      .theme_dark & {
+        color: @c-white-10;
+      }
+    }
+  }
+}
