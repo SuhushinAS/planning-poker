@@ -2,7 +2,7 @@ import {useAppDispatch, useAppSelector} from 'app/hooks';
 import {actionLocaleGetList, actionLocaleGetMessages} from 'modules/locale/actions';
 import {useLocaleCurrent} from 'modules/locale/hooks';
 import {localeActions} from 'modules/locale/reducers';
-import {selectLocaleCurrent, selectMessages} from 'modules/locale/selectors';
+import {selectCurrentMessages, selectLocaleCurrent} from 'modules/locale/selectors';
 import {selectLoadItem} from 'modules/status/selectors';
 import React, {ReactNode, useEffect} from 'react';
 import {IntlProvider} from 'react-intl';
@@ -16,7 +16,7 @@ export const LocaleProvider = (props: TLocaleProps) => {
   const dispatch = useAppDispatch();
   const localeCurrent = useAppSelector(selectLocaleCurrent);
   const loadMessages = useAppSelector(selectLoadItem(localeActions.getMessages.type));
-  const messages = useAppSelector(selectMessages(localeCurrent));
+  const messages = useAppSelector(selectCurrentMessages);
 
   useLocaleCurrent();
 

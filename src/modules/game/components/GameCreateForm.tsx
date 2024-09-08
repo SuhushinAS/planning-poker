@@ -3,10 +3,17 @@ import {ButtonSubmit} from 'modules/form/components/ButtonSubmit';
 import {Input} from 'modules/form/components/Input';
 import {Label} from 'modules/form/components/Label';
 import {useMessage} from 'modules/locale/hooks';
+import {OptionSetField} from 'modules/option/components/OptionSetField';
+import {TOptionSet} from 'modules/option/types';
 import React from 'react';
 import Message from 'react-intl/src/components/message';
 
-export const GameCreateForm = () => {
+type Props = {
+  optionSetList: TOptionSet[];
+};
+
+export const GameCreateForm = (props: Props) => {
+  const {optionSetList} = props;
   const placeholder = useMessage('game.new.placeholder');
 
   return (
@@ -23,9 +30,10 @@ export const GameCreateForm = () => {
           <Input name="title" placeholder={placeholder} />
         </td>
       </tr>
+      <OptionSetField optionSetList={optionSetList} />
       <tr>
         <td className="Form__Cell">
-          <ButtonSubmit className="offset">
+          <ButtonSubmit className="offset" disabled={optionSetList === undefined}>
             <Message id="game.new.action" />
           </ButtonSubmit>
         </td>
