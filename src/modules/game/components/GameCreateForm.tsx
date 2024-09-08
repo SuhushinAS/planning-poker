@@ -27,7 +27,7 @@ export const GameCreateForm = (props: Props) => {
       </tr>
       <tr>
         <td className="Form__Cell">
-          <Input name="title" placeholder={placeholder} />
+          <Input name="title" placeholder={placeholder} required={true} />
         </td>
       </tr>
       <OptionSetField optionSetList={optionSetList} />

@@ -20,7 +20,7 @@ export const GameJoinForm = () => {
       </tr>
       <tr>
         <td className="Form__Cell">
-          <Input name="gameId" placeholder={placeholder} />
+          <Input name="gameId" placeholder={placeholder} required={true} />
         </td>
       </tr>
       <tr>
