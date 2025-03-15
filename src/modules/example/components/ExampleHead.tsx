@@ -8,9 +8,7 @@ type Props = {
   title: ReactNode;
 };
 
-export const ExampleHead = (props: Props) => {
-  const {linkText, linkUrl, title} = props;
-
+export const ExampleHead = ({linkText, linkUrl, title}: Props) => {
   return (
     <>
       <h1 className="ExampleHead__Title">{title}</h1>

@@ -12,9 +12,7 @@ type Props = {
   voteAve: string | number;
 };
 
-export const TaskItemBase = (props: Props) => {
-  const {action, className, index, onClick = noop, task, voteAve} = props;
-
+export const TaskItemBase = ({action, className, index, onClick = noop, task, voteAve}: Props) => {
   return (
     <tr className={className}>
       <td className="TaskItem__Cell Table__Cell Table__Cell_Control Table__Cell_Control_Fixed" onClick={onClick}>

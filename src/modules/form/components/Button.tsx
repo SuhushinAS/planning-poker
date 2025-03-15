@@ -4,9 +4,8 @@ import React, {ButtonHTMLAttributes} from 'react';
 
 type Props = ButtonHTMLAttributes<HTMLButtonElement>;
 
-export const Button = (props: Props) => {
-  const {className, ...restProps} = props;
+export const Button = ({className, ...props}: Props) => {
   const buttonClassName = useClassName('Button', className);
 
-  return <button className={buttonClassName} {...restProps} />;
+  return <button className={buttonClassName} {...props} />;
 };

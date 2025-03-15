@@ -8,8 +8,7 @@ type Props = {
 
 const FirebaseAppContext = createContext<FirebaseApp | undefined>(undefined);
 
-export const FirebaseAppProvider = (props: Props) => {
-  const {children} = props;
+export const FirebaseAppProvider = ({children}: Props) => {
   const [app, setApp] = useState<FirebaseApp>();
 
   useEffect(() => {

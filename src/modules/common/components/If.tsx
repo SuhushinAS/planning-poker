@@ -5,8 +5,6 @@ type Props = {
   condition: boolean;
 };
 
-export const If = (props: Props) => {
-  const {children, condition} = props;
-
+export const If = ({children, condition}: Props) => {
   return condition ? children : null;
 };

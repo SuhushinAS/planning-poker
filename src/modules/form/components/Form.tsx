@@ -7,8 +7,7 @@ type Props<Values extends FieldValues> = UseFormProps<Values> & {
   onSubmit: SubmitHandler<Values>;
 };
 
-export const Form = <Values extends FieldValues>(props: Props<Values>) => {
-  const {children, defaultValues, onSubmit} = props;
+export const Form = <Values extends FieldValues>({children, defaultValues, onSubmit}: Props<Values>) => {
   const form = useForm<Values>({defaultValues});
 
   return (

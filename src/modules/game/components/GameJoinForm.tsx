@@ -1,6 +1,6 @@
 import {Table} from 'modules/common/components/Table';
 import {ButtonSubmit} from 'modules/form/components/ButtonSubmit';
-import {Input} from 'modules/form/components/Input';
+import {FormInput} from 'modules/form/components/FormInput';
 import {Label} from 'modules/form/components/Label';
 import {useMessage} from 'modules/locale/hooks';
 import React from 'react';
@@ -20,7 +20,7 @@ export const GameJoinForm = () => {
       </tr>
       <tr>
         <td className="Form__Cell">
-          <Input name="gameId" placeholder={placeholder} required={true} />
+          <FormInput name="gameId" placeholder={placeholder} required={true} />
         </td>
       </tr>
       <tr>

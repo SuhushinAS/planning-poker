@@ -6,8 +6,6 @@ type Props = {
   example: TExample;
 };
 
-export const ExampleItem = (props: Props) => {
-  const {example} = props;
-
+export const ExampleItem = ({example}: Props) => {
   return <pre className="ExampleItem">{JSON.stringify(example, undefined, 2)}</pre>;
 };

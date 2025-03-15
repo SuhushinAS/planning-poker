@@ -1,7 +1,7 @@
 import {SvgIcon} from 'modules/common/components/SvgIcon';
 import {Table} from 'modules/common/components/Table';
 import {ButtonSubmit} from 'modules/form/components/ButtonSubmit';
-import {Input} from 'modules/form/components/Input';
+import {FormInput} from 'modules/form/components/FormInput';
 import {useMessage} from 'modules/locale/hooks';
 import {TTask} from 'modules/task/types';
 import React, {useCallback} from 'react';
@@ -12,26 +12,25 @@ type Props = {
   onSubmit: SubmitHandler<TTask>;
 };
 
-export const TaskForm = (props: Props) => {
-  const {defaultValues} = props;
+export const TaskForm = ({defaultValues, onSubmit}: Props) => {
   const form = useForm<TTask>({defaultValues});
   const placeholder = useMessage('task.title');
 
-  const onSubmit = useCallback<SubmitHandler<TTask>>(
+  const onTaskFormSubmit = useCallback<SubmitHandler<TTask>>(
     async (event) => {
-      await props.onSubmit(event);
+      await onSubmit(event);
       form.reset(defaultValues);
     },
-    [defaultValues, form, props]
+    [defaultValues, form, onSubmit]
   );
 
   return (
     <FormProvider {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)}>
+      <form onSubmit={form.handleSubmit(onTaskFormSubmit)}>
         <Table>
           <tr>
             <td className="Table__Cell Table__Cell_Title">
-              <Input className="TaskForm__Input" name="title" placeholder={placeholder} />
+              <FormInput className="TaskForm__Input" name="title" placeholder={placeholder} />
             </td>
             <td className="Table__Cell Table__Cell_Control Table__Cell_Control_Fixed">
               <ButtonSubmit className="offset">

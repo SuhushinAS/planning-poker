@@ -12,8 +12,7 @@ type Props = {
   vote: number;
 };
 
-export const GameVoteButton = (props: Props) => {
-  const {children, isVoted, option, taskId, userId, vote} = props;
+export const VoteButton = ({children, isVoted, option, taskId, userId, vote}: Props) => {
   const taskDocRef = useDocRef('task', taskId);
 
   const onVote = useCallback(() => {

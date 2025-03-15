@@ -9,9 +9,7 @@ type Props = {
   children: ReactNode;
 };
 
-export const FirebaseProvider = (props: Props) => {
-  const {children} = props;
-
+export const FirebaseProvider = ({children}: Props) => {
   return (
     <FirebaseAppProvider>
       <AuthProvider>

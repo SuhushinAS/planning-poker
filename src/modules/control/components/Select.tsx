@@ -1,6 +1,5 @@
 import {useClassName} from 'modules/common/helpers/useClassName';
 import React, {ReactNode, SelectHTMLAttributes} from 'react';
-import {useController, useFormContext} from 'react-hook-form';
 import './Select.less';
 
 export type Option = {
@@ -8,16 +7,15 @@ export type Option = {
   value: string;
 };
 
-type Props = SelectHTMLAttributes<HTMLSelectElement> & {name: string; options: Option[]};
+type Props = SelectHTMLAttributes<HTMLSelectElement> & {
+  options: Option[];
+};
 
-export const Select = (props: Props) => {
-  const {className, id, name, options, ...restProps} = props;
-  const {control} = useFormContext();
-  const {field} = useController({control, name});
+export const Select = ({className, onChange, options, ...props}: Props) => {
   const selectClassName = useClassName('Select', className);
 
   return (
-    <select className={selectClassName} id={id ?? name} {...field} {...restProps}>
+    <select className={selectClassName} onBlur={onChange} onChange={onChange} {...props}>
       {options.map((option) => {
         return (
           <option key={option.value} value={option.value}>

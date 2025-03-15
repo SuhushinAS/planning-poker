@@ -12,9 +12,7 @@ type Props = {
   userId: string;
 };
 
-export const GameMemberList = (props: Props) => {
-  const {game, gameId, taskData, title, userId} = props;
-
+export const GameMemberList = ({game, gameId, taskData, title, userId}: Props) => {
   const memberIdList = useMemo(() => {
     return Object.keys(game.memberIds).toSorted();
   }, [game.memberIds]);

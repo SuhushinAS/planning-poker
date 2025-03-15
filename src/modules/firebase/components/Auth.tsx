@@ -8,8 +8,7 @@ type Props = {
 
 const AuthContext = createContext<Auth | undefined>(undefined);
 
-export const AuthProvider = (props: Props) => {
-  const {children} = props;
+export const AuthProvider = ({children}: Props) => {
   const firebaseApp = useFirebaseAppContext();
   const [auth, setAuth] = useState<Auth>();
 

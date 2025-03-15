@@ -5,9 +5,7 @@ type Props = {
   htmlFor: string;
 };
 
-export const Label = (props: Props) => {
-  const {children, htmlFor} = props;
-
+export const Label = ({children, htmlFor}: Props) => {
   return (
     <label className="Label" htmlFor={htmlFor}>
       {children}

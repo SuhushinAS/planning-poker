@@ -8,8 +8,7 @@ type Props = {
 
 const FirestoreContext = createContext<Firestore | undefined>(undefined);
 
-export const FirestoreProvider = (props: Props) => {
-  const {children} = props;
+export const FirestoreProvider = ({children}: Props) => {
   const firebaseApp = useFirebaseAppContext();
   const [firestore, setFirestore] = useState<Firestore>();
 

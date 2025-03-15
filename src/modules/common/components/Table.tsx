@@ -6,9 +6,7 @@ type Props = {
   title?: ReactNode;
 };
 
-export const Table = (props: Props) => {
-  const {children, title} = props;
-
+export const Table = ({children, title}: Props) => {
   return (
     <table className="Table">
       {title && <caption className="offset">{title}</caption>}

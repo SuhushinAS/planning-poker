@@ -19,9 +19,7 @@ type Props = {
 
 const getVoteAve: GetVoteValue = (voteValueList) => Math.round(voteValueList.reduce((sum, vote) => sum + vote, 0) / voteValueList.length);
 
-export const TaskItem = (props: Props) => {
-  const {game, gameId, index, isCreator, task, taskId, taskIdSelect} = props;
-
+export const TaskItem = ({game, gameId, index, isCreator, task, taskId, taskIdSelect}: Props) => {
   const className = useMemo(() => {
     const classList = ['TaskItem', 'TaskItem_Hover'];
 

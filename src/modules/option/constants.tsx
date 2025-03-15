@@ -35,6 +35,4 @@ export const optionSetPowerOf2: TOptionSet = {
   titleKey: 'power-of-2',
 };
 
-export const optionSetList2: TOptionSet[] = [optionSetPowerOf2, optionSetNatural, optionSetFibonacci];
-
-export const optionSetDefault = optionSetPowerOf2;
+export const optionSetListDefault: TOptionSet[] = [optionSetNatural, optionSetFibonacci, optionSetPowerOf2];

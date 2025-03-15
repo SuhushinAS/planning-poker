@@ -14,9 +14,7 @@ const themeIconMap = {
   [TThemeDevice.light]: 'sun-o',
 };
 
-export const ThemeSelectorIcon = (props: Props) => {
-  const {isCurrent, theme} = props;
-
+export const ThemeSelectorIcon = ({isCurrent, theme}: Props) => {
   const className = useMemo(() => {
     const classList = ['ThemeSelector__Icon'];
 

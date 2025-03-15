@@ -6,16 +6,14 @@ import {useTaskList} from 'modules/task/model/useTaskList';
 import React from 'react';
 
 type Props = {
-  creatorId: string;
   game: TGame;
   gameId: string;
   userId: string;
 };
 
-export const Task = (props: Props) => {
-  const {creatorId, game, gameId, userId} = props;
+export const Task = ({game, gameId, userId}: Props) => {
   const taskList = useTaskList(gameId);
-  const isCreator = userId === creatorId;
+  const isCreator = userId === game.creatorId;
 
   if (taskList === undefined) {
     return null;
@@ -26,7 +24,7 @@ export const Task = (props: Props) => {
       <div>{taskList.empty ? <TaskEmpty /> : <TaskList game={game} gameId={gameId} isCreator={isCreator} taskList={taskList.docs} />}</div>
       {isCreator && (
         <div>
-          <TaskCreate creatorId={creatorId} gameId={gameId} />
+          <TaskCreate creatorId={game.creatorId} gameId={gameId} />
         </div>
       )}
     </div>

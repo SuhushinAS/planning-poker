@@ -20,12 +20,11 @@ type Props = {
   voteAve: string | number;
 };
 
-export const TaskItemEdit = (props: Props) => {
-  const {game, gameId, index, task, taskId, taskIdSelect, voteAve} = props;
+export const TaskItemEdit = ({className, game, gameId, index, task, taskId, taskIdSelect, voteAve}: Props) => {
   const gameDocRef = useDocRef('game', gameId);
   const taskDocRef = useDocRef('task', taskId);
 
-  const className = useClassName('TaskItem_Hover', props.className);
+  const taskItemClassName = useClassName('TaskItem_Hover', className);
 
   const onTaskSelect = useCallback(() => updateDoc(gameDocRef, {taskId}), [gameDocRef, taskId]);
 
@@ -50,7 +49,7 @@ export const TaskItemEdit = (props: Props) => {
           </Button>
         </td>
       }
-      className={className}
+      className={taskItemClassName}
       index={index}
       onClick={onTaskSelect}
       task={task}

@@ -8,8 +8,7 @@ type Props = {
 
 const AnonymouslyContext = createContext<User | undefined>(undefined);
 
-export const AnonymouslyProvider = (props: Props) => {
-  const {children} = props;
+export const AnonymouslyProvider = ({children}: Props) => {
   const auth = useAuthContext();
   const [anonymously, setAnonymously] = useState<User>();
 

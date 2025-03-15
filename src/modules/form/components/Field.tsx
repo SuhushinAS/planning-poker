@@ -6,9 +6,7 @@ type Props = {
   label: ReactNode;
 };
 
-export const Field = (props: Props) => {
-  const {control, label} = props;
-
+export const Field = ({control, label}: Props) => {
   return (
     <div className="Field">
       <div className="Field__Label">{label}</div>

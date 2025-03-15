@@ -7,16 +7,13 @@ import React from 'react';
 type Props = {
   game: TGame;
   gameId: string;
-  taskId?: string;
   userId: string;
 };
 
-export const GameTask = (props: Props) => {
-  const {game, gameId, taskId, userId} = props;
-
-  if (taskId === undefined) {
+export const GameTask = ({game, gameId, userId}: Props) => {
+  if (game.taskId === undefined) {
     return <GameTaskEmpty />;
   }
 
-  return <GameTaskInner game={game} gameId={gameId} taskId={taskId} userId={userId} />;
+  return <GameTaskInner game={game} gameId={gameId} taskId={game.taskId} userId={userId} />;
 };

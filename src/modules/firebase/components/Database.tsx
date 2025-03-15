@@ -8,8 +8,7 @@ type Props = {
 
 const DatabaseContext = createContext<Database | undefined>(undefined);
 
-export const DatabaseProvider = (props: Props) => {
-  const {children} = props;
+export const DatabaseProvider = ({children}: Props) => {
   const firebaseApp = useFirebaseAppContext();
   const [database, setDatabase] = useState<Database>();
 

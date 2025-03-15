@@ -15,9 +15,7 @@ type Props = {
   votes: Record<string, number>;
 };
 
-export const GameMember = (props: Props) => {
-  const {gameId, isCreator, isSelf, isVoted, memberId, votes} = props;
-
+export const GameMember = ({gameId, isCreator, isSelf, isVoted, memberId, votes}: Props) => {
   const user = useUser(memberId);
   const userGameId = useUserGameId(memberId);
 

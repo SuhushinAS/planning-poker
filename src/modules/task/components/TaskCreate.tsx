@@ -1,21 +1,20 @@
-import {DocumentReference} from '@firebase/firestore';
 import {addDoc, serverTimestamp, updateDoc} from 'firebase/firestore';
 import {useCollectionRef} from 'modules/firebase/lib/useCollectionRef';
 import {useDocRef} from 'modules/firebase/lib/useDocRef';
 import {TaskForm} from 'modules/task/components/TaskForm';
 import {TTask} from 'modules/task/types';
 import React, {useCallback, useMemo} from 'react';
+import {DefaultValues, SubmitHandler} from 'react-hook-form';
 
 type Props = {
   creatorId: string;
   gameId: string;
 };
 
-export const TaskCreate = (props: Props) => {
-  const {creatorId, gameId} = props;
-
-  const defaultValues = useMemo<TTask>(() => {
+export const TaskCreate = ({creatorId, gameId}: Props) => {
+  const defaultValues = useMemo<DefaultValues<TTask>>(() => {
     return {
+      createDate: serverTimestamp(),
       creatorId,
       gameId,
       isVoted: false,
@@ -26,15 +25,13 @@ export const TaskCreate = (props: Props) => {
   const taskCollectionRef = useCollectionRef('task');
   const gameDocRef = useDocRef('game', gameId);
 
-  const onSuccess = useCallback((value: DocumentReference) => updateDoc(gameDocRef, {taskId: value.id}), [gameDocRef]);
-
-  const onSubmit = useCallback(
-    (values) =>
-      addDoc(taskCollectionRef, {
-        ...values,
-        createDate: serverTimestamp(),
-      }).then(onSuccess),
-    [onSuccess, taskCollectionRef]
+  const onSubmit = useCallback<SubmitHandler<TTask>>(
+    (values) => {
+      return addDoc(taskCollectionRef, values).then((value) => {
+        return updateDoc(gameDocRef, {taskId: value.id});
+      });
+    },
+    [gameDocRef, taskCollectionRef]
   );
 
   return <TaskForm defaultValues={defaultValues} onSubmit={onSubmit} />;

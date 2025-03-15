@@ -10,9 +10,7 @@ type Props = {
   userId: string;
 };
 
-export const GameItemTask = (props: Props) => {
-  const {game, gameId, taskData, userId} = props;
-
+export const GameItemTask = ({game, gameId, taskData, userId}: Props) => {
   if (taskData === undefined) {
     return null;
   }

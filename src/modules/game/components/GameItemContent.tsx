@@ -13,8 +13,7 @@ type Props = {
   gameId: string;
 };
 
-export const GameItemContent = (props: Props) => {
-  const {game, gameId} = props;
+export const GameItemContent = ({game, gameId}: Props) => {
   useGameMemberIds(gameId);
   useUserOnline(gameId);
 
@@ -34,10 +33,10 @@ export const GameItemContent = (props: Props) => {
       <div className="GameItemContent__Main box">
         <div className="box__row">
           <div className="box__col box__col_xs_12 box__col_sm_6 box__col_md_5 box__col_lg_4">
-            <GameTask game={gameData} gameId={gameId} taskId={gameData.taskId} userId={userId} />
+            <GameTask game={gameData} gameId={gameId} userId={userId} />
           </div>
           <div className="box__col box__col_xs_12 box__col_sm_6 box__col_md_7 box__col_lg_8">
-            <Task creatorId={gameData.creatorId} game={gameData} gameId={gameId} userId={userId} />
+            <Task game={gameData} gameId={gameId} userId={userId} />
           </div>
         </div>
       </div>

@@ -17,8 +17,14 @@ export const useLocaleCurrent = () => {
   }, [dispatch, localeList]);
 };
 
-export const useMessage: TMessage = (id, values) => {
+export const useGetMessage: () => TMessage = () => {
   const intl = useIntl();
 
-  return useMemo(() => getMessage(intl)(id, values), [id, intl, values]);
+  return useMemo(() => getMessage(intl), [intl]);
+};
+
+export const useMessage: TMessage = (id, values) => {
+  const getMessage = useGetMessage();
+
+  return useMemo(() => getMessage(id, values), [getMessage, id, values]);
 };

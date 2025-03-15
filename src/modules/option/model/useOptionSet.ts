@@ -4,7 +4,7 @@ import {TOptionSet} from 'modules/option/types';
 import {useEffect, useState} from 'react';
 
 export const useOptionSetList = () => {
-  const [optionSetList, setOptionSetList] = useState<TOptionSet[]>();
+  const [optionSetList, setOptionSetList] = useState<TOptionSet[]>([]);
   const optionSetCollectionRef = useCollectionRef('optionSet');
 
   useEffect(() => {
@@ -18,10 +18,6 @@ export const useOptionSetList = () => {
       setOptionSetList(optionSetListNew);
     });
   }, [optionSetCollectionRef]);
-
-  if (optionSetList === undefined) {
-    return undefined;
-  }
 
   return optionSetList;
 };
