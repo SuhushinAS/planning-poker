@@ -1,5 +1,4 @@
-import {createSlice} from '@reduxjs/toolkit';
-import {PayloadAction} from '@reduxjs/toolkit/dist/createAction';
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {getId, getNormalize} from 'modules/common/helpers/normalize';
 import {exampleIdKey} from 'modules/example/constants';
 import {TExample, TExampleStore} from 'modules/example/types';

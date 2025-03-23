@@ -1,3 +1,5 @@
+type TFetchOptions = Parameters<typeof fetch>[1];
+
 export class Api {
   static host = '';
 
@@ -16,7 +18,7 @@ export class Api {
     return response.json();
   }
 
-  getOptions(options: RequestInit = {}): RequestInit {
+  getOptions(options: TFetchOptions = {}): TFetchOptions {
     const {headers = {}} = options;
 
     return {
@@ -26,7 +28,7 @@ export class Api {
     };
   }
 
-  request<T>(url = '', options?: RequestInit): Promise<T> {
+  request<T>(url = '', options?: TFetchOptions): Promise<T> {
     return this.fetch<T>(url, Api.host, options);
   }
 
