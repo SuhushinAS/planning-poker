@@ -35,7 +35,7 @@ if (rootElement) {
   }
 }
 
-const onRegisterError = (error) => {
+const onRegisterError = (error: Error) => {
   console.error('SW registration failed: ', error);
 };
 
