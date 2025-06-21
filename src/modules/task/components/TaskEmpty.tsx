@@ -1,13 +1,6 @@
-import {Message} from 'modules/locale/components/Message';
+import {EmptyKey} from 'modules/common/components/EmptyKey';
 import React from 'react';
 
-export const TaskEmpty = () => (
-  <div>
-    <h3>
-      <Message id="task.empty.title" />
-    </h3>
-    <p>
-      <Message id="task.empty.description" />
-    </p>
-  </div>
-);
+export const TaskEmpty = () => {
+  return <EmptyKey description="task.empty.description" title="task.empty.title" />;
+};

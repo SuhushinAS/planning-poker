@@ -10,14 +10,13 @@ export const GameJoinForm = () => {
   const placeholder = useMessage('game.join.placeholder');
 
   return (
-    <Table>
-      <tr>
-        <td className="Form__Cell">
-          <Label htmlFor="title">
-            <Message id="game.join.label" />
-          </Label>
-        </td>
-      </tr>
+    <Table
+      title={
+        <Label htmlFor="title">
+          <Message id="game.join.label" />
+        </Label>
+      }
+    >
       <tr>
         <td className="Form__Cell">
           <FormInput name="gameId" placeholder={placeholder} required={true} />

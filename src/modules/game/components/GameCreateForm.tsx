@@ -10,14 +10,13 @@ export const GameCreateForm = () => {
   const placeholder = useMessage('game.new.placeholder');
 
   return (
-    <Table>
-      <tr>
-        <td className="Form__Cell">
-          <Label htmlFor="title">
-            <Message id="game.new.label" />
-          </Label>
-        </td>
-      </tr>
+    <Table
+      title={
+        <Label htmlFor="title">
+          <Message id="game.new.label" />
+        </Label>
+      }
+    >
       <tr>
         <td className="Form__Cell">
           <FormInput name="title" placeholder={placeholder} required={true} />
