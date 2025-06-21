@@ -3,6 +3,7 @@ import {TGame} from 'modules/game/types';
 import React from 'react';
 import {generatePath} from 'react-router';
 import {Link} from 'react-router-dom';
+import './GameListItem.less';
 
 type Props = {
   game: TGame;
@@ -11,7 +12,7 @@ type Props = {
 };
 
 export const GameListItem = ({game, gameId, index}: Props) => {
-  const link = <Link style={{bottom: 0, left: 0, position: 'absolute', right: 0, top: 0}} to={generatePath(gamePath.item, {gameId})}></Link>;
+  const link = <Link className="GameListItem__Link" to={generatePath(gamePath.item, {gameId})}></Link>;
   return (
     <tr>
       <td className="Table__Cell Table__Cell_Control Table__Cell_Control_Fixed">
