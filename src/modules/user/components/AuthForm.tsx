@@ -7,14 +7,13 @@ import React from 'react';
 
 export const AuthForm = () => (
   <div className="box">
-    <Table>
-      <tr>
-        <td className="Form__Cell">
-          <Label htmlFor="name">
-            <Message id="user.name" />
-          </Label>
-        </td>
-      </tr>
+    <Table
+      title={
+        <Label htmlFor="name">
+          <Message id="user.name" />
+        </Label>
+      }
+    >
       <tr>
         <td className="Form__Cell">
           <FormInput name="name" />

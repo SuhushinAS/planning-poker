@@ -9,7 +9,7 @@ type Props = {
 export const Table = ({children, title}: Props) => {
   return (
     <table className="Table">
-      {title && <caption className="offset">{title}</caption>}
+      {title && <caption>{title}</caption>}
       <tbody>{children}</tbody>
     </table>
   );
