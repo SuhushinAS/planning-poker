@@ -1,0 +1,42 @@
+@import (reference) 'src/styles/font';
+@import (reference) 'src/styles/mixins';
+@import (reference) 'src/styles/offset';
+
+.TaskItem {
+  &__Title {
+    .ellipsis(1);
+    .fluid-prop-sm(min-height, 24px, 28px);
+    .offset();
+
+    display: block;
+    text-align: left;
+  }
+
+  &_Hover &__Cell {
+    cursor: pointer;
+    transition: background-color @animation;
+  }
+
+  &_Hover:hover &__Cell,
+  &_Hover:focus-visible &__Cell {
+    transition: background-color @animation-hover;
+
+    .theme_light & {
+      background-color: @c-gray-30;
+    }
+
+    .theme_dark & {
+      background-color: @c-gray-90;
+    }
+  }
+
+  &_Current &__Cell {
+    .theme_light & {
+      background-color: @c-gray-30;
+    }
+
+    .theme_dark & {
+      background-color: @c-gray-90;
+    }
+  }
+}

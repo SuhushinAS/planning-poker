@@ -1,40 +1,30 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "src",
     "declaration": false,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "importHelpers": true,
     "isolatedModules": true,
-    "jsx": "react",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "module": "commonjs",
-    "moduleResolution": "node",
+    "jsx": "react-jsx",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "module": "esnext",
+    "moduleResolution": "bundler",
     "noEmit": true,
-    "noImplicitAny": false,
-    "noImplicitReturns": false,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "paths": {
+      "src/*": ["./src/*"]
+    },
     "removeComments": true,
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
-    "target": "ES2015",
-    "types": [
-      "react",
-      "node",
-      "webpack-env"
-    ]
+    "target": "ES2022",
+    "types": ["react", "node", "webpack-env"]
   },
-  "files": [
-    "types/index.d.ts"
-  ],
-  "include": [
-    "src"
-  ]
+  "files": ["types/index.d.ts"],
+  "include": ["src"]
 }

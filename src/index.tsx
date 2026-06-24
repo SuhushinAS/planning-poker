@@ -1,37 +1,18 @@
-import {App} from 'app/components/App';
-import {rootElement} from 'app/constants';
-import {store} from 'app/store';
-import {Config} from 'modules/config/components/Config';
-import {LocaleProvider} from 'modules/locale/components/LocaleProvider';
-import React, {StrictMode} from 'react';
-import {createRoot, Root} from 'react-dom/client';
-import {Provider} from 'react-redux';
-import {HashRouter} from 'react-router-dom';
+import { createRoot } from 'react-dom/client';
+import { App } from 'src/app/ui/App';
+import 'src/styles/index.less';
 
-const getRender = (root: Root) => () => {
-  root.render(
-    <StrictMode>
-      <Provider store={store}>
-        <LocaleProvider>
-          <HashRouter>
-            <Config>
-              <App />
-            </Config>
-          </HashRouter>
-        </LocaleProvider>
-      </Provider>
-    </StrictMode>
-  );
-};
+const container = document.getElementById('root');
 
-if (rootElement) {
-  const root = createRoot(rootElement);
-  const render = getRender(root);
+if (container) {
+  const root = createRoot(container);
 
-  render();
+  root.render(<App />);
 
   if (module.hot) {
-    module.hot.accept('app/components/App', render);
+    module.hot.accept('src/app/ui/App', () => {
+      root.render(<App />);
+    });
   }
 }
 
@@ -41,7 +22,7 @@ const onRegisterError = (error: Error) => {
 
 const onWindowLoad = () => {
   if ('serviceWorker' in navigator && navigator.serviceWorker) {
-    navigator.serviceWorker.register('/sw.js').catch(onRegisterError);
+    navigator.serviceWorker.register('/sw.js', { updateViaCache: 'none' }).catch(onRegisterError);
   }
 };
 

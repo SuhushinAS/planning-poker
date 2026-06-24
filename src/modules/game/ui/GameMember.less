@@ -1,0 +1,81 @@
+@import (reference) 'src/styles/font';
+@import (reference) 'src/styles/mixins';
+
+.GameMember {
+  &__Name {
+    .ellipsis(1);
+
+    position: relative;
+    transition: color @animation;
+
+    .theme_light & {
+      color: @c-black-30;
+    }
+
+    .theme_dark & {
+      color: @c-white-30;
+    }
+
+    &::before {
+      bottom: 0;
+      content: '';
+      left: 0;
+      position: absolute;
+      top: 0;
+      transition: background-color @animation;
+      width: 4px;
+
+      .theme_light & {
+        background-color: @c-gray-40;
+      }
+
+      .theme_dark & {
+        background-color: @c-gray-90;
+      }
+    }
+
+    &_Online {
+      .theme_light & {
+        color: @c-black-50;
+      }
+
+      .theme_dark & {
+        color: @c-white-40;
+      }
+
+      &::before {
+        .theme_light & {
+          background-color: @c-success-50;
+        }
+
+        .theme_dark & {
+          background-color: shade(@c-success-60, 40%);
+        }
+      }
+    }
+
+    &_Creator&_Online {
+      &::before {
+        .theme_light & {
+          background-color: @c-warning-40;
+        }
+
+        .theme_dark & {
+          background-color: shade(@c-warning-50, 40%);
+        }
+      }
+    }
+
+    &_Self&_Online {
+      &::before {
+        .theme_light & {
+          background-color: @c-info-30;
+        }
+
+        .theme_dark & {
+          background-color: shade(@c-info-50, 40%);
+        }
+      }
+    }
+  }
+}
