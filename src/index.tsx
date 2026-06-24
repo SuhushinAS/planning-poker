@@ -22,7 +22,9 @@ const onRegisterError = (error: Error) => {
 
 const onWindowLoad = () => {
   if ('serviceWorker' in navigator && navigator.serviceWorker) {
-    navigator.serviceWorker.register('/sw.js', { updateViaCache: 'none' }).catch(onRegisterError);
+    navigator.serviceWorker
+      .register('/planning-poker/sw.js', { updateViaCache: 'none' })
+      .catch(onRegisterError);
   }
 };
 

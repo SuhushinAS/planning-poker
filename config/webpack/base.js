@@ -31,7 +31,7 @@ module.exports = (options) => {
       filename,
       library: ['planningPoker'],
       path: options.dist,
-      publicPath: '/',
+      publicPath: '/planning-poker/',
     },
     plugins: [
       new CopyWebpackPlugin({

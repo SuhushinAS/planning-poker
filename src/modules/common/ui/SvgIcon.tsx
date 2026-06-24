@@ -7,7 +7,7 @@ type Props = {
   name?: string;
 };
 
-const spritePath = '/sprite.svg';
+const spritePath = '/planning-poker/sprite.svg';
 const warnedNames = new Set<string>();
 
 const warn = (name: string, message: string): void => {

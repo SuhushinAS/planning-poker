@@ -1,6 +1,6 @@
 import { StrictMode } from 'react';
 import { Provider } from 'react-redux';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { HashRouter, Route, Routes } from 'react-router-dom';
 import { appPath } from 'src/app/lib/constants';
 import { store } from 'src/app/lib/store';
 import { ErrorBoundary } from 'src/modules/common/ui/ErrorBoundary';
@@ -16,7 +16,7 @@ export const App = () => {
       <ErrorBoundary>
         <Provider store={store}>
           <LocaleProvider>
-            <BrowserRouter>
+            <HashRouter>
               <Config>
                 <Layout>
                   <FirebaseProvider>
@@ -26,7 +26,7 @@ export const App = () => {
                   </FirebaseProvider>
                 </Layout>
               </Config>
-            </BrowserRouter>
+            </HashRouter>
           </LocaleProvider>
         </Provider>
       </ErrorBoundary>

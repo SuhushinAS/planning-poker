@@ -43,7 +43,7 @@ export class Api {
   }
 
   requestLocal<T>(url = '', signal?: AbortSignal) {
-    return this.fetch<T>(url, '/local', { signal });
+    return this.fetch<T>(url, '/planning-poker/local', { signal });
   }
 }
 

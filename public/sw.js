@@ -1,5 +1,5 @@
 const cacheName = 'cache_v2';
-const urlList = ['/', '/sprite.svg'];
+const urlList = ['/planning-poker/', '/planning-poker/sprite.svg'];
 
 function attachEvent(el, event, handler) {
   el.removeEventListener(event, handler);
