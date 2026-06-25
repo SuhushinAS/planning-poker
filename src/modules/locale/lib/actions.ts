@@ -2,7 +2,7 @@ import { TDispatch } from 'src/app/lib/types';
 import { api } from 'src/modules/common/lib/api';
 import { currentLocaleKey } from 'src/modules/locale/lib/constants';
 import { localeActions } from 'src/modules/locale/lib/reducers';
-import { TLocale } from 'src/modules/locale/lib/types';
+import { TMessages } from 'src/modules/locale/lib/types';
 import { getActionSetStatus } from 'src/modules/status/lib/actions';
 import { Status } from 'src/modules/status/lib/types';
 
@@ -34,7 +34,7 @@ export const actionLocaleGetMessages = (locale: string) => (dispatch: TDispatch)
   dispatch(setGetMessagesStatus(Status.loading));
 
   return api
-    .requestLocal<TLocale>(`/api/v1/locale-${locale}.json`)
+    .requestLocal<TMessages>(`/api/v1/locale-${locale}.json`)
     .then((data) => {
       dispatch(localeActions.getMessages({ data, language: locale }));
       dispatch(setGetMessagesStatus(Status.success));

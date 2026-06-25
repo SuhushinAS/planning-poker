@@ -1,13 +1,13 @@
 export type TLocaleStore = {
   current: string;
-  data: TLocaleData;
+  data: TMessagesData;
   list: string[];
 };
 
-export type TLocaleData = {
-  [key: string]: TLocale;
+export type TMessagesData = {
+  [key: string]: TMessages;
 };
 
-export type TLocale = {
+export type TMessages = {
   [key: string]: string;
 };

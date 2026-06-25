@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getLocale } from 'src/modules/locale/lib/getLocale';
 import type { TLocaleStore } from 'src/modules/locale/lib/types';
-import { TLocale } from 'src/modules/locale/lib/types';
+import { TMessages } from 'src/modules/locale/lib/types';
 
 const initialState: TLocaleStore = {
   current: getLocale(),
@@ -10,7 +10,7 @@ const initialState: TLocaleStore = {
 };
 
 type GetMessagesPayload = {
-  data: TLocale;
+  data: TMessages;
   language: string;
 };
 
