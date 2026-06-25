@@ -1,5 +1,5 @@
+import { clsx } from 'clsx';
 import { ReactNode, SelectHTMLAttributes } from 'react';
-import { getClassName } from 'src/modules/common/lib/getClassName';
 import './Select.less';
 
 export type Option = {
@@ -15,7 +15,7 @@ export const Select = ({ className, id, name, onChange, options, ...props }: Pro
   return (
     <select
       autoComplete={name}
-      className={getClassName('Select', className)}
+      className={clsx('Select', className)}
       id={id ?? name}
       name={name}
       onBlur={onChange}

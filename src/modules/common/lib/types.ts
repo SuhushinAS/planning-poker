@@ -12,3 +12,5 @@ export type TNormalize<T = TItem> = (list: T[]) => {
   data: TMap<T>;
   list: string[];
 };
+
+export type TValue = string | number;

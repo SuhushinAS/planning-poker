@@ -1,5 +1,5 @@
 import { updateDoc } from 'firebase/firestore';
-import { useCallback, useMemo } from 'react';
+import { ChangeEventHandler, useCallback, useMemo } from 'react';
 import { useAppSelector } from 'src/app/lib/hooks';
 import { Select } from 'src/modules/control/ui/Select';
 import { useDocRef } from 'src/modules/firebase/lib/useDocRef';
@@ -30,7 +30,7 @@ export const OptionSetSelect = ({ gameId, optionSetId }: Props) => {
     });
   }, [currentMessages, optionSetList]);
 
-  const onChange = useCallback<React.ChangeEventHandler<HTMLSelectElement>>(
+  const onChange = useCallback<ChangeEventHandler<HTMLSelectElement>>(
     (event) => {
       updateDoc(gameDocRef, { optionSetId: event.currentTarget.value });
     },

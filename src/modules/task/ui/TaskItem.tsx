@@ -1,3 +1,4 @@
+import { clsx } from 'clsx';
 import { useMemo } from 'react';
 import { TGame } from 'src/modules/game/lib/types';
 import { Option } from 'src/modules/option/lib/types';
@@ -21,15 +22,9 @@ const getVoteAve: GetVoteValue = (voteValueList) =>
   Math.round(voteValueList.reduce((sum, vote) => sum + vote, 0) / voteValueList.length);
 
 export const TaskItem = ({ game, gameId, index, isCreator, task, taskId, taskIdSelect }: Props) => {
-  const className = useMemo(() => {
-    const classList = ['TaskItem', 'TaskItem_Hover'];
-
-    if (taskId === game.taskId) {
-      classList.push('TaskItem_Current');
-    }
-
-    return classList.join(' ');
-  }, [game.taskId, taskId]);
+  const className = clsx('TaskItem', 'TaskItem_Hover', {
+    TaskItem_Current: taskId === game.taskId,
+  });
 
   const voteValueList = useMemo(
     () => Object.values(task.votes).filter((vote) => vote !== Option.reset),

@@ -1,4 +1,4 @@
-import { getClassName } from 'src/modules/common/lib/getClassName';
+import { clsx } from 'clsx';
 import { iconMap } from 'src/modules/common/lib/iconMap';
 import './SvgIcon.less';
 
@@ -35,7 +35,7 @@ export const SvgIcon = ({ className, name = '' }: Props) => {
   }
 
   return (
-    <svg className={getClassName('SvgIcon', className)} viewBox={viewBox}>
+    <svg className={clsx('SvgIcon', className)} viewBox={viewBox}>
       <use href={`${spritePath}#${name}`} xlinkHref={`${spritePath}#${name}`} />
     </svg>
   );

@@ -1,5 +1,5 @@
+import { clsx } from 'clsx';
 import { ForwardedRef, forwardRef, InputHTMLAttributes } from 'react';
-import { getClassName } from 'src/modules/common/lib/getClassName';
 import './Input.less';
 
 type Props = InputHTMLAttributes<HTMLInputElement>;
@@ -9,7 +9,7 @@ export const Input = forwardRef(
     return (
       <input
         autoComplete={name}
-        className={getClassName('Input', className)}
+        className={clsx('Input', className)}
         id={id ?? name}
         name={name}
         ref={ref}

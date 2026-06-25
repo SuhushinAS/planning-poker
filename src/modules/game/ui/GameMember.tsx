@@ -1,3 +1,4 @@
+import { clsx } from 'clsx';
 import { useMemo } from 'react';
 import { optionTitleMap } from 'src/modules/option/lib/constants';
 import { isOption, Option } from 'src/modules/option/lib/types';
@@ -19,24 +20,6 @@ type Props = {
 export const GameMember = ({ gameId, isCreator, isSelf, isVoted, memberId, votes }: Props) => {
   const user = useUser(memberId);
   const userGameId = useUserGameId(memberId);
-
-  const nameClassName = useMemo(() => {
-    const classList = ['GameMember__Name', 'offset'];
-
-    if (isCreator) {
-      classList.push('GameMember__Name_Creator');
-    }
-
-    if (isSelf) {
-      classList.push('GameMember__Name_Self');
-    }
-
-    if (userGameId === gameId) {
-      classList.push('GameMember__Name_Online');
-    }
-
-    return classList.join(' ');
-  }, [gameId, isCreator, isSelf, userGameId]);
 
   const vote = useMemo(() => {
     const vote = votes[memberId] ?? Option.reset;
@@ -65,7 +48,14 @@ export const GameMember = ({ gameId, isCreator, isSelf, isVoted, memberId, votes
   return (
     <tr className="GameMember">
       <td className="Table__Cell Table__Cell_Title">
-        <p className={nameClassName} title={name}>
+        <p
+          className={clsx('GameMember__Name', 'offset', {
+            GameMember__Name_Creator: isCreator,
+            GameMember__Name_Online: userGameId === gameId,
+            GameMember__Name_Self: isSelf,
+          })}
+          title={name}
+        >
           {name}
         </p>
       </td>

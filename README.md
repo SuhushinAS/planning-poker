@@ -111,7 +111,7 @@ The main reference implementation for new modules is `src/modules/example`.
 - The entry point is `src/index.tsx`.
 - The main application composition lives in `src/app/components/App.tsx`.
 - The shell is composed in this order:
-  - `React.StrictMode`
+  - `StrictMode`
   - `ReduxProvider`
   - `LocaleProvider`
   - `BrowserRouter`
@@ -310,8 +310,8 @@ npm run start
 - Точка входа — `src/index.tsx`.
 - Основная композиция приложения находится в `src/app/components/App.tsx`.
 - Shell собирается в таком порядке:
-  - `React.StrictMode`
-  - Redux `Provider`
+  - `StrictMode`
+  - `ReduxProvider`
   - `LocaleProvider`
   - `BrowserRouter`
   - `Config`

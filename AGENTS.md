@@ -9,7 +9,7 @@ understanding project structure, data flow, and developer workflow.
 - Entry point is `src/index.tsx`: it mounts `App`, imports global `less`,
   enables HMR, and registers `public/sw.js` on `window.load`.
 - `src/app/ui/App.tsx` builds the shell in this order:
-  `React.StrictMode` → `ErrorBoundary` → Redux `Provider` → `LocaleProvider` →
+  `StrictMode` → `ErrorBoundary` → Redux `Provider` → `LocaleProvider` →
   `BrowserRouter` → `Config` → `Layout` → route tree. `ErrorBoundary`
   (`src/modules/common/ui/ErrorBoundary`) catches React errors and displays a
   fallback UI with error details.
@@ -91,7 +91,8 @@ understanding project structure, data flow, and developer workflow.
 ## Developer workflow
 
 - Install dependencies first: `npm ci`.
-- Required toolchain is `Node.js >= 22.23.0` and `npm >= 10.9.8` (`package.json#engines`).
+- Required toolchain is `Node.js >= 22.23.0` and `npm >= 10.9.8` (
+  `package.json#engines`).
 - Verified production build: `npm run build`. It writes the bundle to `www/` and
   copies everything from `public/` there via `CopyWebpackPlugin`.
 - Dev server command is `npm run dev`; `config/base.js` binds it to
@@ -118,12 +119,15 @@ understanding project structure, data flow, and developer workflow.
 
 - Mirror the existing module split from `README.md`: `ui/` plus `lib/` (
   actions/reducers/selectors/types/constants), and optional `api/`.
-- Some modules are UI-only shells (e.g., `src/modules/home`, `src/modules/layout`,
-  `src/modules/form`, `src/modules/control`) with just a `ui/` folder and no `lib/`
+- Some modules are UI-only shells (e.g., `src/modules/home`,
+  `src/modules/layout`,
+  `src/modules/form`, `src/modules/control`) with just a `ui/` folder and no
+  `lib/`
   directory. Use this pattern for layout components, form controls, or pure UI
   shells that don't manage Redux state or data fetching.
 - `src/modules/example` is the reference module for new data-driven features;
-  use it as the template for structure, routing, async hooks, reducers, selectors,
+  use it as the template for structure, routing, async hooks, reducers,
+  selectors,
   and normalized list state.
 - Start from `src/modules/example/ui/Example.tsx` for route composition,
   `src/modules/example/lib/actions.ts` for async hook shape,

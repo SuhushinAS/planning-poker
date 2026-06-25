@@ -1,14 +1,8 @@
-import { ChangeEvent, useCallback } from 'react';
+import { useCallback } from 'react';
 import { useAppDispatch, useAppSelector } from 'src/app/lib/hooks';
+import { ListSelector } from 'src/modules/common/ui/ListSelector';
 import { actionLocaleSetCurrent } from 'src/modules/locale/lib/actions';
 import { selectLocaleCurrent, selectLocaleList } from 'src/modules/locale/lib/selectors';
-import './LocaleSelector.less';
-
-const renderLocaleOption = (locale: string) => (
-  <option key={locale} value={locale}>
-    {locale}
-  </option>
-);
 
 export const LocaleSelector = () => {
   const dispatch = useAppDispatch();
@@ -16,21 +10,13 @@ export const LocaleSelector = () => {
   const localeList = useAppSelector(selectLocaleList);
 
   const onLocaleChange = useCallback(
-    (event: ChangeEvent<HTMLSelectElement>) => {
-      dispatch(actionLocaleSetCurrent(event.target.value));
+    (localeNext: string) => {
+      dispatch(actionLocaleSetCurrent(localeNext));
     },
     [dispatch],
   );
 
   return (
-    <select
-      className="LocaleSelector"
-      name="locale"
-      onBlur={onLocaleChange}
-      onChange={onLocaleChange}
-      value={localeCurrent}
-    >
-      {localeList.map(renderLocaleOption)}
-    </select>
+    <ListSelector itemCurrent={localeCurrent} itemList={localeList} onChange={onLocaleChange} />
   );
 };
