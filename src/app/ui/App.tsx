@@ -15,19 +15,19 @@ export const App = () => {
     <StrictMode>
       <ErrorBoundary>
         <Provider store={store}>
-          <LocaleProvider>
-            <BrowserRouter>
+          <BrowserRouter>
+            <LocaleProvider>
               <Config>
-                <Layout>
-                  <FirebaseProvider>
+                <FirebaseProvider>
+                  <Layout>
                     <Routes>
                       <Route element={<Game />} path={`${appPath.home}*`} />
                     </Routes>
-                  </FirebaseProvider>
-                </Layout>
+                  </Layout>
+                </FirebaseProvider>
               </Config>
-            </BrowserRouter>
-          </LocaleProvider>
+            </LocaleProvider>
+          </BrowserRouter>
         </Provider>
       </ErrorBoundary>
     </StrictMode>
