@@ -9,8 +9,8 @@ export const config = createSlice({
   initialState,
   name: 'config',
   reducers: {
-    update(state, { payload }: PayloadAction<TConfig>) {
-      return { ...state, ...payload };
+    update(state, { payload }: PayloadAction<Partial<TConfig>>) {
+      Object.assign(state, payload);
     },
   },
 });

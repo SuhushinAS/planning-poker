@@ -1,5 +1,9 @@
 {
+  "anonymously.error.description": "Failed to sign in. Please reload the page.",
+  "anonymously.error.title": "Authentication error",
   "app.title": "Poker-planner",
+  "config.error.description": "Failed to load application configuration. Please reload the page.",
+  "config.error.title": "Configuration error",
   "example.item.description": "Example item description",
   "example.list.description": "Example list description",
   "example.list.title": "Example list",

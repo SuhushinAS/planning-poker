@@ -1,7 +1,9 @@
 import { ReactNode, useEffect, useState } from 'react';
 import { IntlProvider } from 'react-intl';
 import { useAppDispatch, useAppSelector } from 'src/app/lib/hooks';
+import { Empty } from 'src/modules/common/ui/Empty';
 import { actionLocaleGetList, actionLocaleGetMessages } from 'src/modules/locale/lib/actions';
+import { localeErrorDescription, localeErrorTitle } from 'src/modules/locale/lib/constants';
 import { localeActions } from 'src/modules/locale/lib/reducers';
 import { selectCurrentMessages, selectLocaleCurrent } from 'src/modules/locale/lib/selectors';
 import { selectStatusItem } from 'src/modules/status/lib/selectors';
@@ -33,6 +35,10 @@ export const LocaleProvider = ({ children }: TProps) => {
       dispatch(actionLocaleGetMessages(localeCurrent));
     }
   }, [dispatch, localeCurrent, messages, messagesStatus]);
+
+  if (Status.error === messagesStatus && !messagesActive) {
+    return <Empty description={localeErrorDescription} title={localeErrorTitle} />;
+  }
 
   if (messagesStatus !== Status.success && !messagesActive) {
     return null;

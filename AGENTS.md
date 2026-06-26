@@ -1,5 +1,7 @@
 # AGENTS.md
 
+> Never rename this file. The canonical name is `AGENTS.md` (all caps).
+
 Planning poker with `TypeScript`, `Redux Toolkit`, `React Router`,
 `react-intl`, `Less`, and webpack 5. Use this file as the fast path for
 understanding project structure, data flow, and developer workflow.
@@ -48,7 +50,11 @@ understanding project structure, data flow, and developer workflow.
 
 - `src/modules/common/lib/api.ts` is the only fetch wrapper. `Api.host` is
   mutable global state populated by `Config` from `/local/api/v1/config.json`;
-  normal remote requests should go through `api.request()`.
+  normal remote requests should go through `api.request()`. `api.host` is set
+  as a side effect of `actionGetConfig` — never call `api.request()` before
+  `Config` finishes loading or the request will go to an empty host. This is
+  enforced architecturally: `Config` blocks rendering until `Status.success`,
+  so child components cannot call `api.request()` prematurely.
 - Mock/bootstrap data is served from `public/local/api/v1/*.json` and fetched
   through `api.requestLocal(...)`, which prefixes `/local`.
 - Locale state is split across Redux + `localStorage`: `useLocaleSetCurrent()`

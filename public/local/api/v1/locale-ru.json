@@ -1,5 +1,9 @@
 {
+  "anonymously.error.description": "Не удалось выполнить вход. Пожалуйста, перезагрузите страницу.",
+  "anonymously.error.title": "Ошибка аутентификации",
   "app.title": "Покер-планер",
+  "config.error.description": "Не удалось загрузить конфигурацию приложения. Пожалуйста, перезагрузите страницу.",
+  "config.error.title": "Ошибка конфигурации",
   "example.item.description": "Описание примера элемента",
   "example.list.description": "Описание примера списка",
   "example.list.title": "Пример списка",
