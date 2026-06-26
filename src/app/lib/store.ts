@@ -2,8 +2,8 @@ import { configureStore } from '@reduxjs/toolkit';
 import { rootReducer } from 'src/app/lib/reducers';
 
 const middlewareOptions = {
-  immutableCheck: false,
-  serializableCheck: false,
+  immutableCheck: true,
+  serializableCheck: true,
   thunk: true,
 };
 
