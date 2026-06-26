@@ -106,6 +106,14 @@ understanding project structure, data flow, and developer workflow.
   escape the `reduce` call. Immutable spread in `reduce` creates a new object on
   every iteration and wastes memory. Apply immutability where it matters: Redux
   reducers, shared state, and objects that outlive their creation scope.
+- `typeof genericFunc<Type>` is valid TypeScript 5+ syntax for applying type
+  parameters to a `typeof` expression of a generic function. Use it to extract
+  inferred types from function signatures, e.g.
+  `Parameters<typeof generatePath<'/:exampleId'>>[1]` → `{ exampleId: string }`.
+- Curried generic functions preserve literal types across call levels:
+  `getFullPath(root)(path)` with `as const` return type infers
+  `` `${typeof Root}${typeof Path}` `` as a compile-time literal type, enabling
+  accurate type inference for route params in downstream consumers.
 - Many components intentionally render `null` until status becomes
   `Status.success`; preserve that behavior when extending bootstrapping flows.
 - `src/modules/common/ui/Scroll.tsx` is part of the layout shell;

@@ -1,8 +1,7 @@
 import { Link } from 'react-router-dom';
-import { appPath } from 'src/app/lib/constants';
 import { useAppSelector } from 'src/app/lib/hooks';
 import { Loader } from 'src/modules/common/ui/Loader';
-import { exampleIdKey } from 'src/modules/example/lib/constants';
+import { exampleIdKey, exampleLinks } from 'src/modules/example/lib/constants';
 import { exampleActions } from 'src/modules/example/lib/reducers';
 import { selectExampleList } from 'src/modules/example/lib/selectors';
 import { TExample } from 'src/modules/example/lib/types';
@@ -43,7 +42,9 @@ export const ExampleList = () => {
             {fields.map((field) => {
               return (
                 <td className="ExampleList__Cell" key={field}>
-                  <Link to={`${appPath.example}/${item[exampleIdKey]}`}>{`${item[field]}`}</Link>
+                  <Link to={exampleLinks.item({ exampleId: item[exampleIdKey] })}>
+                    {String(item[field])}
+                  </Link>
                 </td>
               );
             })}

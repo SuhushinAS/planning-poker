@@ -5,6 +5,8 @@
   "config.error.description": "Не удалось загрузить конфигурацию приложения. Пожалуйста, перезагрузите страницу.",
   "config.error.title": "Ошибка конфигурации",
   "example.item.description": "Описание примера элемента",
+  "example.item.notFound": "Элемент не найден",
+  "example.item.notFoundTitle": "Пример не найден",
   "example.list.description": "Описание примера списка",
   "example.list.title": "Пример списка",
   "footer.power.title": "Сделал",

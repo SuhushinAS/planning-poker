@@ -2,17 +2,16 @@ import { createAppSelector } from 'src/app/lib/hooks';
 import { TState } from 'src/app/lib/types';
 import { getList } from 'src/modules/common/lib/selectors';
 import { exampleName } from 'src/modules/example/lib/reducers';
-import { TExampleMap, TExampleStore } from 'src/modules/example/lib/types';
 
-export const selectExample = (state: TState): TExampleStore => {
-  return state[exampleName] as TExampleStore;
+export const selectExample = (state: TState) => {
+  return state[exampleName];
 };
 
-export const selectExampleData = (state: TState): TExampleMap => {
+export const selectExampleData = (state: TState) => {
   return selectExample(state).data;
 };
 
-export const selectExampleIdList = (state: TState): string[] => {
+export const selectExampleIdList = (state: TState) => {
   return selectExample(state).list;
 };
 

@@ -5,6 +5,8 @@
   "config.error.description": "Failed to load application configuration. Please reload the page.",
   "config.error.title": "Configuration error",
   "example.item.description": "Example item description",
+  "example.item.notFound": "Item not found",
+  "example.item.notFoundTitle": "Example not found",
   "example.list.description": "Example list description",
   "example.list.title": "Example list",
   "footer.power.title": "Powered by",
