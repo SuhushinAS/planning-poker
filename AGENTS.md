@@ -31,10 +31,10 @@ understanding project structure, data flow, and developer workflow.
 - Use the typed Redux hooks from `src/app/lib/hooks.ts` (`useAppDispatch`,
   `useAppSelector`); `createAppSelector` is also available there when you need
   typed memoized selectors.
-- Async work is implemented as React hooks, not thunks. Examples:
-  `useConfigGet`, `useExampleGetList`, `useLocaleGetMessages` in
+- Async work is implemented as thunks dispatched from `useEffect`. Examples:
+  `actionGetConfig`, `actionExampleGetList`, `actionLocaleGetMessages` in
   `src/modules/*/lib/actions.ts`.
-- Async hooks follow the same pattern: set status → call `api.requestLocal(...)`
+- Async thunks follow the same pattern: set status → call `api.requestLocal(...)`
   or `api.request(...)` → dispatch slice action → set status success/error.
 - Request status is centralized in the `status` slice and keyed by
   `sliceAction.type` (`selectStatusItem(configActions.update.type)`,
@@ -140,10 +140,7 @@ understanding project structure, data flow, and developer workflow.
 - Put route constants in the module, async hooks in `lib/actions.ts`, state
   shape in `lib/reducers.ts`, and selectors in `lib/selectors.ts`.
 - If the module loads remote/mock data, wire status updates through
-  `useStatusSet(action.type)` and register the reducer in
+  `getActionSetStatus(action.type)` and register the reducer in
   `src/app/lib/reducers.ts`.
-- If the module should be reachable from the header navigation, also extend
-  `src/modules/layout/ui/Menu.tsx` (`Menu.defaultProps.list`) with its
-  label/path.
 - After adding a new slice, check whether app-level store/types or typed hooks
   also need updates under `src/app/lib`.
