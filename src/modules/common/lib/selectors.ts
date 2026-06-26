@@ -4,13 +4,13 @@ type TGetList = <T = TItem>(data: TMap<T>, list: string[]) => T[];
 
 export const getList: TGetList = (data, list) => list.map((id) => data[id]);
 
-type Compare = Record<string, { from: unknown; to: unknown }>;
-
 const isObject = (value: unknown): value is Record<string | number | symbol, unknown> => {
   return null !== value && 'object' === typeof value;
 };
 
-const compare = (from: unknown, to: unknown, path: string[] = []): Compare => {
+type Compare = Record<string, { from: unknown; to: unknown }>;
+
+export const compare = (from: unknown, to: unknown, path: string[] = []): Compare => {
   if (from === to) {
     return {};
   }

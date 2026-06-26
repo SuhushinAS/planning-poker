@@ -9,10 +9,10 @@ understanding project structure, data flow, and developer workflow.
 - Entry point is `src/index.tsx`: it mounts `App`, imports global `less`,
   enables HMR, and registers `public/sw.js` on `window.load`.
 - `src/app/ui/App.tsx` builds the shell in this order:
-  `StrictMode` → `ErrorBoundary` → Redux `Provider` → `LocaleProvider` →
-  `BrowserRouter` → `Config` → `Layout` → route tree. `ErrorBoundary`
-  (`src/modules/common/ui/ErrorBoundary`) catches React errors and displays a
-  fallback UI with error details.
+  `StrictMode` → `ErrorBoundary` → Redux `Provider` → `HashRouter` →
+  `LocaleProvider` → `Config` → `FirebaseProvider` → `Layout` → route tree.
+  `ErrorBoundary` (`src/modules/common/ui/ErrorBoundary`) catches React errors
+  and displays a fallback UI with error details.
 - `Config` and `LocaleProvider` are bootstrap gates: both return `null` until
   async bootstrap finishes, so UI intentionally waits for config + i18n data
   before rendering.
@@ -78,15 +78,19 @@ understanding project structure, data flow, and developer workflow.
   `src/styles/index.less`.
 - Existing UI naming is BEM-like (`Layout__Header`, `ExampleList__Cell`) rather
   than CSS modules, even though `types/index.d.ts` declares `*.less` modules.
+- Mutating a local accumulator inside `reduce` is intentional and preferred over
+  immutable spread (`{ ...acc, key: value }`) when the accumulator does not
+  escape the `reduce` call. Immutable spread in `reduce` creates a new object on
+  every iteration and wastes memory. Apply immutability where it matters: Redux
+  reducers, shared state, and objects that outlive their creation scope.
 - Many components intentionally render `null` until status becomes
   `Status.success`; preserve that behavior when extending bootstrapping flows.
 - `src/modules/common/ui/Scroll.tsx` is part of the layout shell;
   changes there affect most pages.
 - `src/modules/common/ui/` provides shared UI utilities: `If` (conditional
   rendering), `Empty` (empty state display), `Loader` (loading indicator),
-  `Table` (table layout), `KeyHandler` (keyboard event delegation), and
-  `SvgIcon` (sprite-loaded icons). Reuse these instead of creating custom
-  equivalents.
+  `Table` (table layout), and `SvgIcon` (sprite-loaded icons). Reuse these
+  instead of creating custom equivalents.
 
 ## Developer workflow
 

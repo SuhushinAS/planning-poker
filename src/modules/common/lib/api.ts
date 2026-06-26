@@ -38,7 +38,7 @@ export class Api {
     return fetch(`${host}${url}`, this.getOptions(options)).then<T>(this.getJSON);
   }
 
-  request<T>(url = '', signal: AbortSignal, options?: RequestInit) {
+  request<T>(url = '', signal?: AbortSignal, options?: RequestInit) {
     return this.fetch<T>(url, this.host, { ...options, signal });
   }
 

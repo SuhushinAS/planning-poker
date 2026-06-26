@@ -36,7 +36,7 @@ export const SvgIcon = ({ className, name = '' }: Props) => {
 
   return (
     <svg className={clsx('SvgIcon', className)} viewBox={viewBox}>
-      <use href={`${spritePath}#${name}`} xlinkHref={`${spritePath}#${name}`} />
+      <use href={`${spritePath}#${name}`} />
     </svg>
   );
 };

@@ -22,7 +22,7 @@ export const ListSelector = <T extends TValue>({
 }: Props<T>) => {
   const indexMap = useMemo(() => getIndexMap(itemList), [itemList]);
 
-  const onLocaleChange = useCallback(() => {
+  const onItemChange = useCallback(() => {
     const index = indexMap[itemCurrent];
     const itemNext = getNextItem(itemList, index);
 
@@ -30,7 +30,7 @@ export const ListSelector = <T extends TValue>({
   }, [indexMap, itemCurrent, itemList, onChange]);
 
   return (
-    <button className="ListSelector" onClick={onLocaleChange} type="button">
+    <button className="ListSelector" onClick={onItemChange} type="button">
       {itemList.map((item) => (
         <div
           className={clsx('ListSelector__Item', {
