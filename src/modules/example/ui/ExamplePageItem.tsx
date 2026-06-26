@@ -23,7 +23,7 @@ export const ExamplePageItem = () => {
     <div className="box">
       <ExampleHead
         linkText={<Message id="example.list.title" />}
-        linkUrl={exampleLinks.list({})}
+        linkUrl={exampleLinks.list()}
         title={example.name}
       />
       <ExampleItem example={example} />

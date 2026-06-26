@@ -4,7 +4,7 @@ export type PathParams<Path extends string> = Parameters<typeof generatePath<Pat
 
 export const getFullLink = <Root extends string>(root: Root) => {
   return <Path extends string>(path: Path) => {
-    return (params: PathParams<`${Root}${Path}`>) => {
+    return (params?: PathParams<`${Root}${Path}`>) => {
       return generatePath(`${root}${path}`, params);
     };
   };
