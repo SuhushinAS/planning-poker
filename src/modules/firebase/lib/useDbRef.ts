@@ -1,6 +1,6 @@
-import {ref} from 'firebase/database';
-import {useDatabaseContext} from 'modules/firebase/components/Database';
-import {useMemo} from 'react';
+import { ref } from 'firebase/database';
+import { useMemo } from 'react';
+import { useDatabaseContext } from 'src/modules/firebase/ui/Database';
 
 export const useDbRef = (path?: string) => {
   const database = useDatabaseContext();

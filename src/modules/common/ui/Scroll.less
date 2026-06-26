@@ -1,0 +1,84 @@
+@import (reference) 'src/styles/mixins';
+
+.Scroll {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  width: 100%;
+
+  &__Scroller {
+    border: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: none;
+    padding: 0;
+    width: 100%;
+  }
+
+  &__Track {
+    .fluid-prop-sm(bottom, 0, 1px);
+    .fluid-prop-sm(right, 0, 1px);
+
+    border-radius: 4px;
+    display: none;
+    position: absolute;
+    transition: background-color @animation;
+    z-index: 9;
+
+    .theme_light & {
+      background-color: @c-black-05;
+    }
+
+    .theme_dark & {
+      background-color: @c-white-20;
+    }
+
+    &_h {
+      height: 6px;
+      left: 1px;
+    }
+
+    &_v {
+      top: 1px;
+      width: 6px;
+    }
+  }
+
+  &_On_h > &__Track_h {
+    display: block;
+  }
+
+  &_On_v > &__Track_v {
+    display: block;
+  }
+
+  &__Bar {
+    border-radius: 3px;
+    position: absolute;
+    transition: background-color @animation;
+
+    .theme_light & {
+      background-color: @c-black-20;
+    }
+
+    .theme_dark & {
+      background-color: @c-white-20;
+    }
+
+    &_h {
+      height: 4px;
+      top: 1px;
+    }
+
+    &_v {
+      right: 1px;
+      width: 4px;
+    }
+  }
+}

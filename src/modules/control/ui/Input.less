@@ -1,0 +1,16 @@
+@import (reference) 'src/styles/font';
+@import (reference) './Control';
+
+.Input {
+  @border-width: 2px;
+  @multiplier-hor: 3;
+  @multiplier-ver: 2;
+  @offset-sm: 2px;
+  @offset-md: 4px;
+  @offset-hor-sm: @offset-sm * @multiplier-hor;
+  @offset-ver-sm: @offset-sm * @multiplier-ver;
+  @offset-hor-md: @offset-md * @multiplier-hor;
+  @offset-ver-md: @offset-md * @multiplier-ver;
+
+  .Control(@border-width, @offset-hor-sm, @offset-hor-md, @offset-ver-sm, @offset-ver-md);
+}

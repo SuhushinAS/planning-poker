@@ -1,0 +1,37 @@
+@import (reference) 'src/styles/font';
+@import (reference) 'src/styles/mixins';
+
+.ListSelector {
+  .f_h2();
+
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  display: block;
+  padding: 0;
+  text-transform: uppercase;
+  transition: color @animation;
+
+  .theme_light & {
+    color: @c-black-40;
+  }
+
+  .theme_dark & {
+    color: @c-white-40;
+  }
+}
+
+.ListSelector__Item {
+  display: block;
+  height: 0;
+  line-height: 0;
+  opacity: 0;
+  transform: scale(0.7);
+  transition: transform @animation;
+}
+
+.ListSelector__Item_Current {
+  height: auto;
+  opacity: 1;
+  transform: scale(1);
+}

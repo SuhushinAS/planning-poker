@@ -1,5 +1,5 @@
-import {DataSnapshot, DatabaseReference, onValue} from 'firebase/database';
-import {useEffect} from 'react';
+import { DataSnapshot, DatabaseReference, onValue } from 'firebase/database';
+import { useEffect } from 'react';
 
 type UseOnDbValue = (dbRef: DatabaseReference, callback: (snap: DataSnapshot) => void) => void;
 

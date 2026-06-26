@@ -1,6 +1,6 @@
-import {doc} from 'firebase/firestore';
-import {useFirestoreContext} from 'modules/firebase/components/Firestore';
-import {useMemo} from 'react';
+import { doc } from 'firebase/firestore';
+import { useMemo } from 'react';
+import { useFirestoreContext } from 'src/modules/firebase/ui/Firestore';
 
 export const useDocRef = (path: string, pathSegment: string) => {
   const firestore = useFirestoreContext();
