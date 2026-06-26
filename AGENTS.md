@@ -1,6 +1,8 @@
 # AGENTS.md
 
 > Never rename this file. The canonical name is `AGENTS.md` (all caps).
+> When you learn something new about the project — architecture decisions,
+> conventions, or patterns — add it to this file upon request.
 
 Planning poker with `TypeScript`, `Redux Toolkit`, `React Router`,
 `react-intl`, `Less`, and webpack 5. Use this file as the fast path for
@@ -19,9 +21,8 @@ understanding project structure, data flow, and developer workflow.
   async bootstrap finishes, so UI intentionally waits for config + i18n data
   before rendering.
 - Routes are small and module-owned: top-level routes live in
-  `src/app/lib/constants.ts` (`home`, `example`), while feature-local
-  subroutes live in module constants such as
-  `src/modules/example/lib/constants.ts`.
+  `src/app/lib/constants.ts`, while feature-local subroutes live in module
+  constants such as `src/modules/example/lib/constants.ts`.
 
 ## Architecture notes
 
@@ -68,6 +69,21 @@ understanding project structure, data flow, and developer workflow.
   name → `viewBox` map with `require.context(...)`, and missing `viewBox` values
   only surface as dev warnings. Webpack bundles the sprite into `sprite.svg` via
   `config/svg.js`.
+
+### Firebase and error fallbacks
+
+- Firebase data (`FirebaseApp`, `Auth`, `User`, `Firestore`, `Database`) lives
+  exclusively in React Context — never in Redux. Providers are chained:
+  `FirebaseAppProvider` → `AuthProvider` → `AnonymouslyProvider` →
+  `FirestoreProvider` → `DatabaseProvider`.
+- Each Firebase provider returns `null` while initializing and renders children
+  only after the value is ready.
+- Provider layer determines which error component to use:
+  - Inside `FirebaseProvider` (and any component below `Config` in the tree):
+    use `EmptyKey` with locale keys — translations are already loaded.
+  - Inside `LocaleProvider` itself (before translations are available):
+    use `Empty` with hardcoded Russian text, since `IntlProvider` is not yet
+    mounted.
 
 ### Codebase conventions
 
@@ -122,8 +138,6 @@ understanding project structure, data flow, and developer workflow.
   files.
 - `package.json#overrides` contains security-driven transitive pins; keep them
   unless you intentionally rework the affected toolchain.
-- If `npm audit` still reports residual tooling issues, fixing those further
-  likely requires package replacement, not just version bumps.
 
 ## Adding new modules
 
