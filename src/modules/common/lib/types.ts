@@ -1,5 +1,3 @@
-import { generatePath } from 'react-router-dom';
-
 export type TItem = {
   id: string;
 };
@@ -16,5 +14,3 @@ export type TNormalize<T = TItem> = (list: T[]) => {
 };
 
 export type TValue = string | number;
-
-export type PathParams<Path extends string> = Parameters<typeof generatePath<Path>>[1];

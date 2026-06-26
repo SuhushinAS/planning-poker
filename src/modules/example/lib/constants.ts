@@ -1,6 +1,4 @@
-import { generatePath } from 'react-router-dom';
-import { getFullPath } from 'src/modules/common/lib/getFullPath';
-import { PathParams } from 'src/modules/common/lib/types';
+import { getFullLink } from 'src/modules/common/lib/getFullLink';
 
 export const examplePaths = {
   item: '/:exampleId',
@@ -9,15 +7,7 @@ export const examplePaths = {
 
 const EXAMPLE_ROOT = '/example' as const;
 
-export const getExamplePath = getFullPath(EXAMPLE_ROOT);
-
-const getExampleLink = <Path extends string>(path: Path) => {
-  const fullPath = getExamplePath(path);
-
-  return (params: PathParams<typeof fullPath>) => {
-    return generatePath(fullPath, params);
-  };
-};
+const getExampleLink = getFullLink(EXAMPLE_ROOT);
 
 export const exampleLinks = {
   item: getExampleLink(examplePaths.item),
