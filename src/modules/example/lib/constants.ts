@@ -5,7 +5,7 @@ export const examplePaths = {
   list: '/',
 } as const;
 
-const EXAMPLE_ROOT = '/example' as const;
+export const EXAMPLE_ROOT = '/example' as const;
 
 const getExampleLink = getFullLink(EXAMPLE_ROOT);
 

@@ -1,6 +1,5 @@
-import { generatePath } from 'react-router';
 import { Link } from 'react-router-dom';
-import { gamePath } from 'src/modules/game/lib/constants';
+import { gameLinks } from 'src/modules/game/lib/constants';
 import { TGame } from 'src/modules/game/lib/types';
 import './GameListItem.less';
 
@@ -11,9 +10,7 @@ type Props = {
 };
 
 export const GameListItem = ({ game, gameId, index }: Props) => {
-  const link = (
-    <Link className="GameListItem__Link" to={generatePath(gamePath.item, { gameId })}></Link>
-  );
+  const link = <Link className="GameListItem__Link" to={gameLinks.item({ gameId })}></Link>;
 
   return (
     <tr>

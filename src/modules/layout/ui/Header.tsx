@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { appPath } from 'src/app/lib/constants';
+import { GAME_ROOT } from 'src/modules/game/lib/constants';
 import { LocaleSelector } from 'src/modules/locale/ui/LocaleSelector';
 import { Message } from 'src/modules/locale/ui/Message';
 import { ThemeSelector } from 'src/modules/theme/ui/ThemeSelector';
@@ -10,7 +10,7 @@ export const Header = () => (
     <div className="Header__Box box ">
       <div className="Header__Row box__row">
         <h1 className="Header__Title box__col box__col_xs_auto">
-          <Link className="Header__TitleLink" to={appPath.home}>
+          <Link className="Header__TitleLink" to={GAME_ROOT}>
             <Message id="app.title" />
           </Link>
         </h1>

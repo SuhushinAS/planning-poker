@@ -1,11 +1,11 @@
 import { addDoc, serverTimestamp } from 'firebase/firestore';
 import { useCallback } from 'react';
 import { DefaultValues, SubmitHandler } from 'react-hook-form';
-import { generatePath, useNavigate } from 'react-router';
+import { useNavigate } from 'react-router';
 import { useCollectionRef } from 'src/modules/firebase/lib/useCollectionRef';
 import { useAnonymouslyContext } from 'src/modules/firebase/ui/Anonymously';
 import { Form } from 'src/modules/form/ui/Form';
-import { gamePath } from 'src/modules/game/lib/constants';
+import { gameLinks } from 'src/modules/game/lib/constants';
 import { TGame } from 'src/modules/game/lib/types';
 import { GameCreateForm } from 'src/modules/game/ui/GameCreateForm';
 
@@ -27,7 +27,7 @@ export const GameCreate = () => {
       };
 
       return addDoc(gameCollectionRef, data).then((game) => {
-        navigate(generatePath(gamePath.item, { gameId: game.id }));
+        navigate(gameLinks.item({ gameId: game.id }));
       });
     },
     [anonymously.uid, gameCollectionRef, navigate],

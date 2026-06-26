@@ -1,6 +1,6 @@
-import { appPath } from 'src/app/lib/constants';
 import { ExampleHead } from 'src/modules/example/ui/ExampleHead';
 import { ExampleList } from 'src/modules/example/ui/ExampleList';
+import { GAME_ROOT } from 'src/modules/game/lib/constants';
 import { Message } from 'src/modules/locale/ui/Message';
 
 export const ExamplePageList = () => {
@@ -8,7 +8,7 @@ export const ExamplePageList = () => {
     <div className="box">
       <ExampleHead
         linkText={<Message id="home.title" />}
-        linkUrl={appPath.home}
+        linkUrl={GAME_ROOT}
         title={<Message id="example.list.title" />}
       />
       <ExampleList />
