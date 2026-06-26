@@ -1,11 +1,6 @@
-import { ReactNode, SelectHTMLAttributes } from 'react';
+import { SelectHTMLAttributes } from 'react';
 import { useController, useFormContext } from 'react-hook-form';
-import { Select } from 'src/modules/control/ui/Select';
-
-export type Option = {
-  title: ReactNode;
-  value: string;
-};
+import { Option, Select } from 'src/modules/control/ui/Select';
 
 type Props = SelectHTMLAttributes<HTMLSelectElement> & { name: string; options: Option[] };
 

@@ -14,11 +14,9 @@ type Props = SelectHTMLAttributes<HTMLSelectElement> & {
 export const Select = ({ className, id, name, onChange, options, ...props }: Props) => {
   return (
     <select
-      autoComplete={name}
       className={clsx('Select', className)}
       id={id ?? name}
       name={name}
-      onBlur={onChange}
       onChange={onChange}
       {...props}
     >

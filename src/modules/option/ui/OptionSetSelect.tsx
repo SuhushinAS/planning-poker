@@ -1,8 +1,7 @@
 import { updateDoc } from 'firebase/firestore';
 import { ChangeEventHandler, useCallback, useMemo } from 'react';
-import { Select } from 'src/modules/control/ui/Select';
+import { Select, Option } from 'src/modules/control/ui/Select';
 import { useDocRef } from 'src/modules/firebase/lib/useDocRef';
-import { Option } from 'src/modules/form/ui/FormSelect';
 import { useGetMessage } from 'src/modules/locale/lib/useGetMessage';
 import { useOptionSetList } from 'src/modules/option/lib/useOptionSet';
 
